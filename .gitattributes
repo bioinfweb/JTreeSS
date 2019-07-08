@@ -11,6 +11,10 @@ test/info.bioinfweb.jtreess.cssparser.cssparser/lib/cssparser-0.9.27.jar -text
 test/info.bioinfweb.jtreess.cssparser.cssparser/lib/sac.jar -text
 test/info.bioinfweb.jtreess.cssparser.cssparser/log.txt -text
 test/info.bioinfweb.jtreess.cssparser.cssparser/src/info/bioinfweb/jtreess/cssparser/cssparser/CSSParserTest.java -text
+test/info.bioinfweb.jtreess.test.cssparser.w3csac/.classpath -text
+test/info.bioinfweb.jtreess.test.cssparser.w3csac/.project -text
+test/info.bioinfweb.jtreess.test.cssparser.w3csac/.settings/org.eclipse.jdt.core.prefs -text
+test/info.bioinfweb.jtreess.test.cssparser.w3csac/lib/sac.jar -text
 test/info.bioinfweb.jtreess.test.main/info.bioinfweb.jtreess.test.main/.classpath -text
 test/info.bioinfweb.jtreess.test.main/info.bioinfweb.jtreess.test.main/.project -text
 test/info.bioinfweb.jtreess.test.main/info.bioinfweb.jtreess.test.main/.settings/org.eclipse.jdt.core.prefs -text
