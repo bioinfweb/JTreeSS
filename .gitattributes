@@ -6,3 +6,4 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtress/core/package-info.jav
 test/info.bioinfweb.jtreess.test.main/info.bioinfweb.jtreess.test.main/.classpath -text
 test/info.bioinfweb.jtreess.test.main/info.bioinfweb.jtreess.test.main/.project -text
 test/info.bioinfweb.jtreess.test.main/info.bioinfweb.jtreess.test.main/.settings/org.eclipse.jdt.core.prefs -text
+test/info.bioinfweb.jtreess.test.main/info.bioinfweb.jtreess.test.main/data/Test.treess -text
