@@ -18,7 +18,7 @@ public class CSSParserTest {
 
             oParser = new CSSParserTest();
 
-            if (oParser.parse("I:\\Documents\\Bioinformatik\\TreeSS\\Eclipse Arbeitsplatz\\info.bioinfweb.jtreess.cssparser.cssparser\\data\\Test.treess")) {
+            if (oParser.parse("C:\\Users\\charl\\Documents\\Münster_Uni\\Bioinformatik\\TreeSS\\info.bioinfweb.jtreess.cssparser.cssparser\\data\\CSSTest.css")) {
 
                 System.out.println("Parsing completed OK");
 
