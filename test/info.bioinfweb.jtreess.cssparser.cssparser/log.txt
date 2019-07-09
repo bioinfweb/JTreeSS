@@ -1,35 +1,39 @@
-null [16:25] Fehler in Ausdruck. (Ungültiger Token " ". Erwartet wurde einer von: <NUMBER>, "inherit", <IDENT>, <STRING>, <HASH>, <EMS>, <EXS>, <LENGTH_PX>, <LENGTH_CM>, <LENGTH_MM>, <LENGTH_IN>, <LENGTH_PT>, <LENGTH_PC>, <ANGLE_DEG>, <ANGLE_RAD>, <ANGLE_GRAD>, <TIME_MS>, <TIME_S>, <FREQ_HZ>, <FREQ_KHZ>, <PERCENTAGE>, <DIMENSION>, <URI>, <FUNCTION>, "progid:".)
-null [23:14] Fehler in Pseudo-Klasse oder Pseudo-Element. (Ungültiger Token ":". Erwartet wurde einer von: <S>, <IDENT>, ")".)
-null [23:14] Ignoriere die gesamte Regel.
-Number of rules: 7
+null [20:14] Fehler in Pseudo-Klasse oder Pseudo-Element. (Ungültiger Token ":". Erwartet wurde einer von: <S>, <IDENT>, ")".)
+null [20:14] Ignoriere die gesamte Regel.
+Number of rules: 6
+com.steadystate.css.dom.CSSStyleRuleImpl
 selector:0: canvas
-property: background-color
-value: none
-priority: 
+  property: background-color
+    value: none
+    priority: 
+com.steadystate.css.dom.CSSStyleRuleImpl
 selector:1: tree
-property: layout
-value: rectangular
-priority: 
+  property: layout
+    value: rectangular
+    priority: 
+com.steadystate.css.dom.CSSStyleRuleImpl
 selector:2: #un6gt
-property: font-family
-value: arial, sans-serif
-priority: 
-property: font-size
-value: 8mm
-priority: 
-property: font-weight
-value: bold
-priority: 
-selector:3: node
-selector:4: *:terminal
-property: color
-value: blue
-priority: 
-selector:5: text-label.baysianSupport
-property: -biw-line-position
-value: 25.6
-priority: 
-selector:6: scale
-property: visible
-value: true
-priority: 
+  property: font-family
+    value: arial, sans-serif
+    priority: 
+  property: font-size
+    value: 8 mm
+    priority: 
+  property: font-weight
+    value: bold
+    priority: 
+com.steadystate.css.dom.CSSStyleRuleImpl
+selector:3: *:terminal
+  property: color
+    value: blue
+    priority: 
+com.steadystate.css.dom.CSSStyleRuleImpl
+selector:4: text-label.baysianSupport
+  property: -biw-line-position
+    value: 25.6
+    priority: 
+com.steadystate.css.dom.CSSStyleRuleImpl
+selector:5: scale
+  property: visible
+    value: true
+    priority: 

@@ -18,7 +18,7 @@ public class CSSParserTest {
 
             oParser = new CSSParserTest();
 
-            if (oParser.parse("C:\\Users\\charl\\Documents\\Münster_Uni\\Bioinformatik\\TreeSS\\info.bioinfweb.jtreess.cssparser.cssparser\\data\\CSSTest.css")) {
+            if (oParser.parse("data\\Test.treess")) {
 
                 System.out.println("Parsing completed OK");
 
@@ -70,11 +70,10 @@ public class CSSParserTest {
                 ps.println("Number of rules: " + ruleList.getLength());
 
 
-               for (int i = 0; i < ruleList.getLength(); i++) 
-               {
+               for (int i = 0; i < ruleList.getLength(); i++) {
                  CSSRule rule = ruleList.item(i);
-                 if (rule instanceof CSSStyleRule) 
-                 {
+                 ps.println(rule.getClass().getCanonicalName());
+                 if (rule instanceof CSSStyleRule) {
                      CSSStyleRule styleRule=(CSSStyleRule)rule;
                      ps.println("selector:" + i + ": " + styleRule.getSelectorText());
                      CSSStyleDeclaration styleDeclaration = styleRule.getStyle();
@@ -83,9 +82,9 @@ public class CSSParserTest {
                      for (int j = 0; j < styleDeclaration.getLength(); j++) 
                      {
                           String property = styleDeclaration.item(j);
-                          ps.println("property: " + property);
-                          ps.println("value: " + styleDeclaration.getPropertyCSSValue(property).getCssText());
-                          ps.println("priority: " + styleDeclaration.getPropertyPriority(property));   
+                          ps.println("  property: " + property);
+                          ps.println("    value: " + styleDeclaration.getPropertyCSSValue(property).getCssText());
+                          ps.println("    priority: " + styleDeclaration.getPropertyPriority(property));   
                      }
 
 
