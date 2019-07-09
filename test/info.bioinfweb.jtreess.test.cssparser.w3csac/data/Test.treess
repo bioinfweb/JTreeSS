@@ -1,0 +1,33 @@
+canvas {
+	background-color: none;  /* Transparent background */
+}
+ 
+tree {
+	layout: rectangular; 
+}
+ 
+#un6gt { /* Some unique node name */
+  font-family: arial, sans-serif;
+  font-size: 8 mm;
+  font-weight: bold;
+}
+
+/*node {
+	font-size: abc(0.7em+metadataValue(currentNode, 'a:flowerSize', 'a:averageSize')+0.01em); 
+}*/
+
+*:terminal {  /* This would reference terminal nodes, branches, labels, ... */
+	color: blue;
+}
+
+/*node:matches(:first-child, :last-child) {
+	color: #FF0000;
+}*/
+
+text-label.baysianSupport { /* Example to reference labels by their ID. (Temporary, since label IDs will be removed from TG.) */
+	-biw-line-position: 25.6;
+}
+
+scale {   
+  visible : true;
+}

@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/info.bioinfweb.jtreess.test.main"/>
 	<classpathentry kind="lib" path="lib/sac.jar"/>
+	<classpathentry kind="lib" path="lib/flute.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
