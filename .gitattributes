@@ -28,7 +28,7 @@ test/info.bioinfweb.jtreess.test.cssparser.w3csac/data/Test.treess -text
 test/info.bioinfweb.jtreess.test.cssparser.w3csac/lib/flute.jar -text
 test/info.bioinfweb.jtreess.test.cssparser.w3csac/lib/sac.jar -text
 test/info.bioinfweb.jtreess.test.cssparser.w3csac/src/info/bioinfweb/jtreess/test/cssparser/w3csac/FluteParserTest.java -text
-test/info.bioinfweb.jtreess.test.main/info.bioinfweb.jtreess.test.main/.classpath -text
-test/info.bioinfweb.jtreess.test.main/info.bioinfweb.jtreess.test.main/.project -text
-test/info.bioinfweb.jtreess.test.main/info.bioinfweb.jtreess.test.main/.settings/org.eclipse.jdt.core.prefs -text
-test/info.bioinfweb.jtreess.test.main/info.bioinfweb.jtreess.test.main/data/Test.treess -text
+test/info.bioinfweb.jtreess.test.main/.classpath -text
+test/info.bioinfweb.jtreess.test.main/.project -text
+test/info.bioinfweb.jtreess.test.main/.settings/org.eclipse.jdt.core.prefs -text
+test/info.bioinfweb.jtreess.test.main/data/Test.treess -text
