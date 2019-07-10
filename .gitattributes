@@ -12,6 +12,14 @@ test/info.bioinfweb.jtreess.cssparser.cssparser/lib/cssparser-0.9.27.jar -text
 test/info.bioinfweb.jtreess.cssparser.cssparser/lib/sac.jar -text
 test/info.bioinfweb.jtreess.cssparser.cssparser/log.txt -text
 test/info.bioinfweb.jtreess.cssparser.cssparser/src/info/bioinfweb/jtreess/cssparser/cssparser/CSSParserTest.java -text
+test/info.bioinfweb.jtreess.test.cssparser.jcss/.classpath -text
+test/info.bioinfweb.jtreess.test.cssparser.jcss/.project -text
+test/info.bioinfweb.jtreess.test.cssparser.jcss/.settings/org.eclipse.jdt.core.prefs -text
+test/info.bioinfweb.jtreess.test.cssparser.jcss/data/Test.treess -text
+test/info.bioinfweb.jtreess.test.cssparser.jcss/lib/jCSS-Parser-0.0.5-javadoc.jar -text
+test/info.bioinfweb.jtreess.test.cssparser.jcss/lib/jCSS-Parser-0.0.5-sources.jar -text
+test/info.bioinfweb.jtreess.test.cssparser.jcss/src/info/bioinfweb/jtreess/test/cssparser/jcss/JCSSParserTest.java -text
+test/info.bioinfweb.jtreess.test.cssparser.jcss/src/info/bioinfweb/jtreess/test/cssparser/jcss/TestCSSHandler.java -text
 test/info.bioinfweb.jtreess.test.cssparser.phcss/.classpath -text
 test/info.bioinfweb.jtreess.test.cssparser.phcss/.project -text
 test/info.bioinfweb.jtreess.test.cssparser.phcss/.settings/org.eclipse.jdt.core.prefs -text
