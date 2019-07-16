@@ -3,5 +3,200 @@
  */options{  static = true;}PARSER_BEGIN(TestFileParser)package info.bioinfweb.test.javacc.parser;
 
 public class TestFileParser {}
-PARSER_END(TestFileParser)SKIP :{  " "| "\r"| "\t"| "\n"}TOKEN : /* OPERATORS */{  < PLUS : "+" >| < MINUS : "-" >| < MULTIPLY : "*" >| < DIVIDE : "/" >}TOKEN :{  < CONSTANT : (< DIGIT >)+ >| < #DIGIT : [ "0"-"9" ] >}
-int one_line() :{}{  sum() ";"  {    return 0;  }| ";"  {    return 1;  }}void sum() :{}{  term()  (    (      < PLUS >    | < MINUS >    )    term()  )*}void term() :{}{  unary()  (    (      < MULTIPLY >    | < DIVIDE >    )    unary()  )*}void unary() :{}{  < MINUS > element()| element()}void element() :{}{  < CONSTANT >| "(" sum() ")"}
+PARSER_END(TestFileParser)SKIP :{  " "| "\r"| "\t"| "\n"}TOKEN : {  < PLUS : "+" >| < MINUS : "-" >| < LBRACE : "{" >
+| < RBRACE : "}">
+| < DASHMATCH : "|=" >
+| < INCLUDES  : "~=" >
+| < EQ        : "=" >
+| < COMMA     : "," >
+| < SEMICOLON : ";" >
+| < PRECEDES  : ">" >
+| < DIV       : "/" >
+| < LBRACKET  : "[" >
+| < RBRACKET  : "]" >
+| < ANY       : "*" >
+| < DOT       : "." >
+| < LPARAN    : ")" >
+| < RPARAN    : "(">
+}
+
+TOKEN :
+{
+  < COLON     : ":" >
+}
+TOKEN :
+{
+  < STRING : ["a"-"z", "A"-"Z"](["a"-"z", "A"-"Z","-"])+>
+}
+
+TOKEN :
+{
+  < UNIT : (["a"-"z", "A"-"Z"])+ > }
+
+TOKEN :
+{
+  < DECVALUE : (< MINUS >)? (["0"-"9"])+|(["0"-"9"])+"."(["0"-"9"])+> /* IF THERE ARE SOME VALUES WHICH START OR END WITH ".", IT MUST BE DEFINED HERE */
+}
+
+TOKEN :
+{
+  < HEXDIGIT : ["a"-"f","A"-"F","0"-"9"]> /* WHICH ONE IS THE CORRECT TOKEN? HEXDIGIT OR HEXVALUE?*/
+}
+
+TOKEN :
+{
+  < HEXVALUE : "#"(< HEXDIGIT>) { 3 }|(< HEXDIGIT >) { 6 }> 
+}
+
+TOKEN :
+{
+  < IDENTIFIER : ["a"-"z","A"-"Z","-"](["a"-"z","A"-"Z","-","0"-"9"])*> }
+
+TOKEN:
+{
+  < NCNAME : /*     NCName               ::=   Name - (Char* ':' Char*)  /* An XML Name, minus the ":" */
+      Name               ::=   NameStartChar (NameChar)*
+        NameStartChar       ::=   ":" | [A-Z] | "_" | [a-z] | [#xC0-#xD6] | [#xD8-#xF6]
+                                 | [#xF8-#x2FF] | [#x370-#x37D] | [#x37F-#x1FFF]
+                                 | [#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF]
+                                 | [#x3001-#xD7FF] | [#xF900-#xFDCF] | [#xFDF0-#xFFFD]
+                                 | [#x10000-#xEFFFF]
+        NameChar       ::=   NameStartChar | "-" | "." | [0-9]
+                                 | #xB7 | [#x0300-#x036F] | [#x203F-#x2040]
+        Char               ::=   /* any Unicode char, excluding surrogate blocks FFFE and FFFF. */
+                                 #x9 | #xA | #xD | [#x20-#xD7FF]
+                                 | [#xE000-#xFFFD] | [#x10000-#x10FFFF]*/ >
+}
+
+
+void unitvalue()
+{}
+{
+  (< DECVALUE >)(< UNIT>)?;}
+
+void hexvalue()
+{}
+{
+  "#"(< HEXDIGIT>) { 3 }|(< HEXDIGIT >) { 6 };
+}
+
+void expression()
+{}
+{
+  "";
+}
+
+void paramList()
+{}
+{
+  expression()("," expression())*;
+}
+
+void function()
+{}
+{
+  < IDENTIFIER> "(" (paramList())? ")";
+}
+
+void valueFunction ()
+{}
+{
+  function();
+}
+void value()
+{}
+{
+  unitValue()
+  | valueFunction()
+  | < STRING >
+  | < IDENTIFIER >
+  | < DECVALUE >
+  | < HEXVALUE >;
+}
+
+void values()
+{}
+{
+  value()(","(value())*);
+}
+
+void property()
+{}
+{
+  < IDENTIFIER>;
+}
+
+void propertyRole()
+{}
+{
+  property() ":" values()";"; /* IS THE ";" KORREKT?*/
+}
+
+void pseudoFunction()
+{}
+{
+  ":" function(); 
+}
+
+void pseudoClass()
+{}
+{
+  ":" < IDENTIFIER >; 
+}
+
+void pseudoSelector()
+{}
+{
+  pseudoClass()|pseudoFunction(); 
+}
+
+void simpleSelector()
+{}
+{
+  < IDENTIFIER >; 
+}
+
+void idSelector()
+{}
+{
+  "#" < NCNAME>;
+}
+
+void universalSelector()
+{}
+{
+  "*";
+}
+
+void basicSelector()
+{}
+{
+  universalSelector()
+| simpleSelector()
+| idSelector();
+}
+
+void selector()
+{}
+{
+  basicSelector()(pseudoSelector())?
+| pseudoSelector(); 
+}
+
+void selectorRule()
+{}
+{
+  selector() "{" (propertyRule())* "}"; /* propertyRule does not exist yet*/
+}
+
+void rule()
+{}
+{
+  "@"function();
+}
+
+void document()
+{}
+{
+  (selector()|rule())*;
+}
