@@ -54,7 +54,7 @@ TOKEN :
 
 TOKEN:
 {
-  < NCNAME : /*     NCName               ::=   Name - (Char* ':' Char*)  /* An XML Name, minus the ":" */
+  < NCNAME : 
       Name               ::=   NameStartChar (NameChar)*
         NameStartChar       ::=   ":" | [A-Z] | "_" | [a-z] | [#xC0-#xD6] | [#xD8-#xF6]
                                  | [#xF8-#x2FF] | [#x370-#x37D] | [#x37F-#x1FFF]
