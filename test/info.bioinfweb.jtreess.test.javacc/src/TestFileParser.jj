@@ -52,58 +52,41 @@ TOKEN :
 {
   < IDENTIFIER : ["a"-"z","A"-"Z","-"](["a"-"z","A"-"Z","-","0"-"9"])*> }
 
-TOKEN:
-{
-  < NCNAME : 
-      Name               ::=   NameStartChar (NameChar)*
-        NameStartChar       ::=   ":" | [A-Z] | "_" | [a-z] | [#xC0-#xD6] | [#xD8-#xF6]
-                                 | [#xF8-#x2FF] | [#x370-#x37D] | [#x37F-#x1FFF]
-                                 | [#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF]
-                                 | [#x3001-#xD7FF] | [#xF900-#xFDCF] | [#xFDF0-#xFFFD]
-                                 | [#x10000-#xEFFFF]
-        NameChar       ::=   NameStartChar | "-" | "." | [0-9]
-                                 | #xB7 | [#x0300-#x036F] | [#x203F-#x2040]
-        Char               ::=   /* any Unicode char, excluding surrogate blocks FFFE and FFFF. */
-                                 #x9 | #xA | #xD | [#x20-#xD7FF]
-                                 | [#xE000-#xFFFD] | [#x10000-#x10FFFF]*/ >
-}
-
-
-void unitvalue()
+void unitValue():
 {}
 {
-  (< DECVALUE >)(< UNIT>)?;}
+  < DECVALUE >(< UNIT>)?}
 
-void hexvalue()
+/*void hexvalue():
 {}
 {
-  "#"(< HEXDIGIT>) { 3 }|(< HEXDIGIT >) { 6 };
-}
+  "#"(< HEXDIGIT>) {3}|(< HEXDIGIT >) {6}
+}*/
 
-void expression()
+void expression():
 {}
 {
-  "";
+  ""
 }
 
-void paramList()
+void paramList():
 {}
 {
-  expression()("," expression())*;
+  expression()("," expression())*
 }
 
-void function()
+void function():
 {}
 {
-  < IDENTIFIER> "(" (paramList())? ")";
+  < IDENTIFIER> "(" (paramList())? ")"
 }
 
-void valueFunction ()
+void valueFunction():
 {}
 {
-  function();
+  function()
 }
-void value()
+void value():
 {}
 {
   unitValue()
@@ -111,92 +94,92 @@ void valueFunction ()
   | < STRING >
   | < IDENTIFIER >
   | < DECVALUE >
-  | < HEXVALUE >;
+  | < HEXVALUE >
 }
 
-void values()
+void values():
 {}
 {
-  value()(","(value())*);
+  value()(","(value())*)
 }
 
-void property()
+void property():
 {}
 {
-  < IDENTIFIER>;
+  < IDENTIFIER>
 }
 
-void propertyRole()
+void propertyRole():
 {}
 {
-  property() ":" values()";"; /* IS THE ";" KORREKT?*/
+  property() ":" values()";" /* IS THE ";" KORREKT?*/
 }
 
-void pseudoFunction()
+void pseudoFunction():
 {}
 {
-  ":" function(); 
+  ":" function() 
 }
 
-void pseudoClass()
+void pseudoClass():
 {}
 {
-  ":" < IDENTIFIER >; 
+  ":" < IDENTIFIER > 
 }
 
-void pseudoSelector()
+void pseudoSelector():
 {}
 {
-  pseudoClass()|pseudoFunction(); 
+  pseudoClass()|pseudoFunction()
 }
 
-void simpleSelector()
+void simpleSelector():
 {}
 {
-  < IDENTIFIER >; 
+  < IDENTIFIER > 
 }
 
-void idSelector()
+void idSelector():
 {}
 {
-  "#" < NCNAME>;
+  "#" /*< NCNAME>*/
 }
 
-void universalSelector()
+void universalSelector():
 {}
 {
-  "*";
+  "*"
 }
 
-void basicSelector()
+void basicSelector():
 {}
 {
   universalSelector()
 | simpleSelector()
-| idSelector();
+| idSelector()
 }
 
-void selector()
+void selector():
 {}
 {
   basicSelector()(pseudoSelector())?
-| pseudoSelector(); 
+| pseudoSelector() 
 }
 
-void selectorRule()
+void selectorRule():
 {}
 {
-  selector() "{" (propertyRule())* "}"; /* propertyRule does not exist yet*/
+  selector() "{" /*(propertyRule())* "}"  propertyRule does not exist yet*/
 }
 
-void rule()
+void rule():
 {}
 {
-  "@"function();
+  "@"function()
 }
 
-void document()
+void document():
 {}
 {
-  (selector()|rule())*;
+  (selector()|rule())*
 }
