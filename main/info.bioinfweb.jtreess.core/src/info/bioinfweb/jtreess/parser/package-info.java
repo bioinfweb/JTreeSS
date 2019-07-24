@@ -3,7 +3,7 @@
  * and existing classes should not be edited. Changes to the parser implementation should always be made in the <i>ANTLR</i>
  * grammar file instead. 
  *  
- * @author Ben Stöver
+ * @author Ben StÃ¶ver
  * @author Charlotte Schmitt
  */
 package info.bioinfweb.jtreess.parser;
