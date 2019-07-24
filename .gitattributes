@@ -26,6 +26,7 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/selector/Se
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/selector/SimpleSelector.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/selector/UniversalSelector.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/package-info.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/parser/package-info.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.cssparser.cssparser/.classpath -text
 test/info.bioinfweb.jtreess.test.cssparser.cssparser/.project -text
 test/info.bioinfweb.jtreess.test.cssparser.cssparser/.settings/org.eclipse.jdt.core.prefs -text
