@@ -3,4 +3,4 @@
  * 
  * @author Charlotte Schmitt
  */
-package info.bioinfweb.jtress.core;
+package info.bioinfweb.jtreess;

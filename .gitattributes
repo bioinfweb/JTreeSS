@@ -2,7 +2,9 @@
 main/info.bioinfweb.jtreess.core/.classpath -text
 main/info.bioinfweb.jtreess.core/.project -text
 main/info.bioinfweb.jtreess.core/.settings/org.eclipse.jdt.core.prefs -text
-main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtress/core/package-info.java -text
+main/info.bioinfweb.jtreess.core/TreeSS.g4 -text
+main/info.bioinfweb.jtreess.core/include/lib/antlr.jar -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/package-info.java -text
 test/info.bioinfweb.jtreess.antlr/.classpath -text
 test/info.bioinfweb.jtreess.antlr/.project -text
 test/info.bioinfweb.jtreess.antlr/.settings/com.github.jknack.antlr4ide.Antlr4.prefs -text
