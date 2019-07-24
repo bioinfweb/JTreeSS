@@ -4,6 +4,8 @@ package info.bioinfweb.jtreess.document;
 import java.util.ArrayList;
 import java.util.List;
 
+import info.bioinfweb.jtreess.document.selector.Selector;
+
 
 
 public class SelectorRule extends  AbstractDocumentElement{

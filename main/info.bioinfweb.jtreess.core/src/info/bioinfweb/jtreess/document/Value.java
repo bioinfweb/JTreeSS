@@ -4,7 +4,7 @@ public class Value extends AbstractDocumentElement{
 	private UnitValue unitValue; 
 	private ValueFunction valueFunction; 
 	private String string; 
-	private Identifier identifier; 
+//	private Identifier identifier; 
 //	private DecValue decValue; 
 //	private HexValue hexValue; 
 

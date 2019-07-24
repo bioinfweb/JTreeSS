@@ -1,9 +1,10 @@
-package info.bioinfweb.jtreess.document;
+package info.bioinfweb.jtreess.document.selector;
 
+import info.bioinfweb.jtreess.document.AbstractDocumentElement;
+import info.bioinfweb.jtreess.document.DocumentElement;
 
-
-public class Selector extends AbstractDocumentElement {
-	public enum SelectorType {
+public abstract class Selector extends AbstractDocumentElement {
+	public static enum SelectorType {
 		SIMPLE_SELECTOR, 
 		UNIVERSAL_SELECTOR,
 		ID_SELECTOR, 

@@ -2,30 +2,133 @@ package info.bioinfweb.jtreess.document;
 
 
 
+import java.util.Stack;
+
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import info.bioinfweb.jtreess.document.expression.Expression;
+import info.bioinfweb.jtreess.document.expression.Multiplication;
+import info.bioinfweb.jtreess.document.selector.IdSelector;
+import info.bioinfweb.jtreess.document.selector.PseudoClass;
+import info.bioinfweb.jtreess.document.selector.Selector;
+import info.bioinfweb.jtreess.document.selector.SimpleSelector;
+import info.bioinfweb.jtreess.document.selector.UniversalSelector;
 import info.bioinfweb.jtreess.parser.TreeSSBaseListener;
 import info.bioinfweb.jtreess.parser.TreeSSParser;
+import info.bioinfweb.jtreess.parser.TreeSSParser.DocumentContext;
+import info.bioinfweb.jtreess.parser.TreeSSParser.SelectorRuleContext;
+import info.bioinfweb.jtreess.parser.TreeSSParser.SimpleSelectorContext;
 
 
 public class Listener extends TreeSSBaseListener {
 	private Document document;
+	private Stack<DocumentElement> parents = new Stack<DocumentElement>();
+	
 	
 	public Document getDocument() {
 		return document;
 	}
+
 	
+	@Override
+	public void enterDocument(TreeSSParser.DocumentContext ctx) {
+		document = new Document();
+		parents.push(getDocument());
+	}
+	
+	
+	@Override
+	public void exitDocument(DocumentContext ctx) {
+		parents.pop();
+	}
+
+
+	@Override public void enterSelectorRule(TreeSSParser.SelectorRuleContext ctx) {
+		SelectorRule rule = new SelectorRule(parents.peek());
+		getDocument().getSelectorRules().add(rule);
+	}
 	
 
+	@Override
+	public void exitSelectorRule(SelectorRuleContext ctx) {
+		parents.pop();
+	}
+
+
+	@Override
+	public void enterSimpleSelector(TreeSSParser.SimpleSelectorContext ctx) {
+		SelectorRule rule = (SelectorRule)parents.peek();
+		SimpleSelector simpleSelector = new SimpleSelector(rule, ctx.IDENTIFIER().getText());
+		rule.setSelector(simpleSelector);
+		parents.push(simpleSelector);
+	}
+	
+	
+	@Override
+	public void exitSimpleSelector(SimpleSelectorContext ctx) {
+		parents.pop();
+	}
+
+	
+	@Override
+	public void enterUniversalSelector(TreeSSParser.UniversalSelectorContext ctx) {
+		SelectorRule rule = (SelectorRule)parents.peek();
+		UniversalSelector universalSelector = new UniversalSelector(rule, Selector.SelectorType.UNIVERSAL_SELECTOR);
+		rule.setSelector(universalSelector);
+		parents.push(universalSelector); 
+	}
+	
+	@Override
+	public void exitUniversalSelector(TreeSSParser.UniversalSelectorContext ctx) {
+		parents.pop();
+	}
+	
+	@Override public void enterIdSelector(TreeSSParser.IdSelectorContext ctx) { 
+		SelectorRule rule = (SelectorRule)parents.peek();
+		IdSelector idSelector = new IdSelector(rule, Selector.SelectorType.ID_SELECTOR);
+		rule.setSelector(idSelector);
+		parents.push(idSelector); 
+	}
+	
+	@Override public void exitIdSelector(TreeSSParser.IdSelectorContext ctx) { 
+		parents.pop();
+	}
+
+
+	@Override public void enterPseudoClass(TreeSSParser.PseudoClassContext ctx) { 
+		SelectorRule rule = (SelectorRule)parents.peek();
+		PseudoClass pseudoClass = new PseudoClass(rule, Selector.SelectorType.PSEUDOCLASS);
+		rule.setSelector(pseudoClass);
+		parents.push(pseudoClass); 
+	}
+
+	@Override public void exitPseudoClass(TreeSSParser.PseudoClassContext ctx) {
+		parents.pop();
+	}
+	
 	@Override public void enterUnitValue(TreeSSParser.UnitValueContext ctx) { }
 
-	@Override public void exitUnitValue(TreeSSParser.UnitValueContext ctx) { }
+
 
 	@Override public void enterExpression(TreeSSParser.ExpressionContext ctx) { 
-		if (ctx.DIVIDE() != null) {
-			//new Expression(ParamList.); 
+		if (ctx.STAR() != null) {
+			DocumentElement parent = parents.peek();
+			Multiplication multiplication = new Multiplication(parent);
+			if (parent instanceof Expression) {
+				((Expression)parent).getChildren().add(multiplication);
+			}
+			else if (parent instanceof ParamList) {
+				((ParamList)parent).getExpressions().add(multiplication);
+			}
+			else {
+				throw new IllegalStateException("Found parent element " + 
+						parent.getClass().getCanonicalName() + " , but expected either " + 
+						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
+						+ ".");
+			}
+			parents.push(multiplication);
 		}
 //		System.out.println(BufferedTokenStream.consume()); 
 //		TestCompiler.lexer.nextToken();
@@ -82,66 +185,31 @@ public class Listener extends TreeSSBaseListener {
 	@Override public void exitPropertyRule(TreeSSParser.PropertyRuleContext ctx) { }
 
 	@Override public void enterPseudoFunction(TreeSSParser.PseudoFunctionContext ctx) { 
-		getDocument().getSelectorRules().get(getDocument().getSelectorRules().size() - 1).setSelector(new Selector(Selector.SelectorType.PSEUDOFUNCTION));
   	}
 
 	@Override public void exitPseudoFunction(TreeSSParser.PseudoFunctionContext ctx) { }
 
-	@Override public void enterPseudoClass(TreeSSParser.PseudoClassContext ctx) { 
-		System.out.println("enterPseudoClass: " + (ctx.IDENTIFIER() != null ? ctx.IDENTIFIER().getText() : "null"));
-		getDocument().getSelectorRules().get(getDocument().getSelectorRules().size() - 1).setSelector(new Selector(Selector.SelectorType.PSEUDOCLASS));
-	}
-
-	@Override public void exitPseudoClass(TreeSSParser.PseudoClassContext ctx) { }
 
 	@Override public void enterPseudoSelector(TreeSSParser.PseudoSelectorContext ctx) { }
 
 	@Override public void exitPseudoSelector(TreeSSParser.PseudoSelectorContext ctx) { }
 
-	@Override public void enterUniversalSelector(TreeSSParser.UniversalSelectorContext ctx) {
-		getDocument().getSelectorRules().get(getDocument().getSelectorRules().size() - 1).setSelector(new Selector(Selector.SelectorType.UNIVERSAL_SELECTOR));
-	}
 
-	@Override public void exitUniversalSelector(TreeSSParser.UniversalSelectorContext ctx) { }
-
-	@Override public void enterSimpleSelector(TreeSSParser.SimpleSelectorContext ctx) {
-		System.out.println("enterSimpleSelector: " + (ctx.IDENTIFIER() != null ? ctx.IDENTIFIER().getText() : "null"));
-		getDocument().getSelectorRules().get(getDocument().getSelectorRules().size() - 1).setSelector(new Selector(Selector.SelectorType.SIMPLE_SELECTOR));
-	}
-
-	@Override public void exitSimpleSelector(TreeSSParser.SimpleSelectorContext ctx) { 
-	}
-
-	@Override public void enterIdSelector(TreeSSParser.IdSelectorContext ctx) { 
-		System.out.println("enterIdSelector: " + (ctx.IDENTIFIER() != null ? ctx.IDENTIFIER().getText() : "null"));
-		getDocument().getSelectorRules().get(getDocument().getSelectorRules().size() - 1).setSelector(new Selector(Selector.SelectorType.ID_SELECTOR));
-	}
-	
-	@Override public void exitIdSelector(TreeSSParser.IdSelectorContext ctx) { }
 
 	@Override public void enterBasicSelector(TreeSSParser.BasicSelectorContext ctx) { }
 
 	@Override public void exitBasicSelector(TreeSSParser.BasicSelectorContext ctx) { }
 
-	@Override public void enterSelector(TreeSSParser.SelectorContext ctx) { }
+	
 
-	@Override public void exitSelector(TreeSSParser.SelectorContext ctx) { }
 
-	@Override public void enterSelectorRule(TreeSSParser.SelectorRuleContext ctx) {
-		getDocument().getSelectorRules().add(new SelectorRule());
-	}
 
-	@Override public void exitSelectorRule(TreeSSParser.SelectorRuleContext ctx) { }
+
 
 	@Override public void enterRules(TreeSSParser.RulesContext ctx) { }
 	
 	@Override public void exitRules(TreeSSParser.RulesContext ctx) { }
-	
-	@Override public void enterDocument(TreeSSParser.DocumentContext ctx) {
-		document = new Document();
-	}
-	
-	@Override public void exitDocument(TreeSSParser.DocumentContext ctx) { }
+
 
 	@Override public void enterEveryRule(ParserRuleContext ctx) { }
 
