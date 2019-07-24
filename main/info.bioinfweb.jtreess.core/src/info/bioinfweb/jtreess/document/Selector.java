@@ -1,21 +1,22 @@
 package info.bioinfweb.jtreess.document;
 
-public class Selector {
+
+
+public class Selector extends AbstractDocumentElement {
 	public enum SelectorType {
 		SIMPLE_SELECTOR, 
 		UNIVERSAL_SELECTOR,
 		ID_SELECTOR, 
 		PSEUDOCLASS, 
-		PSEUDOFUNCTION, 
-		BASIC_PSEUDO_SELECTOR
+		PSEUDOFUNCTION
 	}	
 	
 
 	private SelectorType type;
 
 
-	public Selector(SelectorType type) {
-		super();
+	public Selector(DocumentElement parent, SelectorType type) {
+		super(parent);
 		this.type = type;
 	}
 

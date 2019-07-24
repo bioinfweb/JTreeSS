@@ -1,13 +1,21 @@
 package info.bioinfweb.jtreess.document;
 
-public class SimpleSelector {
+
+
+public class SimpleSelector extends Selector {
 	private Identifier identifier;
-	private Selector.SelectorType type; 
+
+	
+	public SimpleSelector(DocumentElement parent, SelectorType type) {
+		super(parent, type);
+	}
+
 
 	public Identifier getIdentifier() {
 		return identifier;
 	}
 
+	
 	public void setIdentifier(Identifier identifier) {
 		this.identifier = identifier;
 	} 

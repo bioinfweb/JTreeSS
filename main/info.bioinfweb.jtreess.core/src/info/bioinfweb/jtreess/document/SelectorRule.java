@@ -6,10 +6,15 @@ import java.util.List;
 
 
 
-public class SelectorRule {
+public class SelectorRule extends  AbstractDocumentElement{
 	private Selector selector;	
 	private List <PropertyRule> propertyRules = new ArrayList<>();
 	
+	
+	public SelectorRule(DocumentElement parent) {
+		super(parent);
+	}
+
 	
 	public Selector getSelector() {
 		return selector;
