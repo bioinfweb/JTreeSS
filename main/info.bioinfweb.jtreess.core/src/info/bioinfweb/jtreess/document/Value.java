@@ -27,6 +27,7 @@ import java.util.List;
 public class Value extends AbstractDocumentElement{
 	private List<DocumentElement> children = new ArrayList<DocumentElement>(); 
 	private String name; 
+	private Value valueFunction; 
 	
 	public String getName() {
 		return name;
@@ -43,7 +44,7 @@ public class Value extends AbstractDocumentElement{
 	public List<DocumentElement> getChildren() {
 		return children;
 	}
-	
+		
 	public static Value unitValue(String name) {
 		return unitValue(name); 
 	}

@@ -32,4 +32,12 @@ public class PseudoFunction extends Selector {
 	public PseudoFunction(DocumentElement parent, SelectorType type) {
 		super(parent, type);
 	}
+
+	public Function getFunction() {
+		return function;
+	}
+
+	public void setFunction(Function function) {
+		this.function = function;
+	}
 }

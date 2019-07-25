@@ -35,12 +35,25 @@ public abstract class Selector extends AbstractDocumentElement {
 	
 
 	private SelectorType type;
+	private String name; 
 
 
 	public Selector(DocumentElement parent, SelectorType type) {
 		super(parent);
 		this.type = type;
 	}
+	
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 
 
 	public SelectorType getType() {

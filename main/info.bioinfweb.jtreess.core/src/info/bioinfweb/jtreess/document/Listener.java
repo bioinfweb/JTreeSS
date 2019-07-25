@@ -162,7 +162,12 @@ public class Listener extends TreeSSBaseListener {
 	}
 	
 	@Override 
-	public void enterProperty(TreeSSParser.PropertyContext ctx) { }
+	public void enterProperty(TreeSSParser.PropertyContext ctx) {
+		PropertyRule rule = (PropertyRule)parents.peek();
+		Property property = new Property(rule);
+		rule.setProperty(property);
+		parents.push(property);
+	}
 
 	@Override 
 	public void exitProperty(TreeSSParser.PropertyContext ctx) {
@@ -170,10 +175,17 @@ public class Listener extends TreeSSBaseListener {
 	}
 	
 	@Override 
-	public void enterParamList(TreeSSParser.ParamListContext ctx) { }
+	public void enterParamList(TreeSSParser.ParamListContext ctx) {
+		Function rule = (Function)parents.peek();
+		ParamList paramList = new ParamList(rule);
+		rule.setParamList(paramList);
+		parents.push(paramList); 
+	}
 
 	@Override 
-	public void exitParamList(TreeSSParser.ParamListContext ctx) { }
+	public void exitParamList(TreeSSParser.ParamListContext ctx) {
+		parents.pop();
+	}
 
 	@Override 
 	public void enterExpression(TreeSSParser.ExpressionContext ctx) { 
@@ -270,16 +282,57 @@ public class Listener extends TreeSSBaseListener {
 	}
 
 	@Override 
-	public void enterValueFunction(TreeSSParser.ValueFunctionContext ctx) { }
+	public void enterValueFunction(TreeSSParser.ValueFunctionContext ctx) {
+		if (ctx.function() != null) {
+			DocumentElement parent = parents.peek();
+			Function valueFunction = new Function(parent);
+			if (parent instanceof Function) {
+				((Function)parent).getChildren().add(valueFunction);
+			}
+			else if (parent instanceof Value) {
+				((Value)parent).getChildren().add(valueFunction);
+			}
+			else {
+				throw new IllegalStateException("Found parent element " + 
+						parent.getClass().getCanonicalName() + " , but expected either " + 
+						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
+						+ ".");
+			}
+			parents.push(valueFunction);
+		}
+	}
 
 	@Override 
-	public void exitValueFunction(TreeSSParser.ValueFunctionContext ctx) { }
+	public void exitValueFunction(TreeSSParser.ValueFunctionContext ctx) {
+		parents.pop();
+	}
 
 	@Override 
-	public void enterFunction(TreeSSParser.FunctionContext ctx) { }
+	public void enterFunction(TreeSSParser.FunctionContext ctx) {
+		DocumentElement parent = parents.peek();
+		Function function = new Function(parent);
+		if (parent instanceof Function) {				
+			((Function)parent).getChildren().add(function);
+		}
+		else if (parent instanceof Value) { /*ValueFunction is actually no class, just a method in Value. */
+			((Value)parent).getChildren().add(function);
+		}
+		else if (parent instanceof Expression) { 
+			((Expression)parent).getChildren().add(function);
+		}
+		else {
+			throw new IllegalStateException("Found parent element " + 
+					parent.getClass().getCanonicalName() + " , but expected either " + 
+					Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
+					+ ".");
+		}
+		parents.push(function);
+	}
 
 	@Override 
-	public void exitFunction(TreeSSParser.FunctionContext ctx) { }
+	public void exitFunction(TreeSSParser.FunctionContext ctx) { 
+		parents.pop();
+	}
 
 	@Override 
 	public void enterValue(TreeSSParser.ValueContext ctx) {

@@ -28,6 +28,7 @@ import info.bioinfweb.jtreess.document.expression.Expression;
 
 public class PropertyRule extends AbstractDocumentElement{
 		private String name;
+		private Property property; 
 		private List <Value> values = new ArrayList<>();
 		
 		
@@ -37,5 +38,13 @@ public class PropertyRule extends AbstractDocumentElement{
 
 		public List<Value> getValues() {
 			return values;
+		}
+
+		public Property getProperty() {
+			return property;
+		}
+
+		public void setProperty(Property property) {
+			this.property = property;
 		}
 }
