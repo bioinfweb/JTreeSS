@@ -1,6 +1,6 @@
 /*
  * JTreeSS - A Java library for reading and evaluating TreeSS documents
- * Copyright (C) 2019 Ben StÃ¶ver, Charlotte Schmitt
+ * Copyright (C) 2019 Ben Stöver, Charlotte Schmitt
  * <http://bioinfweb.info/JTreeSS>
  * 
  * This file is free software: you can redistribute it and/or modify
@@ -16,22 +16,22 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.document;
+package info.bioinfweb.jtreess.document.expression;
 
 
 
-public class Property extends AbstractDocumentElement{
-	private String name; 
-	
-	public String getName() {
-		return name;
-	}
+import info.bioinfweb.jtreess.document.DocumentElement;
 
-	public void setName(String name) {
-		this.name = name;
-	}
 
-	public Property(DocumentElement parent) {
+
+
+public class Division extends Expression {
+	public Division(DocumentElement parent) {
 		super(parent);
+	}
+
+	@Override
+	public ExpressionType getType() {
+		return ExpressionType.DIVIDE;
 	}
 }

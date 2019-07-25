@@ -26,10 +26,15 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import info.bioinfweb.jtreess.document.expression.Addition;
+import info.bioinfweb.jtreess.document.expression.Division;
 import info.bioinfweb.jtreess.document.expression.Expression;
 import info.bioinfweb.jtreess.document.expression.Multiplication;
+import info.bioinfweb.jtreess.document.expression.ParanExpression;
+import info.bioinfweb.jtreess.document.expression.Subtraction;
 import info.bioinfweb.jtreess.document.selector.IdSelector;
 import info.bioinfweb.jtreess.document.selector.PseudoClass;
+import info.bioinfweb.jtreess.document.selector.PseudoFunction;
 import info.bioinfweb.jtreess.document.selector.Selector;
 import info.bioinfweb.jtreess.document.selector.SimpleSelector;
 import info.bioinfweb.jtreess.document.selector.UniversalSelector;
@@ -63,7 +68,8 @@ public class Listener extends TreeSSBaseListener {
 	}
 
 
-	@Override public void enterSelectorRule(TreeSSParser.SelectorRuleContext ctx) {
+	@Override 
+	public void enterSelectorRule(TreeSSParser.SelectorRuleContext ctx) {
 		SelectorRule rule = new SelectorRule(parents.peek());
 		getDocument().getSelectorRules().add(rule);
 	}
@@ -110,27 +116,67 @@ public class Listener extends TreeSSBaseListener {
 		parents.push(idSelector); 
 	}
 	
-	@Override public void exitIdSelector(TreeSSParser.IdSelectorContext ctx) { 
+	@Override 
+	public void exitIdSelector(TreeSSParser.IdSelectorContext ctx) { 
 		parents.pop();
 	}
 
 
-	@Override public void enterPseudoClass(TreeSSParser.PseudoClassContext ctx) { 
+	@Override 
+	public void enterPseudoClass(TreeSSParser.PseudoClassContext ctx) { 
 		SelectorRule rule = (SelectorRule)parents.peek();
 		PseudoClass pseudoClass = new PseudoClass(rule, Selector.SelectorType.PSEUDOCLASS);
 		rule.setSelector(pseudoClass);
 		parents.push(pseudoClass); 
 	}
 
-	@Override public void exitPseudoClass(TreeSSParser.PseudoClassContext ctx) {
+	@Override 
+	public void exitPseudoClass(TreeSSParser.PseudoClassContext ctx) {
 		parents.pop();
 	}
 	
-	@Override public void enterUnitValue(TreeSSParser.UnitValueContext ctx) { }
+	@Override 
+	public void enterPseudoFunction(TreeSSParser.PseudoFunctionContext ctx) { 
+		SelectorRule rule = (SelectorRule)parents.peek();
+		PseudoFunction pseudoFunction = new PseudoFunction(rule, Selector.SelectorType.PSEUDOFUNCTION);
+		rule.setSelector(pseudoFunction);
+		parents.push(pseudoFunction); 
+	}
 
+	@Override 
+	public void exitPseudoFunction(TreeSSParser.PseudoFunctionContext ctx) { 
+		parents.pop();
+	}
+	
+	@Override 
+	public void enterPropertyRule(TreeSSParser.PropertyRuleContext ctx) { 
+		SelectorRule rule = (SelectorRule)parents.peek();
+		PropertyRule propertyRule = new PropertyRule(rule); /*Needs a correction*/
+		rule.getPropertyRules().add(propertyRule);
+		parents.push(propertyRule);
+	}
 
+	@Override 
+	public void exitPropertyRule(TreeSSParser.PropertyRuleContext ctx) {
+		parents.pop();
+	}
+	
+	@Override 
+	public void enterProperty(TreeSSParser.PropertyContext ctx) { }
 
-	@Override public void enterExpression(TreeSSParser.ExpressionContext ctx) { 
+	@Override 
+	public void exitProperty(TreeSSParser.PropertyContext ctx) {
+		parents.pop();
+	}
+	
+	@Override 
+	public void enterParamList(TreeSSParser.ParamListContext ctx) { }
+
+	@Override 
+	public void exitParamList(TreeSSParser.ParamListContext ctx) { }
+
+	@Override 
+	public void enterExpression(TreeSSParser.ExpressionContext ctx) { 
 		if (ctx.STAR() != null) {
 			DocumentElement parent = parents.peek();
 			Multiplication multiplication = new Multiplication(parent);
@@ -148,92 +194,214 @@ public class Listener extends TreeSSBaseListener {
 			}
 			parents.push(multiplication);
 		}
-//		System.out.println(BufferedTokenStream.consume()); 
-//		TestCompiler.lexer.nextToken();
-//		CommonTokenStream.
-//		if(ParamList.getExpressions().get(-1) != null  && lastToken = OPERATOR)
-//		if (nextToken() == OPERATOR) {
-//			if (OPERATOR == MINUS) {
-//				substractExpression(ctx.IDENTIFIER(),ctx.IDENTIFIER().getNext()); 
-//			}
-//			if (OPERATOR == PLUS) {
-//				addExpression(ctx,getNextExpression()); 
-//			}
-//			if (OPERATOR == DIVIDE) {
-//				divideExpression(ctx,getNextExpression()); 
-//			}
-//			if (OPERATOR == STAR) {
-//				multiplyExpression(ctx,getNextExpression()); 
-//			}
-//		}	
+		if (ctx.DIVIDE() != null) {
+			DocumentElement parent = parents.peek();
+			Division division = new Division(parent);
+			if (parent instanceof Expression) {
+				((Expression)parent).getChildren().add(division);
+			}
+			else if (parent instanceof ParamList) {
+				((ParamList)parent).getExpressions().add(division);
+			}
+			else {
+				throw new IllegalStateException("Found parent element " + 
+						parent.getClass().getCanonicalName() + " , but expected either " + 
+						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
+						+ ".");
+			}
+			parents.push(division);
+		}	
+		if (ctx.PLUS() != null) {
+			DocumentElement parent = parents.peek();
+			Addition addition = new Addition(parent);
+			if (parent instanceof Expression) {
+				((Expression)parent).getChildren().add(addition);
+			}
+			else if (parent instanceof ParamList) {
+				((ParamList)parent).getExpressions().add(addition);
+			}
+			else {
+				throw new IllegalStateException("Found parent element " + 
+						parent.getClass().getCanonicalName() + " , but expected either " + 
+						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
+						+ ".");
+			}
+			parents.push(addition);
+		}
+		if (ctx.MINUS() != null) {
+			DocumentElement parent = parents.peek();
+			Subtraction subtraction = new Subtraction(parent);
+			if (parent instanceof Expression) {
+				((Expression)parent).getChildren().add(subtraction);
+			}
+			else if (parent instanceof ParamList) {
+				((ParamList)parent).getExpressions().add(subtraction);
+			}
+			else {
+				throw new IllegalStateException("Found parent element " + 
+						parent.getClass().getCanonicalName() + " , but expected either " + 
+						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
+						+ ".");
+			}
+			parents.push(subtraction);
+		}
+		if (ctx.LPARAN() != null && ctx.RPARAN() != null) {
+			DocumentElement parent = parents.peek();
+			ParanExpression paranExpression = new ParanExpression(parent);
+			if (parent instanceof Expression) {
+				((Expression)parent).getChildren().add(paranExpression);
+			}
+			else if (parent instanceof ParamList) {
+				((ParamList)parent).getExpressions().add(paranExpression);
+			}
+			else {
+				throw new IllegalStateException("Found parent element " + 
+						parent.getClass().getCanonicalName() + " , but expected either " + 
+						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
+						+ ".");
+			}
+			parents.push(paranExpression);
+		}
 	}
 
-	@Override public void exitExpression(TreeSSParser.ExpressionContext ctx) { }
-
-	@Override public void enterParamList(TreeSSParser.ParamListContext ctx) { }
-
-	@Override public void exitParamList(TreeSSParser.ParamListContext ctx) { }
-
-	@Override public void enterFunction(TreeSSParser.FunctionContext ctx) { }
-
-	@Override public void exitFunction(TreeSSParser.FunctionContext ctx) { }
-
-	@Override public void enterValueFunction(TreeSSParser.ValueFunctionContext ctx) { }
-
-	@Override public void exitValueFunction(TreeSSParser.ValueFunctionContext ctx) { }
-
-	@Override public void enterValue(TreeSSParser.ValueContext ctx) {
-		Value.testMethod(); 
-		System.out.println ("enterValue: "+ (ctx.IDENTIFIER() != null ? ctx.IDENTIFIER().getText() : "null"));
+	@Override 
+	public void exitExpression(TreeSSParser.ExpressionContext ctx) { 
+		parents.pop();
 	}
 
-	@Override public void exitValue(TreeSSParser.ValueContext ctx) { 
+	@Override 
+	public void enterValueFunction(TreeSSParser.ValueFunctionContext ctx) { }
+
+	@Override 
+	public void exitValueFunction(TreeSSParser.ValueFunctionContext ctx) { }
+
+	@Override 
+	public void enterFunction(TreeSSParser.FunctionContext ctx) { }
+
+	@Override 
+	public void exitFunction(TreeSSParser.FunctionContext ctx) { }
+
+	@Override 
+	public void enterValue(TreeSSParser.ValueContext ctx) {
+		if (ctx.unitValue()!= null) {
+			DocumentElement parent = parents.peek();
+			Value unitValue = new Value(parent);
+			if (parent instanceof Value) {
+				((Value)parent).getChildren().add(unitValue);
+				Value.unitValue(ctx.IDENTIFIER().getText()); 
+			}
+			else if (parent instanceof PropertyRule) {
+				((PropertyRule)parent).getValues().add(unitValue);
+			}
+			else {
+				throw new IllegalStateException("Found parent element " + 
+						parent.getClass().getCanonicalName() + " , but expected either " + 
+						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
+						+ ".");
+			}
+			parents.push(unitValue);
+		}
+		if (ctx.valueFunction() != null) {
+			DocumentElement parent = parents.peek();
+			Value valueFunction = new Value(parent);
+			if (parent instanceof Value) {
+				((Value)parent).getChildren().add(valueFunction);
+				Value.valueFunction(ctx.IDENTIFIER().getText()); 
+			}
+			else if (parent instanceof PropertyRule) {
+				((PropertyRule)parent).getValues().add(valueFunction);
+			}
+			else {
+				throw new IllegalStateException("Found parent element " + 
+						parent.getClass().getCanonicalName() + " , but expected either " + 
+						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
+						+ ".");
+			}
+			parents.push(valueFunction);
+		}
+		if (ctx.STRING() != null) {
+			DocumentElement parent = parents.peek();
+			Value stringValue = new Value(parent);
+			if (parent instanceof Value) {
+				((Value)parent).getChildren().add(stringValue);
+				Value.stringValue(ctx.IDENTIFIER().getText());
+			}
+			else if (parent instanceof PropertyRule) {
+				((PropertyRule)parent).getValues().add(stringValue);
+			}
+			else {
+				throw new IllegalStateException("Found parent element " + 
+						parent.getClass().getCanonicalName() + " , but expected either " + 
+						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
+						+ ".");
+			}
+			parents.push(stringValue);
+		}
+		if (ctx.IDENTIFIER() != null) { /*Is this the correct token or ANTRL IDENTIFIER()?*/
+			DocumentElement parent = parents.peek();
+			Value identifier = new Value(parent);
+			if (parent instanceof Value) {
+				((Value)parent).getChildren().add(identifier);
+				Value.identifier(ctx.IDENTIFIER().getText());
+			}
+			else if (parent instanceof PropertyRule) {
+				((PropertyRule)parent).getValues().add(identifier);
+			}
+			else {
+				throw new IllegalStateException("Found parent element " + 
+						parent.getClass().getCanonicalName() + " , but expected either " + 
+						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
+						+ ".");
+			}
+			parents.push(identifier);
+		}
+		if (ctx.DECVALUE()!= null) {
+			DocumentElement parent = parents.peek();
+			Value decValue = new Value(parent);
+			if (parent instanceof Value) {
+				((Value)parent).getChildren().add(decValue);
+				Value.decValue(ctx.IDENTIFIER().getText()); 
+			}
+			else if (parent instanceof PropertyRule) {
+				((PropertyRule)parent).getValues().add(decValue);
+			}
+			else {
+				throw new IllegalStateException("Found parent element " + 
+						parent.getClass().getCanonicalName() + " , but expected either " + 
+						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
+						+ ".");
+			}
+			parents.push(decValue);
+		}
+		if (ctx.HEXVALUE() != null) {
+			DocumentElement parent = parents.peek();
+			Value hexValue = new Value(parent);
+			if (parent instanceof Value) {
+				((Value)parent).getChildren().add(hexValue);
+				Value.hexValue(ctx.IDENTIFIER().getText());
+			}
+			else if (parent instanceof PropertyRule) {
+				((PropertyRule)parent).getValues().add(hexValue);
+			}
+			else {
+				throw new IllegalStateException("Found parent element " + 
+						parent.getClass().getCanonicalName() + " , but expected either " + 
+						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
+						+ ".");
+			}
+			parents.push(hexValue);
+		}
 	}
 
-	@Override public void enterValues(TreeSSParser.ValuesContext ctx) { }
+	@Override 
+	public void exitValue(TreeSSParser.ValueContext ctx) { 
+		parents.pop();
+	}
 
-	@Override public void exitValues(TreeSSParser.ValuesContext ctx) { }
-
-	@Override public void enterProperty(TreeSSParser.PropertyContext ctx) { }
-
-	@Override public void exitProperty(TreeSSParser.PropertyContext ctx) { }
-
-	@Override public void enterPropertyRule(TreeSSParser.PropertyRuleContext ctx) { }
-
-	@Override public void exitPropertyRule(TreeSSParser.PropertyRuleContext ctx) { }
-
-	@Override public void enterPseudoFunction(TreeSSParser.PseudoFunctionContext ctx) { 
-  	}
-
-	@Override public void exitPseudoFunction(TreeSSParser.PseudoFunctionContext ctx) { }
-
-
-	@Override public void enterPseudoSelector(TreeSSParser.PseudoSelectorContext ctx) { }
-
-	@Override public void exitPseudoSelector(TreeSSParser.PseudoSelectorContext ctx) { }
-
-
-
-	@Override public void enterBasicSelector(TreeSSParser.BasicSelectorContext ctx) { }
-
-	@Override public void exitBasicSelector(TreeSSParser.BasicSelectorContext ctx) { }
-
+	@Override 
+	public void enterRules(TreeSSParser.RulesContext ctx) { }
 	
+	@Override 
+	public void exitRules(TreeSSParser.RulesContext ctx) { }
 
-
-
-
-
-	@Override public void enterRules(TreeSSParser.RulesContext ctx) { }
-	
-	@Override public void exitRules(TreeSSParser.RulesContext ctx) { }
-
-
-	@Override public void enterEveryRule(ParserRuleContext ctx) { }
-
-	@Override public void exitEveryRule(ParserRuleContext ctx) { }
-	
-	@Override public void visitTerminal(TerminalNode node) { }
-
-	@Override public void visitErrorNode(ErrorNode node) { }
 }

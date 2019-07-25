@@ -22,13 +22,20 @@ package info.bioinfweb.jtreess.document;
 import java.util.ArrayList;
 import java.util.List;
 
+import info.bioinfweb.jtreess.document.expression.Expression;
+
 
 
 public class PropertyRule extends AbstractDocumentElement{
-		private Property property; 
+		private String name;
 		private List <Value> values = new ArrayList<>();
+		
 		
 		public PropertyRule(DocumentElement parent) {
 		super(parent);
-	}
+		}
+
+		public List<Value> getValues() {
+			return values;
+		}
 }

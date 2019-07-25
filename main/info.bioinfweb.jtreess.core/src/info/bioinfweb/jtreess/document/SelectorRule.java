@@ -26,7 +26,7 @@ import info.bioinfweb.jtreess.document.selector.Selector;
 
 
 
-public class SelectorRule extends  AbstractDocumentElement{
+public class SelectorRule extends AbstractDocumentElement {
 	private Selector selector;	
 	private List <PropertyRule> propertyRules = new ArrayList<>();
 	

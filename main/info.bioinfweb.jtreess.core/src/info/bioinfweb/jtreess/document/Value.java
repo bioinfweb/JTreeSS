@@ -19,19 +19,53 @@
 package info.bioinfweb.jtreess.document;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 public class Value extends AbstractDocumentElement{
-	private UnitValue unitValue; 
-	private ValueFunction valueFunction; 
-	private String string; 
-//	private Identifier identifier; 
-//	private DecValue decValue; 
-//	private HexValue hexValue; 
+	private List<DocumentElement> children = new ArrayList<DocumentElement>(); 
+	private String name; 
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public Value(DocumentElement parent) {
 		super(parent);
 	}
-	public static void testMethod() {
-		System.out.println("This is an important test.");
+
+	public List<DocumentElement> getChildren() {
+		return children;
 	}
+	
+	public static Value unitValue(String name) {
+		return unitValue(name); 
+	}
+	
+	public static Value valueFunction(String name) { 
+		return valueFunction(name); 
+	}
+	
+	public static Value stringValue(String name) { 
+		return stringValue(name); 
+	}
+	
+	public static Value identifier(String name) { 
+		return identifier(name); 
+	}
+	
+	public static Value decValue(String name) { 
+		return decValue(name); 
+	}
+	
+	public static Value hexValue(String name) { 
+		return hexValue(name); 
+	}
+	
 }

@@ -21,11 +21,13 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/ParamList.j
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/Property.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/PropertyRule.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/SelectorRule.java -text
-main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/UnitValue.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/Value.java -text
-main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/ValueFunction.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/expression/Addition.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/expression/Division.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/expression/Expression.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/expression/Multiplication.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/expression/ParanExpression.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/expression/Subtraction.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/selector/IdSelector.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/selector/PseudoClass.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/selector/PseudoFunction.java -text
