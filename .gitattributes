@@ -99,3 +99,4 @@ test/info.bioinfweb.jtreess.test.main/.classpath -text
 test/info.bioinfweb.jtreess.test.main/.project -text
 test/info.bioinfweb.jtreess.test.main/.settings/org.eclipse.jdt.core.prefs -text
 test/info.bioinfweb.jtreess.test.main/data/Test.treess -text
+test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/test/TestCompiler.java -text

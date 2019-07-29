@@ -7,13 +7,13 @@ tree {
 }
  
 #un6gt { /* Some unique node name */
-  font-family: arial, sans-serif;
+  font-family: "Arial", sans-serif;
   font-size: 8mm;
   font-weight: bold;
 }
 
 node {
-	font-size: calc(0.7em + metadataValue(currentNode, 'a:flowerSize', 'a:averageSize') * 0.01em);
+	font-size: calc(0.7em + metadataValue(currentNode, "a:flowerSize", "a:averageSize") * 0.01em);
 }
 
 *:terminal {  /* This would reference terminal nodes, branches, labels, ... */
