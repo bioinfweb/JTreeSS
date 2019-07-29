@@ -57,7 +57,6 @@ public class Listener extends TreeSSBaseListener {
 	
 	@Override
 	public void enterDocument(TreeSSParser.DocumentContext ctx) {
-		System.out.println("enterDocument: " + parents.size());
 		document = new Document();
 		parents.push(getDocument());
 	}
@@ -65,14 +64,12 @@ public class Listener extends TreeSSBaseListener {
 	
 	@Override
 	public void exitDocument(DocumentContext ctx) {
-		System.out.println("exitDocument " + parents.size());
 		parents.pop();
 	}
 
 
 	@Override 
 	public void enterSelectorRule(TreeSSParser.SelectorRuleContext ctx) {
-		System.out.println("enterSelectorRule " + parents.size());
 		SelectorRule rule = new SelectorRule(parents.peek());
 		getDocument().getSelectorRules().add(rule);
 		parents.push(rule);
@@ -81,14 +78,12 @@ public class Listener extends TreeSSBaseListener {
 
 	@Override
 	public void exitSelectorRule(SelectorRuleContext ctx) {
-		System.out.println("exitSelectorRule " + parents.size());
 		parents.pop();
 	}
 
 
 	@Override
 	public void enterSimpleSelector(TreeSSParser.SimpleSelectorContext ctx) {
-		System.out.println("enterSimpleSelector " + parents.size());
 		SelectorRule rule = (SelectorRule)parents.peek();
 		SimpleSelector simpleSelector = new SimpleSelector(rule, ctx.IDENTIFIER().getText());
 		rule.setSelector(simpleSelector);
@@ -98,14 +93,12 @@ public class Listener extends TreeSSBaseListener {
 	
 	@Override
 	public void exitSimpleSelector(SimpleSelectorContext ctx) {
-		System.out.println("exitSimpleSelector " + parents.size());
 		parents.pop();
 	}
 
 	
 	@Override
 	public void enterUniversalSelector(TreeSSParser.UniversalSelectorContext ctx) {
-		System.out.println("enterUniversalSelector: " + parents.size());
 		SelectorRule rule = (SelectorRule)parents.peek();
 		UniversalSelector universalSelector = new UniversalSelector(rule, Selector.SelectorType.UNIVERSAL_SELECTOR);
 		rule.setSelector(universalSelector);
@@ -114,12 +107,10 @@ public class Listener extends TreeSSBaseListener {
 	
 	@Override
 	public void exitUniversalSelector(TreeSSParser.UniversalSelectorContext ctx) {
-		System.out.println("exitUniversalSelector: " + parents.size());
 		parents.pop();
 	}
 	
 	@Override public void enterIdSelector(TreeSSParser.IdSelectorContext ctx) { 
-		System.out.println("enterIdSelector: " + parents.size());
 		SelectorRule rule = (SelectorRule)parents.peek();
 		IdSelector idSelector = new IdSelector(rule, Selector.SelectorType.ID_SELECTOR);
 		rule.setSelector(idSelector);
@@ -128,14 +119,12 @@ public class Listener extends TreeSSBaseListener {
 	
 	@Override 
 	public void exitIdSelector(TreeSSParser.IdSelectorContext ctx) { 
-		System.out.println("exitIdSelector: " + parents.size());
 		parents.pop();
 	}
 
 
 	@Override 
 	public void enterPseudoClass(TreeSSParser.PseudoClassContext ctx) { 
-		System.out.println("enterPseudoClass: " + parents.size());
 		DocumentElement parent = parents.peek();
 		PseudoClass pseudoClass = new PseudoClass(parent, Selector.SelectorType.PSEUDOCLASS);
 		if (parent instanceof SelectorRule) {				
@@ -162,13 +151,11 @@ public class Listener extends TreeSSBaseListener {
 
 	@Override 
 	public void exitPseudoClass(TreeSSParser.PseudoClassContext ctx) {
-		System.out.println("exitPseudoClass: " + parents.size());
 		parents.pop();
 	}
 	
 	@Override 
 	public void enterPseudoFunction(TreeSSParser.PseudoFunctionContext ctx) {
-		System.out.println("enterPseudoFunction: " + parents.size());
 		SelectorRule rule = (SelectorRule)parents.peek();
 		PseudoFunction pseudoFunction = new PseudoFunction(rule, Selector.SelectorType.PSEUDOFUNCTION);
 		rule.setSelector(pseudoFunction);
@@ -177,13 +164,11 @@ public class Listener extends TreeSSBaseListener {
 
 	@Override 
 	public void exitPseudoFunction(TreeSSParser.PseudoFunctionContext ctx) { 
-		System.out.println("exitPseudoFunction: " + parents.size());
 		parents.pop();
 	}
 	
 	@Override 
 	public void enterPropertyRule(TreeSSParser.PropertyRuleContext ctx) { 
-		System.out.println("enterPropertyRule: " + parents.size());
 		SelectorRule rule = (SelectorRule)parents.peek();
 		PropertyRule propertyRule = new PropertyRule(rule); /*Needs a correction*/
 		rule.getPropertyRules().add(propertyRule);
@@ -192,13 +177,11 @@ public class Listener extends TreeSSBaseListener {
 
 	@Override 
 	public void exitPropertyRule(TreeSSParser.PropertyRuleContext ctx) {
-		System.out.println("exitPropertyRule: " + parents.size());
 		parents.pop();
 	}
 	
 	@Override 
 	public void enterProperty(TreeSSParser.PropertyContext ctx) {
-		System.out.println("enterProperty: " + parents.size());
 		PropertyRule rule = (PropertyRule)parents.peek();
 		Property property = new Property(rule);
 		rule.setProperty(property);
@@ -207,13 +190,11 @@ public class Listener extends TreeSSBaseListener {
 
 	@Override 
 	public void exitProperty(TreeSSParser.PropertyContext ctx) {
-		System.out.println("exitProperty: " + parents.size());
 		parents.pop();
 	}
 	
 	@Override 
 	public void enterParamList(TreeSSParser.ParamListContext ctx) {
-		System.out.println("enterParamList: " + parents.size());
 		Function rule = (Function)parents.peek();
 		ParamList paramList = new ParamList(rule);
 		rule.setParamList(paramList);
@@ -222,15 +203,12 @@ public class Listener extends TreeSSBaseListener {
 
 	@Override 
 	public void exitParamList(TreeSSParser.ParamListContext ctx) {
-		System.out.println("exitParamList: " + parents.size());
 		parents.pop();
 	}
 
 	@Override 
 	public void enterExpression(TreeSSParser.ExpressionContext ctx) { 
-		System.out.println("enterExpression: " + parents.size());
 		if (ctx.STAR() != null) {
-			System.out.println("  STAR: " + parents.size());
 			DocumentElement parent = parents.peek();
 			Multiplication multiplication = new Multiplication(parent);
 			if (parent instanceof Expression) {
@@ -248,7 +226,6 @@ public class Listener extends TreeSSBaseListener {
 			parents.push(multiplication);
 		}
 		else if (ctx.DIVIDE() != null) {
-			System.out.println("  DIVIDE: " + parents.size());
 			DocumentElement parent = parents.peek();
 			Division division = new Division(parent);
 			if (parent instanceof Expression) {
@@ -266,7 +243,6 @@ public class Listener extends TreeSSBaseListener {
 			parents.push(division);
 		}	
 		else if (ctx.PLUS() != null) {
-			System.out.println("  PLUS: " + parents.size());
 			DocumentElement parent = parents.peek();
 			Addition addition = new Addition(parent);
 			if (parent instanceof Expression) {
@@ -284,7 +260,6 @@ public class Listener extends TreeSSBaseListener {
 			parents.push(addition);
 		}
 		else if (ctx.MINUS() != null) {
-			System.out.println("  MINUS: " + parents.size());
 			DocumentElement parent = parents.peek();
 			Subtraction subtraction = new Subtraction(parent);
 			if (parent instanceof Expression) {
@@ -302,7 +277,6 @@ public class Listener extends TreeSSBaseListener {
 			parents.push(subtraction);
 		}
 		else if ((ctx.LPARAN() != null) && (ctx.RPARAN() != null)) {
-			System.out.println("  PARAN: " + parents.size());
 			DocumentElement parent = parents.peek();
 			ParanExpression paranExpression = new ParanExpression(parent);
 			if (parent instanceof Expression) {
@@ -324,7 +298,6 @@ public class Listener extends TreeSSBaseListener {
 	
 	@Override 
 	public void exitExpression(TreeSSParser.ExpressionContext ctx) { 
-		System.out.println("exitExpression: " + parents.size());
 	  if ((ctx.function() != null) | (ctx.unitValue() != null) |(ctx.pseudoClass() != null) 
 	  				| (ctx.pseudoFunction() != null) | (ctx.STRING() != null) | (ctx.HEXVALUE() != null)
 	  				| (ctx.IDENTIFIER() != null)) {
@@ -339,9 +312,7 @@ public class Listener extends TreeSSBaseListener {
 	
 	@Override 
 	public void enterValueFunction(TreeSSParser.ValueFunctionContext ctx) {
-		System.out.println("Before If ctx.function (enterValueFunction)" + parents.size());
 		if (ctx.function() != null) {
-			System.out.println("If ctx.function (enterValueFunction)" + parents.size());
 			DocumentElement parent = parents.peek();
 			Function valueFunction = new Function(parent);
 			if (parent instanceof Function) {
@@ -363,14 +334,12 @@ public class Listener extends TreeSSBaseListener {
 
 	@Override 
 	public void exitValueFunction(TreeSSParser.ValueFunctionContext ctx) {
-		System.out.println("exitValueFunction: " + parents.size());
 		parents.pop();
 	}
 
 	
 	@Override 
 	public void enterFunction(TreeSSParser.FunctionContext ctx) {
-		System.out.println("enterFunction: " + parents.size());
 		DocumentElement parent = parents.peek();
 		Function function = new Function(parent);
 		if (parent instanceof Function) {				
@@ -397,7 +366,6 @@ public class Listener extends TreeSSBaseListener {
 	
 	@Override 
 	public void exitFunction(TreeSSParser.FunctionContext ctx) { 
-		System.out.println("exitFunction: " + parents.size());
 		if (!parents.isEmpty()) {
 			parents.pop();
 		}
@@ -406,7 +374,6 @@ public class Listener extends TreeSSBaseListener {
 	
 	@Override 
 	public void enterValue(TreeSSParser.ValueContext ctx) {
-		System.out.println("enterValue: " + parents.size());
 		if (ctx.unitValue() != null) {
 			DocumentElement parent = parents.peek();
 			Value unitValue = new Value(parent);
@@ -519,7 +486,6 @@ public class Listener extends TreeSSBaseListener {
 
 	@Override 
 	public void exitValue(TreeSSParser.ValueContext ctx) { 
-		System.out.println("exitValue: " + parents.size());
 		parents.pop();
 	}
 
