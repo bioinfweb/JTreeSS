@@ -19,7 +19,7 @@
 grammar TreeSS;
 
 @header {
-    package info.bioinfweb.jtreess.parser;
+    package info.bioinfweb.jtreess.reader.parser;
 }
 /*
 @lexer::header {

@@ -18,33 +18,42 @@
  */
 package info.bioinfweb.jtreess.document;
 
+
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 public class Function extends AbstractDocumentElement{
 	private ParamList paramList; 
 	private String identifier;
 	private List<DocumentElement> children = new ArrayList<DocumentElement>(); 
 
+	
 	public Function(DocumentElement parent) {
 		super(parent);
 	}
+	
 	
 	public ParamList getParamList() {
 		return paramList;
 	}
 
+	
 	public void setParamList(ParamList paramList) {
 		this.paramList = paramList;
 	}
 
+	
 	public String getIdentifier() {
 		return identifier;
 	}
 
+	
 	public void setIdentifier(String identifier) {
 		this.identifier = identifier;
 	}
+	
 	
 	public List<DocumentElement> getChildren() {
 		return children;

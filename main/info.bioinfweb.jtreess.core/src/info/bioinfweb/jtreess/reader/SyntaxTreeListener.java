@@ -16,16 +16,20 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.document;
+package info.bioinfweb.jtreess.reader;
 
 
 
 import java.util.Stack;
 
-import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.tree.ErrorNode;
-import org.antlr.v4.runtime.tree.TerminalNode;
-
+import info.bioinfweb.jtreess.document.Document;
+import info.bioinfweb.jtreess.document.DocumentElement;
+import info.bioinfweb.jtreess.document.Function;
+import info.bioinfweb.jtreess.document.ParamList;
+import info.bioinfweb.jtreess.document.Property;
+import info.bioinfweb.jtreess.document.PropertyRule;
+import info.bioinfweb.jtreess.document.SelectorRule;
+import info.bioinfweb.jtreess.document.Value;
 import info.bioinfweb.jtreess.document.expression.Addition;
 import info.bioinfweb.jtreess.document.expression.Division;
 import info.bioinfweb.jtreess.document.expression.Expression;
@@ -38,14 +42,14 @@ import info.bioinfweb.jtreess.document.selector.PseudoFunction;
 import info.bioinfweb.jtreess.document.selector.Selector;
 import info.bioinfweb.jtreess.document.selector.SimpleSelector;
 import info.bioinfweb.jtreess.document.selector.UniversalSelector;
-import info.bioinfweb.jtreess.parser.TreeSSBaseListener;
-import info.bioinfweb.jtreess.parser.TreeSSParser;
-import info.bioinfweb.jtreess.parser.TreeSSParser.DocumentContext;
-import info.bioinfweb.jtreess.parser.TreeSSParser.SelectorRuleContext;
-import info.bioinfweb.jtreess.parser.TreeSSParser.SimpleSelectorContext;
+import info.bioinfweb.jtreess.reader.parser.TreeSSBaseListener;
+import info.bioinfweb.jtreess.reader.parser.TreeSSParser;
+import info.bioinfweb.jtreess.reader.parser.TreeSSParser.DocumentContext;
+import info.bioinfweb.jtreess.reader.parser.TreeSSParser.SelectorRuleContext;
+import info.bioinfweb.jtreess.reader.parser.TreeSSParser.SimpleSelectorContext;
 
 
-public class Listener extends TreeSSBaseListener {
+public class SyntaxTreeListener extends TreeSSBaseListener {
 	private Document document;
 	private Stack<DocumentElement> parents = new Stack<DocumentElement>();
 	

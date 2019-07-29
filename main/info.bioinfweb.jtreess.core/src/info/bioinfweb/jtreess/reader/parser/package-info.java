@@ -6,4 +6,4 @@
  * @author Ben Stöver
  * @author Charlotte Schmitt
  */
-package info.bioinfweb.jtreess.parser;
+package info.bioinfweb.jtreess.reader.parser;
