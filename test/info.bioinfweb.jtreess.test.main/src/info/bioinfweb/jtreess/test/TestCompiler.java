@@ -36,7 +36,7 @@ public class TestCompiler {
 	
 	public static void main( String[] args) throws Exception {
 
-		TreeSSLexer lexer = new TreeSSLexer(CharStreams.fromFileName("data\\Test.treess"));
+		TreeSSLexer lexer = new TreeSSLexer(CharStreams.fromFileName("data\\BasicExample.treess"));
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 
 		TreeSSParser parser = new TreeSSParser(tokens);

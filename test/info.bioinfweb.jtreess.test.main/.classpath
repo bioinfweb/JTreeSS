@@ -5,5 +5,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/info.bioinfweb.commons.core"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/info.bioinfweb.jtreess.core"/>
 	<classpathentry kind="lib" path="/info.bioinfweb.jtreess.core/include/lib/antlr.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/info.bioinfweb.commons.testing"/>
+	<classpathentry kind="lib" path="/info.bioinfweb.commons.testing/include/lib/junit-4.9b1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
