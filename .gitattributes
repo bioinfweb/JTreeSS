@@ -11,7 +11,6 @@ main/info.bioinfweb.jtreess.core/include/lib/antlr.jar -text
 main/info.bioinfweb.jtreess.core/src/GPL.txt -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/LGPL.txt -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/NOTICE.txt -text svneol=unset#text/plain
-main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/TestCompiler.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/AbstractDocumentElement.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/Document.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/DocumentElement.java -text

@@ -28,6 +28,7 @@ import info.bioinfweb.jtreess.document.expression.Expression;
 
 public class ParamList extends AbstractDocumentElement{
 	private List <Expression> expressions = new ArrayList<>();
+	private List<DocumentElement> children = new ArrayList<DocumentElement>(); 
 
 	
 	public ParamList(DocumentElement parent) {
@@ -37,5 +38,10 @@ public class ParamList extends AbstractDocumentElement{
 	
 	public List<Expression> getExpressions() {
 		return expressions;
+	}
+	
+	
+	public List<DocumentElement> getChildren() {
+		return children;
 	}
 }

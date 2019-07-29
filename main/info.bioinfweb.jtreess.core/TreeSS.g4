@@ -96,7 +96,7 @@ grammar TreeSS;
 	
 	property : IDENTIFIER; 
 	
-	propertyRule : property COLON values SEMICOLON; /* IS THE ";" KORREKT?*/
+	propertyRule : property COLON values SEMICOLON; 
 	
 	pseudoFunction : COLON function; 
 	

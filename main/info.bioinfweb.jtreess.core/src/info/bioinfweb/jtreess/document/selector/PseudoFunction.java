@@ -19,6 +19,9 @@
 package info.bioinfweb.jtreess.document.selector;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import info.bioinfweb.jtreess.document.DocumentElement;
 import info.bioinfweb.jtreess.document.Function;
 
@@ -27,6 +30,7 @@ import info.bioinfweb.jtreess.document.Function;
 public class PseudoFunction extends Selector {
 	private Function function; 
 	private Selector.SelectorType type;
+	private List<DocumentElement> children = new ArrayList<DocumentElement>(); 
 	
 	
 	public PseudoFunction(DocumentElement parent, SelectorType type) {
@@ -39,5 +43,9 @@ public class PseudoFunction extends Selector {
 
 	public void setFunction(Function function) {
 		this.function = function;
+	}
+	
+	public List<DocumentElement> getChildren() {
+		return children;
 	}
 }
