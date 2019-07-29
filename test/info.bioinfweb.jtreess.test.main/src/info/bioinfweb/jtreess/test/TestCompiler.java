@@ -24,10 +24,10 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
-import info.bioinfweb.jtreess.document.Listener;
 import info.bioinfweb.jtreess.document.SelectorRule;
-import info.bioinfweb.jtreess.parser.TreeSSLexer;
-import info.bioinfweb.jtreess.parser.TreeSSParser;
+import info.bioinfweb.jtreess.reader.SyntaxTreeListener;
+import info.bioinfweb.jtreess.reader.parser.TreeSSLexer;
+import info.bioinfweb.jtreess.reader.parser.TreeSSParser;
 
 
 
@@ -55,7 +55,7 @@ public class TestCompiler {
 		ParseTree tree1 = parser.document(); 
 		ParseTreeWalker walker = new ParseTreeWalker();
 		
-		Listener listener = new Listener(); 
+		SyntaxTreeListener listener = new SyntaxTreeListener(); 
 		
 		walker.walk(listener, tree1);
 		
