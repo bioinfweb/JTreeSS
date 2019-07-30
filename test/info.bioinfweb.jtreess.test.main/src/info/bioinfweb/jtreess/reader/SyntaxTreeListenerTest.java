@@ -13,6 +13,10 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.junit.Test;
 
 import info.bioinfweb.jtreess.document.Document;
+import info.bioinfweb.jtreess.document.SelectorRule;
+import info.bioinfweb.jtreess.document.selector.ConcreteSelector;
+import info.bioinfweb.jtreess.document.selector.Selector;
+import info.bioinfweb.jtreess.document.selector.SelectorType;
 import info.bioinfweb.jtreess.reader.parser.TreeSSLexer;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser;
 
@@ -30,10 +34,29 @@ public class SyntaxTreeListenerTest {
 	}
 	
 	
+	private void assertSelector(Selector selector, SelectorType type, String name) {
+		assertNotNull(selector);
+		assertEquals(type, selector.getType());
+		assertEquals(name, selector.getName());
+	}
+	
+	
 	@Test
 	public void testReadingBasicExample() throws Exception {
 		Document document = readDocument("BasicExample");
 		
 		assertNotNull(document);
+//		assertEquals(8, document.getSelectorRules().size());
+		
+		SelectorRule selectorRule = document.getSelectorRules().get(0);
+		assertSelector(selectorRule.getSelector(), SelectorType.SIMPLE_SELECTOR, "canvas");
+		
+		//selectorRule.getPropertyRules()
+
+		//...
+		
+		selectorRule = document.getSelectorRules().get(1);
+		assertNotNull(selectorRule.getSelector());
+
 	}
 }

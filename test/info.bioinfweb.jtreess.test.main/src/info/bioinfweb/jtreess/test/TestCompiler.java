@@ -67,10 +67,5 @@ public class TestCompiler {
 				System.out.println("other selector");
 			}
 		}
-//	
-//		System.out.println(tree.getStart().getType());
-//		System.out.println (tree.getChild(5).getText()); 
 	}
-	
-
 }
