@@ -60,7 +60,7 @@ grammar TreeSS;
 	STRING : '"' .*? '"';	 
 	DECVALUE : MINUS? ((INT E MINUS? INT)|(DOUBLE E MINUS? INT)|INT|DOUBLE);
 	HEXDIGIT : [a-fA-F0-9];
-	HEXVALUE : HASH (HEXDIGIT HEXDIGIT HEXDIGIT| HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT);
+	COLOR : HASH (HEXDIGIT HEXDIGIT HEXDIGIT| HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT);
 
 	
 	unitValue : DECVALUE IDENTIFIER?;
@@ -69,28 +69,20 @@ grammar TreeSS;
 	(LPARAN expression RPARAN)
 	|expression (DIVIDE | STAR) expression
 	|expression (PLUS | MINUS) expression
-	|function
-	|unitValue
+	|value
 	|pseudoClass
-	|pseudoFunction
-	|STRING
-	|HEXVALUE
-	|IDENTIFIER
-	;
+	|pseudoFunction;
 	
 	paramList : expression (COMMA expression)*;
 	
 	function : IDENTIFIER LPARAN (paramList)? RPARAN;
 	
-	valueFunction : function;
-	
 	value : 
 	unitValue
-	|valueFunction
+	|function
 	|STRING
 	|IDENTIFIER
-	|DECVALUE
-	|HEXVALUE;  
+	|COLOR;  
 	
 	values : value (COMMA value)*;
 	
@@ -119,11 +111,10 @@ grammar TreeSS;
 	
 	selector : 
 	basicSelector(pseudoSelector)?
-	|pseudoSelector
-	 ; 
+	|pseudoSelector; 
 	
 	selectorRule : selector LBRACE propertyRule* RBRACE; /*propertyRule does not exist yet*/
 	
-	rules : AT function; /* rule seems to have a conflict with target language */
+	atRule : AT IDENTIFIER; /* TODO Extend expression to allow parameters or property list */
 	
-	document: (selectorRule|rules)*; 
+	document: (selectorRule | atRule)*;

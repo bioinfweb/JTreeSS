@@ -19,44 +19,8 @@
 package info.bioinfweb.jtreess.document.selector;
 
 
-import info.bioinfweb.jtreess.document.AbstractDocumentElement;
-import info.bioinfweb.jtreess.document.DocumentElement;
+public interface Selector {	
+	public String getName();
 
-
-
-public abstract class Selector extends AbstractDocumentElement {
-	public static enum SelectorType {
-		SIMPLE_SELECTOR, 
-		UNIVERSAL_SELECTOR,
-		ID_SELECTOR, 
-		PSEUDOCLASS, 
-		PSEUDOFUNCTION
-	}	
-	
-
-	private SelectorType type;
-	private String name; 
-
-
-	public Selector(DocumentElement parent, SelectorType type) {
-		super(parent);
-		this.type = type;
-	}
-	
-
-	public String getName() {
-		return name;
-	}
-
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-
-	public SelectorType getType() {
-		return type;
-	}
+	public SelectorType getType();
 }

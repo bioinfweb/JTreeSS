@@ -24,38 +24,34 @@ import java.util.List;
 
 
 
-public class Function extends AbstractDocumentElement{
-	private ParamList paramList; 
-	private String identifier;
-	private List<DocumentElement> children = new ArrayList<DocumentElement>(); 
+public class Function extends AbstractDocumentElement {
+	private boolean pseudofunction; 
+	private String name;
+	private List<DocumentElement> parameters = new ArrayList<DocumentElement>(); 
 
 	
-	public Function(DocumentElement parent) {
+	public Function(DocumentElement parent, boolean pseudofunction) {
 		super(parent);
+		this.pseudofunction = pseudofunction;
 	}
 	
 	
-	public ParamList getParamList() {
-		return paramList;
+	public boolean isPseudofunction() {
+		return pseudofunction;
+	}
+
+
+	public String getName() {
+		return name;
 	}
 
 	
-	public void setParamList(ParamList paramList) {
-		this.paramList = paramList;
-	}
-
-	
-	public String getIdentifier() {
-		return identifier;
-	}
-
-	
-	public void setIdentifier(String identifier) {
-		this.identifier = identifier;
+	public void setName(String identifier) {
+		this.name = identifier;
 	}
 	
 	
-	public List<DocumentElement> getChildren() {
-		return children;
+	public List<DocumentElement> getParameters() {
+		return parameters;
 	}
 }

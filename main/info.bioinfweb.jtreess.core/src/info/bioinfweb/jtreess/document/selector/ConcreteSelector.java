@@ -16,22 +16,41 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.document;
+package info.bioinfweb.jtreess.document.selector;
+
+
+import info.bioinfweb.jtreess.document.AbstractDocumentElement;
+import info.bioinfweb.jtreess.document.DocumentElement;
 
 
 
-public class Property extends AbstractDocumentElement{
+public class ConcreteSelector extends AbstractDocumentElement implements Selector {
+	private SelectorType type;
 	private String name; 
+
+
+	public ConcreteSelector(DocumentElement parent, SelectorType type, String name) {
+		super(parent);
+		this.type = type;
+		this.name = name;
+	}
 	
+
+	/* (non-Javadoc)
+	 * @see info.bioinfweb.jtreess.document.selector.Selector#getName()
+	 */
+	@Override
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+
+	@Override
+	public SelectorType getType() {
+		return type;
 	}
 
-	public Property(DocumentElement parent) {
-		super(parent);
-	}
+	/* (non-Javadoc)
+	 * @see info.bioinfweb.jtreess.document.selector.Selector#getType()
+	 */
 }

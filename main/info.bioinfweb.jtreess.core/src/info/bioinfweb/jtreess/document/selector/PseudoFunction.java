@@ -27,23 +27,25 @@ import info.bioinfweb.jtreess.document.Function;
 
 
 
-public class PseudoFunction extends Selector {
+public class PseudoFunction extends ConcreteSelector implements Selector{
 	private Function function; 
-	private Selector.SelectorType type;
 	private List<DocumentElement> children = new ArrayList<DocumentElement>(); 
 	
 	
-	public PseudoFunction(DocumentElement parent, SelectorType type) {
-		super(parent, type);
+	public PseudoFunction(DocumentElement parent, SelectorType type, String name) {
+		super(parent, type, name);
 	}
+	
 
 	public Function getFunction() {
 		return function;
 	}
+	
 
 	public void setFunction(Function function) {
 		this.function = function;
 	}
+	
 	
 	public List<DocumentElement> getChildren() {
 		return children;

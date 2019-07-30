@@ -22,29 +22,38 @@ package info.bioinfweb.jtreess.document;
 import java.util.ArrayList;
 import java.util.List;
 
-import info.bioinfweb.jtreess.document.expression.Expression;
+import info.bioinfweb.jtreess.document.value.Value;
 
 
 
 public class PropertyRule extends AbstractDocumentElement{
-		private String name;
-		private Property property; 
-		private List <Value> values = new ArrayList<>();
-		
-		
-		public PropertyRule(DocumentElement parent) {
+	private String propertyName;
+	private List <DocumentElement> values = new ArrayList<>();
+	
+	
+	public PropertyRule(DocumentElement parent) {
 		super(parent);
-		}
+	}
+	
 
-		public List<Value> getValues() {
-			return values;
-		}
+	/**
+	 * Returns a list that stores one or more values for this property.
+	 * <p>
+	 * Values can either be instances of {@link Value} or one of its subclasses or instances of {@link Function}.
+	 * 
+	 * @return a list with at least one element
+	 */
+	public List<DocumentElement> getValues() {
+		return values;
+	}
+	
+	
+	public String getPropertyName() {
+		return propertyName;
+	}
+	
 
-		public Property getProperty() {
-			return property;
-		}
-
-		public void setProperty(Property property) {
-			this.property = property;
-		}
+	public void setPropertyName(String propertyName) {
+		this.propertyName = propertyName;
+	}
 }

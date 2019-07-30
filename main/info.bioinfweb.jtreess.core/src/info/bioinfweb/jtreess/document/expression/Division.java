@@ -1,6 +1,6 @@
 /*
  * JTreeSS - A Java library for reading and evaluating TreeSS documents
- * Copyright (C) 2019 Ben Stöver, Charlotte Schmitt
+ * Copyright (C) 2019 Ben Stï¿½ver, Charlotte Schmitt
  * <http://bioinfweb.info/JTreeSS>
  * 
  * This file is free software: you can redistribute it and/or modify
@@ -19,9 +19,7 @@
 package info.bioinfweb.jtreess.document.expression;
 
 
-
 import info.bioinfweb.jtreess.document.DocumentElement;
-
 
 
 
@@ -30,6 +28,7 @@ public class Division extends Expression {
 		super(parent);
 	}
 
+	
 	@Override
 	public ExpressionType getType() {
 		return ExpressionType.DIVIDE;

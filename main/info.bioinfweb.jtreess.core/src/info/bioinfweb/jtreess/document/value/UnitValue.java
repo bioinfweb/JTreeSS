@@ -16,19 +16,46 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.document.selector;
+package info.bioinfweb.jtreess.document.value;
 
 
 import info.bioinfweb.jtreess.document.DocumentElement;
 
 
 
-public class UniversalSelector extends Selector{
-	private Selector.SelectorType type; 
+public class UnitValue extends Value {
+	private String unit; 
+	private double number;
+	private String numberRepresentation;
 	
 	
-	public UniversalSelector(DocumentElement parent, SelectorType type) {
-		super(parent, type);
+	/**
+	 * Creates a new instance of this class.
+	 * 
+	 * @param parent
+	 * @param numberUnitRepresentation
+	 * @param numberRepresentation
+	 * @param unit the unit associated with this value or {@code null} if there is no unit
+	 */
+	public UnitValue(DocumentElement parent, String numberUnitRepresentation, String numberRepresentation, String unit) {
+		super(parent, ValueType.UNIT_VALUE, numberUnitRepresentation);
+		this.numberRepresentation = numberRepresentation;
+		this.number = Double.parseDouble(numberRepresentation);
+		this.unit = unit;
 	}
 
+	
+	public String getUnit() {
+		return unit;
+	}
+
+	
+	public double getNumber() {
+		return number;
+	}
+
+
+	public String getNumberRepresentation() {
+		return numberRepresentation;
+	}
 }

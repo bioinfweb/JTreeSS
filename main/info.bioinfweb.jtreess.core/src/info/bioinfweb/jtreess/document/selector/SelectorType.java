@@ -16,32 +16,13 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.document;
+package info.bioinfweb.jtreess.document.selector;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
-import info.bioinfweb.jtreess.document.expression.Expression;
-
-
-
-public class ParamList extends AbstractDocumentElement{
-	private List <Expression> expressions = new ArrayList<>();
-	private List<DocumentElement> children = new ArrayList<DocumentElement>(); 
-
-	
-	public ParamList(DocumentElement parent) {
-		super(parent);
-	}
-	
-	
-	public List<Expression> getExpressions() {
-		return expressions;
-	}
-	
-	
-	public List<DocumentElement> getChildren() {
-		return children;
-	}
+public enum SelectorType {
+	SIMPLE_SELECTOR, 
+	UNIVERSAL_SELECTOR,
+	ID_SELECTOR, 
+	PSEUDOCLASS, 
+	PSEUDOFUNCTION
 }

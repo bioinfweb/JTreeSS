@@ -19,34 +19,32 @@
 package info.bioinfweb.jtreess.reader;
 
 
-
 import java.util.Stack;
 
 import info.bioinfweb.jtreess.document.Document;
 import info.bioinfweb.jtreess.document.DocumentElement;
 import info.bioinfweb.jtreess.document.Function;
-import info.bioinfweb.jtreess.document.ParamList;
-import info.bioinfweb.jtreess.document.Property;
 import info.bioinfweb.jtreess.document.PropertyRule;
 import info.bioinfweb.jtreess.document.SelectorRule;
-import info.bioinfweb.jtreess.document.Value;
 import info.bioinfweb.jtreess.document.expression.Addition;
 import info.bioinfweb.jtreess.document.expression.Division;
 import info.bioinfweb.jtreess.document.expression.Expression;
 import info.bioinfweb.jtreess.document.expression.Multiplication;
 import info.bioinfweb.jtreess.document.expression.ParanExpression;
 import info.bioinfweb.jtreess.document.expression.Subtraction;
-import info.bioinfweb.jtreess.document.selector.IdSelector;
-import info.bioinfweb.jtreess.document.selector.PseudoClass;
+import info.bioinfweb.jtreess.document.selector.ConcreteSelector;
 import info.bioinfweb.jtreess.document.selector.PseudoFunction;
-import info.bioinfweb.jtreess.document.selector.Selector;
-import info.bioinfweb.jtreess.document.selector.SimpleSelector;
-import info.bioinfweb.jtreess.document.selector.UniversalSelector;
+import info.bioinfweb.jtreess.document.selector.SelectorType;
+import info.bioinfweb.jtreess.document.value.ColorValue;
+import info.bioinfweb.jtreess.document.value.UnitValue;
+import info.bioinfweb.jtreess.document.value.Value;
 import info.bioinfweb.jtreess.reader.parser.TreeSSBaseListener;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser.DocumentContext;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser.SelectorRuleContext;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser.SimpleSelectorContext;
+import info.bioinfweb.jtreess.reader.parser.TreeSSParser.UnitValueContext;
+
 
 
 public class SyntaxTreeListener extends TreeSSBaseListener {
@@ -89,7 +87,7 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 	@Override
 	public void enterSimpleSelector(TreeSSParser.SimpleSelectorContext ctx) {
 		SelectorRule rule = (SelectorRule)parents.peek();
-		SimpleSelector simpleSelector = new SimpleSelector(rule, ctx.IDENTIFIER().getText());
+		ConcreteSelector simpleSelector = new ConcreteSelector(rule, SelectorType.SIMPLE_SELECTOR, ctx.IDENTIFIER().getText());
 		rule.setSelector(simpleSelector);
 		parents.push(simpleSelector);
 	}
@@ -104,22 +102,25 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 	@Override
 	public void enterUniversalSelector(TreeSSParser.UniversalSelectorContext ctx) {
 		SelectorRule rule = (SelectorRule)parents.peek();
-		UniversalSelector universalSelector = new UniversalSelector(rule, Selector.SelectorType.UNIVERSAL_SELECTOR);
+		ConcreteSelector universalSelector = new ConcreteSelector(rule, SelectorType.UNIVERSAL_SELECTOR, ctx.STAR().getText());   //TODO Possibly replaced by constant.
 		rule.setSelector(universalSelector);
 		parents.push(universalSelector); 
 	}
+	
 	
 	@Override
 	public void exitUniversalSelector(TreeSSParser.UniversalSelectorContext ctx) {
 		parents.pop();
 	}
 	
+	
 	@Override public void enterIdSelector(TreeSSParser.IdSelectorContext ctx) { 
 		SelectorRule rule = (SelectorRule)parents.peek();
-		IdSelector idSelector = new IdSelector(rule, Selector.SelectorType.ID_SELECTOR);
+		ConcreteSelector idSelector = new ConcreteSelector(rule, SelectorType.ID_SELECTOR, ctx.IDENTIFIER().getText());
 		rule.setSelector(idSelector);
 		parents.push(idSelector); 
 	}
+	
 	
 	@Override 
 	public void exitIdSelector(TreeSSParser.IdSelectorContext ctx) { 
@@ -130,19 +131,16 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 	@Override 
 	public void enterPseudoClass(TreeSSParser.PseudoClassContext ctx) { 
 		DocumentElement parent = parents.peek();
-		PseudoClass pseudoClass = new PseudoClass(parent, Selector.SelectorType.PSEUDOCLASS);
+		ConcreteSelector pseudoClass = new ConcreteSelector(parent, SelectorType.PSEUDOCLASS, ctx.IDENTIFIER().getText());
 		if (parent instanceof SelectorRule) {				
 			SelectorRule rule = (SelectorRule)parents.peek();
-			rule.setSelector(pseudoClass);
-			
+			rule.setSelector(pseudoClass);			
 		}
 		else if (parent instanceof Expression) { 
-			Expression rule = (Expression)parents.peek();
 			((Expression)parent).getChildren().add(pseudoClass);
 		}
-		else if (parent instanceof ParamList) {
-			ParamList rule = (ParamList)parents.peek();
-			((ParamList)parent).getChildren().add(pseudoClass);
+		else if (parent instanceof Function) {
+			((Function)parent).getParameters().add(pseudoClass);
 		}
 		else {
 			throw new IllegalStateException("Found parent element " + 
@@ -153,23 +151,27 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 		parents.push(pseudoClass); 
 	}
 
+	
 	@Override 
 	public void exitPseudoClass(TreeSSParser.PseudoClassContext ctx) {
 		parents.pop();
 	}
 	
+	
 	@Override 
 	public void enterPseudoFunction(TreeSSParser.PseudoFunctionContext ctx) {
 		SelectorRule rule = (SelectorRule)parents.peek();
-		PseudoFunction pseudoFunction = new PseudoFunction(rule, Selector.SelectorType.PSEUDOFUNCTION);
+		PseudoFunction pseudoFunction = new PseudoFunction(rule, SelectorType.PSEUDOFUNCTION, ctx.function().getText());
 		rule.setSelector(pseudoFunction);
 		parents.push(pseudoFunction); 
 	}
 
+	
 	@Override 
 	public void exitPseudoFunction(TreeSSParser.PseudoFunctionContext ctx) { 
 		parents.pop();
 	}
+	
 	
 	@Override 
 	public void enterPropertyRule(TreeSSParser.PropertyRuleContext ctx) { 
@@ -178,193 +180,85 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 		rule.getPropertyRules().add(propertyRule);
 		parents.push(propertyRule);
 	}
+	
 
 	@Override 
 	public void exitPropertyRule(TreeSSParser.PropertyRuleContext ctx) {
 		parents.pop();
 	}
 	
+	
 	@Override 
 	public void enterProperty(TreeSSParser.PropertyContext ctx) {
 		PropertyRule rule = (PropertyRule)parents.peek();
-		Property property = new Property(rule);
-		rule.setProperty(property);
-		parents.push(property);
+		rule.setPropertyName(ctx.IDENTIFIER().getText());
+		parents.push(rule);
 	}
 
+	
 	@Override 
 	public void exitProperty(TreeSSParser.PropertyContext ctx) {
 		parents.pop();
 	}
 	
-	@Override 
-	public void enterParamList(TreeSSParser.ParamListContext ctx) {
-		Function rule = (Function)parents.peek();
-		ParamList paramList = new ParamList(rule);
-		rule.setParamList(paramList);
-		parents.push(paramList); 
-	}
-
-	@Override 
-	public void exitParamList(TreeSSParser.ParamListContext ctx) {
-		parents.pop();
-	}
 
 	@Override 
 	public void enterExpression(TreeSSParser.ExpressionContext ctx) { 
+		DocumentElement parent = parents.peek();
+		DocumentElement operation = null; 
 		if (ctx.STAR() != null) {
-			DocumentElement parent = parents.peek();
-			Multiplication multiplication = new Multiplication(parent);
-			if (parent instanceof Expression) {
-				((Expression)parent).getChildren().add(multiplication);
-			}
-			else if (parent instanceof ParamList) {
-				((ParamList)parent).getExpressions().add(multiplication);
-			}
-			else {
-				throw new IllegalStateException("Found parent element " + 
-						parent.getClass().getCanonicalName() + " , but expected either " + 
-						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
-						+ ".");
-			}
-			parents.push(multiplication);
+			operation = new Multiplication(parent);
 		}
 		else if (ctx.DIVIDE() != null) {
-			DocumentElement parent = parents.peek();
-			Division division = new Division(parent);
-			if (parent instanceof Expression) {
-				((Expression)parent).getChildren().add(division);
-			}
-			else if (parent instanceof ParamList) {
-				((ParamList)parent).getExpressions().add(division);
-			}
-			else {
-				throw new IllegalStateException("Found parent element " + 
-						parent.getClass().getCanonicalName() + " , but expected either " + 
-						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
-						+ ".");
-			}
-			parents.push(division);
+			operation = new Division(parent);
 		}	
 		else if (ctx.PLUS() != null) {
-			DocumentElement parent = parents.peek();
-			Addition addition = new Addition(parent);
-			if (parent instanceof Expression) {
-				((Expression)parent).getChildren().add(addition);
-			}
-			else if (parent instanceof ParamList) {
-				((ParamList)parent).getExpressions().add(addition);
-			}
-			else {
-				throw new IllegalStateException("Found parent element " + 
-						parent.getClass().getCanonicalName() + " , but expected either " + 
-						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
-						+ ".");
-			}
-			parents.push(addition);
+			operation = new Addition(parent);
 		}
 		else if (ctx.MINUS() != null) {
-			DocumentElement parent = parents.peek();
-			Subtraction subtraction = new Subtraction(parent);
-			if (parent instanceof Expression) {
-				((Expression)parent).getChildren().add(subtraction);
-			}
-			else if (parent instanceof ParamList) {
-				((ParamList)parent).getExpressions().add(subtraction);
-			}
-			else {
-				throw new IllegalStateException("Found parent element " + 
-						parent.getClass().getCanonicalName() + " , but expected either " + 
-						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
-						+ ".");
-			}
-			parents.push(subtraction);
+			operation = new Subtraction(parent);
 		}
 		else if ((ctx.LPARAN() != null) && (ctx.RPARAN() != null)) {
-			DocumentElement parent = parents.peek();
-			ParanExpression paranExpression = new ParanExpression(parent);
+			operation = new ParanExpression(parent);
+		}
+		
+		if (operation != null) {	
 			if (parent instanceof Expression) {
-				((Expression)parent).getChildren().add(paranExpression);
+				((Expression)parent).getChildren().add(operation);
 			}
-			else if (parent instanceof ParamList) {
-				((ParamList)parent).getExpressions().add(paranExpression);
+			else if (parent instanceof Function) {
+				((Function)parent).getParameters().add(operation);
 			}
 			else {
 				throw new IllegalStateException("Found parent element " + 
 						parent.getClass().getCanonicalName() + " , but expected either " + 
-						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
+						Expression.class.getCanonicalName() + " or " + Function.class.getCanonicalName() 
 						+ ".");
 			}
-			parents.push(paranExpression);
+			parents.push(operation);
 		}
 	}
 
 	
 	@Override 
 	public void exitExpression(TreeSSParser.ExpressionContext ctx) { 
-	  if ((ctx.function() != null) | (ctx.unitValue() != null) |(ctx.pseudoClass() != null) 
-	  				| (ctx.pseudoFunction() != null) | (ctx.STRING() != null) | (ctx.HEXVALUE() != null)
-	  				| (ctx.IDENTIFIER() != null)) {
-			return;
-		}
-	  else {
+	  if ((ctx.value() == null) && (ctx.pseudoClass() == null) && (ctx.pseudoFunction() == null)) {
 	  	parents.pop();
-	  }
-		
-	}
-
-	
-	@Override 
-	public void enterValueFunction(TreeSSParser.ValueFunctionContext ctx) {
-		if (ctx.function() != null) {
-			DocumentElement parent = parents.peek();
-			Function valueFunction = new Function(parent);
-			if (parent instanceof Function) {
-				((Function)parent).getChildren().add(valueFunction);
-			}
-			else if (parent instanceof Value) {
-				((Value)parent).getChildren().add(valueFunction);
-			}
-			else {
-				throw new IllegalStateException("Found parent element " + 
-						parent.getClass().getCanonicalName() + " , but expected either " + 
-						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
-						+ ".");
-			}
-			parents.push(valueFunction);
 		}
 	}
-	
 
-	@Override 
-	public void exitValueFunction(TreeSSParser.ValueFunctionContext ctx) {
-		parents.pop();
-	}
-
-	
+		
 	@Override 
 	public void enterFunction(TreeSSParser.FunctionContext ctx) {
 		DocumentElement parent = parents.peek();
-		Function function = new Function(parent);
 		if (parent instanceof Function) {				
-			((Function)parent).getChildren().add(function);
-		}
-		else if (parent instanceof Value) { /*ValueFunction is actually no class, just a method in Value. */
-			((Value)parent).getChildren().add(function);
-		}
-		else if (parent instanceof Expression) { 
-			((Expression)parent).getChildren().add(function);
-		}
-		else if (parent instanceof PseudoFunction) { 
-			((PseudoFunction)parent).getChildren().add(function);
+			((Function)parent).setName(ctx.IDENTIFIER().getText());
 		}
 		else {
 			throw new IllegalStateException("Found parent element " + 
-					parent.getClass().getCanonicalName() + " , but expected either " + 
-					Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
-					+ ".");
+					parent.getClass().getCanonicalName() + " , but expected " + 
+					Function.class.getCanonicalName() + ".");
 		}
-		parents.push(function);
 	}
 
 	
@@ -378,126 +272,57 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 	
 	@Override 
 	public void enterValue(TreeSSParser.ValueContext ctx) {
-		if (ctx.unitValue() != null) {
-			DocumentElement parent = parents.peek();
-			Value unitValue = new Value(parent);
-			if (parent instanceof Value) {
-				((Value)parent).getChildren().add(unitValue);
-				Value.unitValue(ctx.IDENTIFIER().getText()); 
-			}
-			else if (parent instanceof PropertyRule) {
-				((PropertyRule)parent).getValues().add(unitValue);
-			}
-			else {
-				throw new IllegalStateException("Found parent element " + 
-						parent.getClass().getCanonicalName() + " , but expected either " + 
-						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
-						+ ".");
-			}
-			parents.push(unitValue);
-		}
-		else if (ctx.valueFunction() != null) {
-			DocumentElement parent = parents.peek();
-			Value valueFunction = new Value(parent);
-			if (parent instanceof Value) {
-				((Value)parent).getChildren().add(valueFunction);
-				Value.valueFunction(ctx.IDENTIFIER().getText()); 
-			}
-			else if (parent instanceof PropertyRule) {
-				((PropertyRule)parent).getValues().add(valueFunction);
-			}
-			else {
-				throw new IllegalStateException("Found parent element " + 
-						parent.getClass().getCanonicalName() + " , but expected either " + 
-						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
-						+ ".");
-			}
-			parents.push(valueFunction);
+		DocumentElement parent = parents.peek();
+		DocumentElement value = null;
+		if (ctx.COLOR() != null) {
+			value = new ColorValue(parent, ctx.IDENTIFIER().getText());
 		}
 		else if (ctx.STRING() != null) {
-			DocumentElement parent = parents.peek();
-			Value stringValue = new Value(parent);
-			if (parent instanceof Value) {
-				((Value)parent).getChildren().add(stringValue);
-				Value.stringValue(ctx.IDENTIFIER().getText());
-			}
-			else if (parent instanceof PropertyRule) {
-				((PropertyRule)parent).getValues().add(stringValue);
-			}
-			else {
-				throw new IllegalStateException("Found parent element " + 
-						parent.getClass().getCanonicalName() + " , but expected either " + 
-						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
-						+ ".");
-			}
-			parents.push(stringValue);
+			value = new Value(parent, Value.ValueType.STRING, ctx.IDENTIFIER().getText());
 		}
 		else if (ctx.IDENTIFIER() != null) { /*Is this the correct token or ANTRL IDENTIFIER()?*/
-			DocumentElement parent = parents.peek();
-			Value identifier = new Value(parent);
-			if (parent instanceof Value) {
-				((Value)parent).getChildren().add(identifier);
-				Value.identifier(ctx.IDENTIFIER().getText());
-			}
-			else if (parent instanceof PropertyRule) {
-				((PropertyRule)parent).getValues().add(identifier);
-			}
-			else {
-				throw new IllegalStateException("Found parent element " + 
-						parent.getClass().getCanonicalName() + " , but expected either " + 
-						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
-						+ ".");
-			}
-			parents.push(identifier);
+			value = new Value(parent, Value.ValueType.IDENTIFIER, ctx.IDENTIFIER().getText());
 		}
-		else if (ctx.DECVALUE()!= null) {
-			DocumentElement parent = parents.peek();
-			Value decValue = new Value(parent);
-			if (parent instanceof Value) {
-				((Value)parent).getChildren().add(decValue);
-				Value.decValue(ctx.IDENTIFIER().getText()); 
+		
+		if (value != null) {
+			if (parent instanceof Expression) {
+				((Expression)parent).getChildren().add(value);
 			}
 			else if (parent instanceof PropertyRule) {
-				((PropertyRule)parent).getValues().add(decValue);
+				((PropertyRule)parent).getValues().add(value);
 			}
 			else {
 				throw new IllegalStateException("Found parent element " + 
 						parent.getClass().getCanonicalName() + " , but expected either " + 
-						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
+						Expression.class.getCanonicalName() + " or " + PropertyRule.class.getCanonicalName() 
 						+ ".");
 			}
-			parents.push(decValue);
-		}
-		else if (ctx.HEXVALUE() != null) {
-			DocumentElement parent = parents.peek();
-			Value hexValue = new Value(parent);
-			if (parent instanceof Value) {
-				((Value)parent).getChildren().add(hexValue);
-				Value.hexValue(ctx.IDENTIFIER().getText());
-			}
-			else if (parent instanceof PropertyRule) {
-				((PropertyRule)parent).getValues().add(hexValue);
-			}
-			else {
-				throw new IllegalStateException("Found parent element " + 
-						parent.getClass().getCanonicalName() + " , but expected either " + 
-						Expression.class.getCanonicalName() + " or " + ParamList.class.getCanonicalName() 
-						+ ".");
-			}
-			parents.push(hexValue);
+			parents.push(value);
 		}
 	}
 
+	
 	@Override 
 	public void exitValue(TreeSSParser.ValueContext ctx) { 
-		parents.pop();
+		if ((ctx.COLOR() != null) || (ctx.STRING() != null) || (ctx.IDENTIFIER() != null)) {
+			parents.pop();
+		}
 	}
 
-	
-	@Override 
-	public void enterRules(TreeSSParser.RulesContext ctx) { }
-	
-	@Override 
-	public void exitRules(TreeSSParser.RulesContext ctx) { }
 
+	@Override
+	public void enterUnitValue(UnitValueContext ctx) {
+		String unit = null;
+		if (ctx.IDENTIFIER() != null) {
+			unit = ctx.IDENTIFIER().getText();
+		}
+		DocumentElement value = new UnitValue(parents.peek(), ctx.getText(), ctx.DECVALUE().getText(), unit);
+		parents.push(value);
+	}
+
+
+	@Override
+	public void exitUnitValue(UnitValueContext ctx) {
+		parents.pop();
+	}
 }
