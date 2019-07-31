@@ -19,6 +19,14 @@
 package info.bioinfweb.jtreess.document.selector;
 
 
+
+/**
+ * Super interface used by all types of selectors. Classes should never implement this interface directly but use one of the
+ * inherited interfaces instead.
+ * 
+ * @author Ben St&ouml;ver
+ * @author Charlotte Schmitt
+ */
 public interface Selector {	
 	public String getName();
 

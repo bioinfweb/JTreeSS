@@ -19,15 +19,34 @@
 package info.bioinfweb.jtreess.document.selector;
 
 
-public enum SelectorType {
-	SIMPLE_SELECTOR, 
-	UNIVERSAL_SELECTOR,
-	ID_SELECTOR, 
-	PSEUDO_CLASS, 
-	PSEUDO_FUNCTION;
+import java.util.ArrayList;
+import java.util.List;
+
+import info.bioinfweb.jtreess.document.DocumentElement;
+
+
+
+/**
+ * Represents a selector that is not a pseudo-class or pseudo-function and stores possibly associated pseudo-selectors.
+ * <p>
+ * This class be used to model universal, simple, and ID selectors.
+ * 
+ * @author Ben St&ouml;ver
+ */
+public class ConcreteNonPseudoSelector extends ConcreteSelector implements NonPseudoSelector {
+	private List<PseudoSelector> pseudoSelectors = new ArrayList<PseudoSelector>();
 	
 	
-	public boolean isPseudoSelector() {
-		return equals(SelectorType.PSEUDO_CLASS) || equals(SelectorType.PSEUDO_FUNCTION);
+	public ConcreteNonPseudoSelector(DocumentElement parent, SelectorType type, String name) {
+		super(parent, type, name);
+		if (type.isPseudoSelector()) {
+			throw new IllegalArgumentException("The type " + type + " is not a valid type for a non-pseudo-selector.");
+		}
+	}
+
+	
+	@Override
+	public List<PseudoSelector> getPseudoSelectors() {
+		return pseudoSelectors;
 	}
 }

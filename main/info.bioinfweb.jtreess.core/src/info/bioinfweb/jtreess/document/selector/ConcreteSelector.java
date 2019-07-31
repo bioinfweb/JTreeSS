@@ -31,14 +31,16 @@ public class ConcreteSelector extends AbstractDocumentElement implements Selecto
 
 	public ConcreteSelector(DocumentElement parent, SelectorType type, String name) {
 		super(parent);
-		this.type = type;
-		this.name = name;
+		if (type == null) {
+			throw new IllegalArgumentException("The type must not be null.");
+		}
+		else {
+			this.type = type;
+			this.name = name;  //TODO May the name be null or not?
+		}
 	}
 	
 
-	/* (non-Javadoc)
-	 * @see info.bioinfweb.jtreess.document.selector.Selector#getName()
-	 */
 	@Override
 	public String getName() {
 		return name;
@@ -49,8 +51,4 @@ public class ConcreteSelector extends AbstractDocumentElement implements Selecto
 	public SelectorType getType() {
 		return type;
 	}
-
-	/* (non-Javadoc)
-	 * @see info.bioinfweb.jtreess.document.selector.Selector#getType()
-	 */
 }

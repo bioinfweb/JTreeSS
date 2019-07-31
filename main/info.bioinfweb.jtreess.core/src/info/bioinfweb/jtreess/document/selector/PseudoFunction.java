@@ -19,35 +19,25 @@
 package info.bioinfweb.jtreess.document.selector;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import info.bioinfweb.jtreess.document.DocumentElement;
 import info.bioinfweb.jtreess.document.Function;
 
 
 
-public class PseudoFunction extends ConcreteSelector implements Selector{
-	private Function function; 
-	private List<DocumentElement> children = new ArrayList<DocumentElement>(); 
-	
-	
-	public PseudoFunction(DocumentElement parent, SelectorType type, String name) {
-		super(parent, type, name);
+/**
+ * Models a pseudo-function selector.
+ * 
+ * @author Ben St&ouml;ver
+ */
+public class PseudoFunction extends Function implements PseudoSelector {
+	public PseudoFunction(DocumentElement parent, String name) {
+		super(parent, true);
+		setName(name);
 	}
-	
 
-	public Function getFunction() {
-		return function;
-	}
 	
-
-	public void setFunction(Function function) {
-		this.function = function;
-	}
-	
-	
-	public List<DocumentElement> getChildren() {
-		return children;
+	@Override
+	public SelectorType getType() {
+		return SelectorType.PSEUDO_FUNCTION;
 	}
 }

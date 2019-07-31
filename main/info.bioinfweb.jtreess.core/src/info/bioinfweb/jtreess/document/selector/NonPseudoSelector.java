@@ -19,15 +19,16 @@
 package info.bioinfweb.jtreess.document.selector;
 
 
-public enum SelectorType {
-	SIMPLE_SELECTOR, 
-	UNIVERSAL_SELECTOR,
-	ID_SELECTOR, 
-	PSEUDO_CLASS, 
-	PSEUDO_FUNCTION;
-	
-	
-	public boolean isPseudoSelector() {
-		return equals(SelectorType.PSEUDO_CLASS) || equals(SelectorType.PSEUDO_FUNCTION);
-	}
+import java.util.List;
+
+
+
+/**
+ * Interface to be implemented by all selectors that are not pseudo-selectors (and therefore can be combined with 
+ * one or more pseudo-selectors).
+ * 
+ * @author Ben St&ouml;ver
+ */
+public interface NonPseudoSelector extends Selector {
+	public List<PseudoSelector> getPseudoSelectors();
 }

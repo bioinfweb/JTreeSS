@@ -19,15 +19,10 @@
 package info.bioinfweb.jtreess.document.selector;
 
 
-public enum SelectorType {
-	SIMPLE_SELECTOR, 
-	UNIVERSAL_SELECTOR,
-	ID_SELECTOR, 
-	PSEUDO_CLASS, 
-	PSEUDO_FUNCTION;
-	
-	
-	public boolean isPseudoSelector() {
-		return equals(SelectorType.PSEUDO_CLASS) || equals(SelectorType.PSEUDO_FUNCTION);
-	}
-}
+
+/**
+ * Tagging interface to mark pseudo-classes and pseudo-functions.
+ * 
+ * @author Ben St&ouml;ver
+ */
+public interface PseudoSelector extends Selector {}

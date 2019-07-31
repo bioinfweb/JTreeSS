@@ -131,7 +131,7 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 	@Override 
 	public void enterPseudoClass(TreeSSParser.PseudoClassContext ctx) { 
 		DocumentElement parent = parents.peek();
-		ConcreteSelector pseudoClass = new ConcreteSelector(parent, SelectorType.PSEUDOCLASS, ctx.IDENTIFIER().getText());
+		ConcreteSelector pseudoClass = new ConcreteSelector(parent, SelectorType.PSEUDO_CLASS, ctx.IDENTIFIER().getText());
 		if (parent instanceof SelectorRule) {				
 			SelectorRule rule = (SelectorRule)parents.peek();
 			rule.setSelector(pseudoClass);			
@@ -160,8 +160,9 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 	
 	@Override 
 	public void enterPseudoFunction(TreeSSParser.PseudoFunctionContext ctx) {
+		// Possible parents: expression, selectorRule, concreteSelector (or other selector?)
 		SelectorRule rule = (SelectorRule)parents.peek();
-		PseudoFunction pseudoFunction = new PseudoFunction(rule, SelectorType.PSEUDOFUNCTION, ctx.function().getText());
+		PseudoFunction pseudoFunction = new PseudoFunction(rule, SelectorType.PSEUDO_FUNCTION, ctx.function().getText());
 		rule.setSelector(pseudoFunction);
 		parents.push(pseudoFunction); 
 	}
@@ -250,9 +251,12 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 		
 	@Override 
 	public void enterFunction(TreeSSParser.FunctionContext ctx) {
-		DocumentElement parent = parents.peek();
-		if (parent instanceof Function) {				
+		DocumentElement parent = parents.peek(); 
+		if (parent instanceof PseudoFunction) {			
 			((Function)parent).setName(ctx.IDENTIFIER().getText());
+		}
+		else if (parent instanceof PropertyRule) {			
+			((PropertyRule)parent).setPropertyName(ctx.IDENTIFIER().getText());
 		}
 		else {
 			throw new IllegalStateException("Found parent element " + 
@@ -278,7 +282,7 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 			value = new ColorValue(parent, ctx.IDENTIFIER().getText());
 		}
 		else if (ctx.STRING() != null) {
-			value = new Value(parent, Value.ValueType.STRING, ctx.IDENTIFIER().getText());
+			value = new Value(parent, Value.ValueType.STRING, ctx.STRING().getText());
 		}
 		else if (ctx.IDENTIFIER() != null) { /*Is this the correct token or ANTRL IDENTIFIER()?*/
 			value = new Value(parent, Value.ValueType.IDENTIFIER, ctx.IDENTIFIER().getText());

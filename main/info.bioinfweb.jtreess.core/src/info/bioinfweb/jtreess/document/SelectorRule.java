@@ -27,8 +27,8 @@ import info.bioinfweb.jtreess.document.selector.Selector;
 
 
 public class SelectorRule extends AbstractDocumentElement {
-	private Selector selector;	
-	private List <PropertyRule> propertyRules = new ArrayList<>();
+	private List<Selector> selectors = new ArrayList<>();	
+	private List<PropertyRule> propertyRules = new ArrayList<>();
 	
 	
 	public SelectorRule(DocumentElement parent) {
@@ -36,13 +36,8 @@ public class SelectorRule extends AbstractDocumentElement {
 	}
 
 	
-	public Selector getSelector() {
-		return selector;
-	}
-	
-	
-	public void setSelector(Selector selector) {
-		this.selector = selector;
+	public List<Selector> getSelectors() {
+		return selectors;
 	}
 	
 	

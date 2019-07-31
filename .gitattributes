@@ -24,8 +24,12 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/expression/
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/expression/Multiplication.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/expression/ParanExpression.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/expression/Subtraction.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/selector/ConcreteNonPseudoSelector.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/selector/ConcreteSelector.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/selector/NonPseudoSelector.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/selector/PseudoClass.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/selector/PseudoFunction.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/selector/PseudoSelector.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/selector/Selector.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/selector/SelectorType.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/value/ColorValue.java -text

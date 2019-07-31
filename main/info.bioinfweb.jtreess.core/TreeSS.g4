@@ -110,10 +110,10 @@ grammar TreeSS;
 	|universalSelector;
 	
 	selector : 
-	basicSelector(pseudoSelector)?
+	basicSelector(pseudoSelector)*
 	|pseudoSelector; 
 	
-	selectorRule : selector LBRACE propertyRule* RBRACE; /*propertyRule does not exist yet*/
+	selectorRule : selector (COMMA selector)* LBRACE propertyRule* RBRACE; /*propertyRule does not exist yet*/
 	
 	atRule : AT IDENTIFIER; /* TODO Extend expression to allow parameters or property list */
 	

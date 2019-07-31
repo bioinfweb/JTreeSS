@@ -19,15 +19,12 @@
 package info.bioinfweb.jtreess.document.selector;
 
 
-public enum SelectorType {
-	SIMPLE_SELECTOR, 
-	UNIVERSAL_SELECTOR,
-	ID_SELECTOR, 
-	PSEUDO_CLASS, 
-	PSEUDO_FUNCTION;
-	
-	
-	public boolean isPseudoSelector() {
-		return equals(SelectorType.PSEUDO_CLASS) || equals(SelectorType.PSEUDO_FUNCTION);
+import info.bioinfweb.jtreess.document.DocumentElement;
+
+
+
+public class PseudoClass extends ConcreteSelector implements PseudoSelector {
+	public PseudoClass(DocumentElement parent, String name) {
+		super(parent, SelectorType.PSEUDO_CLASS, name);
 	}
 }
