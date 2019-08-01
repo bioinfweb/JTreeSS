@@ -49,23 +49,21 @@ public class TestCompiler {
 //		 
 //		for (Token token : tokenList) {
 //			System.out.println(lexer.getVocabulary().getSymbolicName(token.getType()));
-//		}
-		
-//		
+//		}		
+
 		ParseTree tree1 = parser.document(); 
-		ParseTreeWalker walker = new ParseTreeWalker();
-		
+		ParseTreeWalker walker = new ParseTreeWalker();	
 		SyntaxTreeListener listener = new SyntaxTreeListener(); 
-		
 		walker.walk(listener, tree1);
 		
-		for (SelectorRule rule : listener.getDocument().getSelectorRules()) {
-			if (rule.getSelector() != null) {
-				System.out.println(rule.getSelector().getType());
-			}
-			else {
-				System.out.println("other selector");
-			}
-		}
+		
+//		for (SelectorRule rule : listener.getDocument().getSelectorRules()) {
+//			if (rule.getSelector() != null) {
+//				System.out.println(rule.getSelector().getType());
+//			}
+//			else {
+//				System.out.println("other selector");
+//			}
+//		}
 	}
 }
