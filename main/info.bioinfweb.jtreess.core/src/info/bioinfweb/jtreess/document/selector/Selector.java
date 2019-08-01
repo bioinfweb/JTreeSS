@@ -19,6 +19,9 @@
 package info.bioinfweb.jtreess.document.selector;
 
 
+import info.bioinfweb.jtreess.document.DocumentElement;
+
+
 
 /**
  * Super interface used by all types of selectors. Classes should never implement this interface directly but use one of the
@@ -27,7 +30,7 @@ package info.bioinfweb.jtreess.document.selector;
  * @author Ben St&ouml;ver
  * @author Charlotte Schmitt
  */
-public interface Selector {	
+public interface Selector extends DocumentElement {	
 	public String getName();
 
 	public SelectorType getType();

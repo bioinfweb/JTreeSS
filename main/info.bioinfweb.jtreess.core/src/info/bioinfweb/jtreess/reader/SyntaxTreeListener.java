@@ -32,8 +32,13 @@ import info.bioinfweb.jtreess.document.expression.Expression;
 import info.bioinfweb.jtreess.document.expression.Multiplication;
 import info.bioinfweb.jtreess.document.expression.ParanExpression;
 import info.bioinfweb.jtreess.document.expression.Subtraction;
+import info.bioinfweb.jtreess.document.selector.ConcreteNonPseudoSelector;
 import info.bioinfweb.jtreess.document.selector.ConcreteSelector;
+import info.bioinfweb.jtreess.document.selector.NonPseudoSelector;
+import info.bioinfweb.jtreess.document.selector.PseudoClass;
 import info.bioinfweb.jtreess.document.selector.PseudoFunction;
+import info.bioinfweb.jtreess.document.selector.PseudoSelector;
+import info.bioinfweb.jtreess.document.selector.Selector;
 import info.bioinfweb.jtreess.document.selector.SelectorType;
 import info.bioinfweb.jtreess.document.value.ColorValue;
 import info.bioinfweb.jtreess.document.value.UnitValue;
@@ -41,6 +46,10 @@ import info.bioinfweb.jtreess.document.value.Value;
 import info.bioinfweb.jtreess.reader.parser.TreeSSBaseListener;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser.DocumentContext;
+import info.bioinfweb.jtreess.reader.parser.TreeSSParser.PseudoClassContext;
+import info.bioinfweb.jtreess.reader.parser.TreeSSParser.PseudoFunctionContext;
+import info.bioinfweb.jtreess.reader.parser.TreeSSParser.PseudoSelectorContext;
+import info.bioinfweb.jtreess.reader.parser.TreeSSParser.SelectorContext;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser.SelectorRuleContext;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser.SimpleSelectorContext;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser.UnitValueContext;
@@ -66,8 +75,9 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 	
 	@Override
 	public void exitDocument(DocumentContext ctx) {
-		parents.pop();
+			parents.pop();
 	}
+		
 
 
 	@Override 
@@ -80,104 +90,104 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 
 	@Override
 	public void exitSelectorRule(SelectorRuleContext ctx) {
-		parents.pop();
-	}
-
-
-	@Override
-	public void enterSimpleSelector(TreeSSParser.SimpleSelectorContext ctx) {
-		SelectorRule rule = (SelectorRule)parents.peek();
-		ConcreteSelector simpleSelector = new ConcreteSelector(rule, SelectorType.SIMPLE_SELECTOR, ctx.IDENTIFIER().getText());
-		rule.setSelector(simpleSelector);
-		parents.push(simpleSelector);
-	}
-	
-	
-	@Override
-	public void exitSimpleSelector(SimpleSelectorContext ctx) {
-		parents.pop();
-	}
-
-	
-	@Override
-	public void enterUniversalSelector(TreeSSParser.UniversalSelectorContext ctx) {
-		SelectorRule rule = (SelectorRule)parents.peek();
-		ConcreteSelector universalSelector = new ConcreteSelector(rule, SelectorType.UNIVERSAL_SELECTOR, ctx.STAR().getText());   //TODO Possibly replaced by constant.
-		rule.setSelector(universalSelector);
-		parents.push(universalSelector); 
-	}
-	
-	
-	@Override
-	public void exitUniversalSelector(TreeSSParser.UniversalSelectorContext ctx) {
-		parents.pop();
-	}
-	
-	
-	@Override public void enterIdSelector(TreeSSParser.IdSelectorContext ctx) { 
-		SelectorRule rule = (SelectorRule)parents.peek();
-		ConcreteSelector idSelector = new ConcreteSelector(rule, SelectorType.ID_SELECTOR, ctx.IDENTIFIER().getText());
-		rule.setSelector(idSelector);
-		parents.push(idSelector); 
-	}
-	
-	
-	@Override 
-	public void exitIdSelector(TreeSSParser.IdSelectorContext ctx) { 
-		parents.pop();
-	}
-
-
-	@Override 
-	public void enterPseudoClass(TreeSSParser.PseudoClassContext ctx) { 
-		DocumentElement parent = parents.peek();
-		ConcreteSelector pseudoClass = new ConcreteSelector(parent, SelectorType.PSEUDO_CLASS, ctx.IDENTIFIER().getText());
-		if (parent instanceof SelectorRule) {				
-			SelectorRule rule = (SelectorRule)parents.peek();
-			rule.setSelector(pseudoClass);			
+		if (!parents.isEmpty()) {
+			parents.pop();
 		}
-		else if (parent instanceof Expression) { 
+	}
+
+
+	@Override
+	public void enterSelector(SelectorContext ctx) {
+		SelectorRule rule = (SelectorRule)parents.peek();
+		NonPseudoSelector selector = null;
+		if (ctx.basicSelector() != null) {
+			if (ctx.basicSelector().simpleSelector() != null) {
+				selector = new ConcreteNonPseudoSelector(rule, SelectorType.SIMPLE_SELECTOR, ctx.basicSelector().simpleSelector().IDENTIFIER().getText());
+			}
+			else if (ctx.basicSelector().idSelector() != null) {
+				selector = new ConcreteNonPseudoSelector(rule, SelectorType.ID_SELECTOR, ctx.basicSelector().idSelector().IDENTIFIER().getText());
+			}
+			else if (ctx.basicSelector().universalSelector() != null) {
+				selector = new ConcreteNonPseudoSelector(rule, SelectorType.UNIVERSAL_SELECTOR, ctx.basicSelector().universalSelector().getText());
+			}
+		}
+		if (selector == null) {
+			selector = new ConcreteNonPseudoSelector(rule, SelectorType.UNIVERSAL_SELECTOR, "*");
+		}
+		parents.push(selector);
+	}
+
+	
+	@Override
+	public void exitSelector(SelectorContext ctx) {
+		parents.pop();
+	}
+
+	
+
+	@Override
+	public void enterPseudoClass(PseudoClassContext ctx) {
+		DocumentElement parent = parents.peek();
+		PseudoClass pseudoClass = new PseudoClass(parent, ctx.IDENTIFIER().getText());
+		if (parent instanceof NonPseudoSelector) {
+			((NonPseudoSelector)parent).getPseudoSelectors().add(pseudoClass);
+		}
+		else if (parent instanceof Expression) {
 			((Expression)parent).getChildren().add(pseudoClass);
 		}
-		else if (parent instanceof Function) {
-			((Function)parent).getParameters().add(pseudoClass);
+		else if (parent instanceof PseudoFunction) {
+			((PseudoFunction)parent).getParameters().add(pseudoClass);
 		}
 		else {
 			throw new IllegalStateException("Found parent element " + 
-					parent.getClass().getCanonicalName() + " , but expected either " + 
-					Expression.class.getCanonicalName() + " or " + SelectorRule.class.getCanonicalName() 
-					+ ".");
+					parent.getClass().getCanonicalName() + " , but expected " + 
+					Expression.class.getCanonicalName() + ", " + NonPseudoSelector.class.getCanonicalName() 
+					+ " or " + PseudoFunction.class.getCanonicalName() + ".");
 		}
 		parents.push(pseudoClass); 
 	}
 
-	
-	@Override 
-	public void exitPseudoClass(TreeSSParser.PseudoClassContext ctx) {
+
+	@Override
+	public void exitPseudoClass(PseudoClassContext ctx) {
 		parents.pop();
-	}
-	
-	
-	@Override 
-	public void enterPseudoFunction(TreeSSParser.PseudoFunctionContext ctx) {
-		// Possible parents: expression, selectorRule, concreteSelector (or other selector?)
-		SelectorRule rule = (SelectorRule)parents.peek();
-		PseudoFunction pseudoFunction = new PseudoFunction(rule, SelectorType.PSEUDO_FUNCTION, ctx.function().getText());
-		rule.setSelector(pseudoFunction);
-		parents.push(pseudoFunction); 
 	}
 
-	
-	@Override 
-	public void exitPseudoFunction(TreeSSParser.PseudoFunctionContext ctx) { 
+
+	@Override
+	public void enterPseudoFunction(PseudoFunctionContext ctx) {
+		DocumentElement parent = parents.peek();
+		PseudoFunction pseudoFunction = new PseudoFunction(parent, null);
+		if (parent instanceof NonPseudoSelector) {
+			((NonPseudoSelector)parent).getPseudoSelectors().add(pseudoFunction);
+		}
+		else if (parent instanceof Expression) {
+			((Expression)parent).getChildren().add(pseudoFunction);
+		}
+		else if (parent instanceof PseudoFunction) {
+			((PseudoFunction)parent).getParameters().add(pseudoFunction);
+		}
+		else {
+			throw new IllegalStateException("Found parent element " + 
+					parent.getClass().getCanonicalName() + " , but expected " + 
+					Expression.class.getCanonicalName() + ", " + NonPseudoSelector.class.getCanonicalName() + 
+					" or " + PseudoFunction.class.getCanonicalName() + ".");
+		}
+		// Instance is created here and not later in enterFunction() since enterFunction() cannot determine anymore whether a pseudo-function was found if nothing is put on the stack here.
+		parents.push(pseudoFunction);
+	}
+
+
+	@Override
+	public void exitPseudoFunction(PseudoFunctionContext ctx) {
 		parents.pop();
 	}
-	
-	
+
+
 	@Override 
 	public void enterPropertyRule(TreeSSParser.PropertyRuleContext ctx) { 
 		SelectorRule rule = (SelectorRule)parents.peek();
-		PropertyRule propertyRule = new PropertyRule(rule); /*Needs a correction*/
+		PropertyRule propertyRule = new PropertyRule(rule);
 		rule.getPropertyRules().add(propertyRule);
 		parents.push(propertyRule);
 	}
@@ -185,7 +195,7 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 
 	@Override 
 	public void exitPropertyRule(TreeSSParser.PropertyRuleContext ctx) {
-		parents.pop();
+			parents.pop();
 	}
 	
 	
@@ -230,6 +240,9 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 			else if (parent instanceof Function) {
 				((Function)parent).getParameters().add(operation);
 			}
+			else if (parent instanceof PropertyRule) {
+				((PropertyRule)parent).getValues().add(operation);
+			}
 			else {
 				throw new IllegalStateException("Found parent element " + 
 						parent.getClass().getCanonicalName() + " , but expected either " + 
@@ -243,7 +256,7 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 	
 	@Override 
 	public void exitExpression(TreeSSParser.ExpressionContext ctx) { 
-	  if ((ctx.value() == null) && (ctx.pseudoClass() == null) && (ctx.pseudoFunction() == null)) {
+	  if ((ctx.value() == null) && (ctx.pseudoSelector() == null)) {
 	  	parents.pop();
 		}
 	}
@@ -253,22 +266,31 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 	public void enterFunction(TreeSSParser.FunctionContext ctx) {
 		DocumentElement parent = parents.peek(); 
 		if (parent instanceof PseudoFunction) {			
-			((Function)parent).setName(ctx.IDENTIFIER().getText());
-		}
-		else if (parent instanceof PropertyRule) {			
-			((PropertyRule)parent).setPropertyName(ctx.IDENTIFIER().getText());
+			((Function)parent).setName(ctx.IDENTIFIER().getText());  // Instance was already created in enterPseudoFuntion().
 		}
 		else {
-			throw new IllegalStateException("Found parent element " + 
-					parent.getClass().getCanonicalName() + " , but expected " + 
-					Function.class.getCanonicalName() + ".");
+			Function function = new Function(parent, false); 
+			function.setName(ctx.IDENTIFIER().getText());
+			if (parent instanceof PropertyRule) {			
+				((PropertyRule)parent).getValues().add(function);
+			}
+			else if (parent instanceof Expression) {
+				((Expression)parent).getChildren().add(function);
+			}
+			else {
+				throw new IllegalStateException("Found parent element " + 
+						parent.getClass().getCanonicalName() + " , but expected " + 
+						PropertyRule.class.getCanonicalName() + " or " + 
+						Expression.class.getCanonicalName() + ".");
+			}
+			parents.push(function);
 		}
 	}
 
 	
 	@Override 
-	public void exitFunction(TreeSSParser.FunctionContext ctx) { 
-		if (!parents.isEmpty()) {
+	public void exitFunction(TreeSSParser.FunctionContext ctx) {
+		if(!(parents.peek() instanceof PseudoFunction)) {
 			parents.pop();
 		}
 	}
@@ -279,12 +301,12 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 		DocumentElement parent = parents.peek();
 		DocumentElement value = null;
 		if (ctx.COLOR() != null) {
-			value = new ColorValue(parent, ctx.IDENTIFIER().getText());
+			value = new ColorValue(parent, ctx.COLOR().getText());
 		}
 		else if (ctx.STRING() != null) {
 			value = new Value(parent, Value.ValueType.STRING, ctx.STRING().getText());
 		}
-		else if (ctx.IDENTIFIER() != null) { /*Is this the correct token or ANTRL IDENTIFIER()?*/
+		else if (ctx.IDENTIFIER() != null) { 
 			value = new Value(parent, Value.ValueType.IDENTIFIER, ctx.IDENTIFIER().getText());
 		}
 		
@@ -295,11 +317,14 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 			else if (parent instanceof PropertyRule) {
 				((PropertyRule)parent).getValues().add(value);
 			}
+			else if (parent instanceof Function) {
+				((Function)parent).getParameters().add(value);
+			}
 			else {
 				throw new IllegalStateException("Found parent element " + 
 						parent.getClass().getCanonicalName() + " , but expected either " + 
-						Expression.class.getCanonicalName() + " or " + PropertyRule.class.getCanonicalName() 
-						+ ".");
+						Expression.class.getCanonicalName() + ", " + Function.class.getCanonicalName() + 
+						" or " + PropertyRule.class.getCanonicalName() + ".");
 			}
 			parents.push(value);
 		}
@@ -327,6 +352,8 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 
 	@Override
 	public void exitUnitValue(UnitValueContext ctx) {
-		parents.pop();
+		if (ctx.IDENTIFIER() != null) {
+			parents.pop();
+		}
 	}
 }

@@ -70,8 +70,7 @@ grammar TreeSS;
 	|expression (DIVIDE | STAR) expression
 	|expression (PLUS | MINUS) expression
 	|value
-	|pseudoClass
-	|pseudoFunction;
+	|pseudoSelector;
 	
 	paramList : expression (COMMA expression)*;
 	
@@ -113,7 +112,7 @@ grammar TreeSS;
 	basicSelector(pseudoSelector)*
 	|pseudoSelector; 
 	
-	selectorRule : selector (COMMA selector)* LBRACE propertyRule* RBRACE; /*propertyRule does not exist yet*/
+	selectorRule : selector (COMMA selector)* LBRACE propertyRule* RBRACE;
 	
 	atRule : AT IDENTIFIER; /* TODO Extend expression to allow parameters or property list */
 	

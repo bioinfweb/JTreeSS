@@ -22,12 +22,12 @@ package info.bioinfweb.jtreess.document;
 import java.util.ArrayList;
 import java.util.List;
 
-import info.bioinfweb.jtreess.document.selector.Selector;
+import info.bioinfweb.jtreess.document.selector.NonPseudoSelector;
 
 
 
 public class SelectorRule extends AbstractDocumentElement {
-	private List<Selector> selectors = new ArrayList<>();	
+	private List<NonPseudoSelector> selectors = new ArrayList<>();	
 	private List<PropertyRule> propertyRules = new ArrayList<>();
 	
 	
@@ -36,7 +36,7 @@ public class SelectorRule extends AbstractDocumentElement {
 	}
 
 	
-	public List<Selector> getSelectors() {
+	public List<NonPseudoSelector> getSelectors() {
 		return selectors;
 	}
 	
