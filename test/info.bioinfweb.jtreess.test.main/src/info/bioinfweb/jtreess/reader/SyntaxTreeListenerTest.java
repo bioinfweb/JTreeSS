@@ -16,7 +16,9 @@ import info.bioinfweb.jtreess.document.Document;
 import info.bioinfweb.jtreess.document.Function;
 import info.bioinfweb.jtreess.document.PropertyRule;
 import info.bioinfweb.jtreess.document.SelectorRule;
+import info.bioinfweb.jtreess.document.expression.Addition;
 import info.bioinfweb.jtreess.document.expression.Expression;
+import info.bioinfweb.jtreess.document.expression.Subtraction;
 import info.bioinfweb.jtreess.document.expression.Expression.ExpressionType;
 import info.bioinfweb.jtreess.document.selector.ConcreteSelector;
 import info.bioinfweb.jtreess.document.selector.NonPseudoSelector;
@@ -55,6 +57,67 @@ public class SyntaxTreeListenerTest {
 	private void assertProperty(PropertyRule property, String name) {
 		assertNotNull(property);
 		assertEquals(name, property.getPropertyName());
+	}
+	
+	@Test
+	public void testReadingSimpleCalculationTest() throws Exception {
+		Document document = readDocument("SimpleCalculationTest");
+		assertNotNull(document);
+		assertEquals(1, document.getSelectorRules().size());
+		
+		SelectorRule selectorRule = document.getSelectorRules().get(0);
+		assertEquals(document, selectorRule.getParent());
+		assertSelector(selectorRule.getSelectors().get(0), SelectorType.SIMPLE_SELECTOR, "node");
+		assertEquals(1, selectorRule.getSelectors().size());
+		
+		assertNotNull(selectorRule.getPropertyRules());
+		assertEquals(1, selectorRule.getPropertyRules().size());
+		PropertyRule propertyRule = selectorRule.getPropertyRules().get(0);
+		assertEquals(selectorRule, propertyRule.getParent());
+		assertProperty(propertyRule,"font-size"); 
+		
+		assertNotNull(propertyRule.getValues());
+		assertEquals(1, propertyRule.getValues().size());
+		Function function = (Function) propertyRule.getValues().get(0);
+		assertEquals(propertyRule, function.getParent());
+		assertEquals( "calc", function.getName());
+		assertEquals(1, function.getParameters().size()); 
+		assertFalse(function.isPseudofunction());
+				
+		Expression expression = (Expression) function.getParameters().get(0);
+		assertEquals(2, expression.getChildren().size());
+		assertEquals(function, expression.getParent());
+		assertEquals(ExpressionType.MINUS, expression.getType());
+		
+		Subtraction subtration = (Subtraction)expression.getChildren().get(0);
+		assertEquals(2, subtration.getChildren().size());
+		assertEquals(expression, subtration.getParent());
+		assertEquals(ExpressionType.MINUS, subtration.getType());
+		
+		Addition addition = (Addition)subtration.getChildren().get(0);
+		assertEquals(2, addition.getChildren().size()); 
+		assertEquals(subtration, addition.getParent());
+		assertEquals(ExpressionType.PLUS, addition.getType());
+		
+		Value value = (Value)expression.getChildren().get(1);
+		assertEquals(expression, value.getParent());
+		assertEquals(ValueType.UNIT_VALUE, value.getType());
+		assertEquals("8.1", value.getText());
+		
+		value = (Value)subtration.getChildren().get(1);
+		assertEquals(subtration, value.getParent());
+		assertEquals(ValueType.UNIT_VALUE, value.getType());
+		assertEquals("13", value.getText());
+		
+		value = (Value)addition.getChildren().get(0); 
+		assertEquals(addition, value.getParent());
+		assertEquals(ValueType.UNIT_VALUE, value.getType());
+		assertEquals("8", value.getText());
+		
+		value = (Value)addition.getChildren().get(1); 
+		assertEquals(addition, value.getParent());
+		assertEquals(ValueType.UNIT_VALUE, value.getType());
+		assertEquals("0.2", value.getText());
 	}
 	
 	

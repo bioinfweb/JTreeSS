@@ -1,0 +1,3 @@
+node {
+	font-size: calc(8 + 0.2 - 13 - 8.1);
+}
