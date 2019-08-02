@@ -60,6 +60,36 @@ public class SyntaxTreeListenerTest {
 	}
 	
 	@Test
+	public void testReadingSelectorPseudoSelectorTest() throws Exception {
+		Document document = readDocument("SelectorPseudoSelectorTest");
+		assertNotNull(document);
+		assertEquals(1, document.getSelectorRules().size());
+		
+		SelectorRule selectorRule = document.getSelectorRules().get(0);
+		assertEquals(document, selectorRule.getParent());
+		assertSelector(selectorRule.getSelectors().get(0), SelectorType.UNIVERSAL_SELECTOR, "*");
+		assertEquals(1, selectorRule.getSelectors().size());
+		
+		assertEquals(1, selectorRule.getSelectors().get(0).getPseudoSelectors().size());
+		assertEquals("test1", selectorRule.getSelectors().get(0).getPseudoSelectors().get(0).getName());
+		//It is still not clear, why "test2" is expected here, further investigation is necessary to identify the reason why test2 is not a normal function
+		assertEquals(SelectorType.PSEUDO_FUNCTION, selectorRule.getSelectors().get(0).getPseudoSelectors().get(0).getType());
+		
+		assertNotNull(selectorRule.getPropertyRules());
+		assertEquals(1, selectorRule.getPropertyRules().size());
+		PropertyRule propertyRule = selectorRule.getPropertyRules().get(0);
+		assertEquals(selectorRule, propertyRule.getParent());
+		assertProperty(propertyRule,"layout"); 
+		
+		assertNotNull(propertyRule.getValues());
+		assertEquals(1, propertyRule.getValues().size());
+		Value value = (Value) propertyRule.getValues().get(0); 
+		assertEquals(propertyRule, value.getParent());
+		assertEquals("rectangular", value.getText());
+		assertEquals(ValueType.IDENTIFIER, value.getType());
+	}
+	
+	@Test
 	public void testReadingSimpleCalculationTest() throws Exception {
 		Document document = readDocument("SimpleCalculationTest");
 		assertNotNull(document);
