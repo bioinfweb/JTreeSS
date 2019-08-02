@@ -114,6 +114,7 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 		if (selector == null) {
 			selector = new ConcreteNonPseudoSelector(rule, SelectorType.UNIVERSAL_SELECTOR, "*");
 		}
+		rule.getSelectors().add(selector);
 		parents.push(selector);
 	}
 
@@ -341,14 +342,31 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 
 	@Override
 	public void enterUnitValue(UnitValueContext ctx) {
+		DocumentElement parent = parents.peek();
 		String unit = null;
 		if (ctx.IDENTIFIER() != null) {
 			unit = ctx.IDENTIFIER().getText();
 		}
 		DocumentElement value = new UnitValue(parents.peek(), ctx.getText(), ctx.DECVALUE().getText(), unit);
+		if (value != null) {
+			if (parent instanceof Expression) {
+				((Expression)parent).getChildren().add(value);
+			}
+			else if (parent instanceof PropertyRule) {
+				((PropertyRule)parent).getValues().add(value);
+			}
+			else if (parent instanceof Function) {
+				((Function)parent).getParameters().add(value);
+			}
+			else {
+				throw new IllegalStateException("Found parent element " + 
+						parent.getClass().getCanonicalName() + " , but expected either " + 
+						Expression.class.getCanonicalName() + ", " + Function.class.getCanonicalName() + 
+						" or " + PropertyRule.class.getCanonicalName() + ".");
+			}
 		parents.push(value);
+		}
 	}
-
 
 	@Override
 	public void exitUnitValue(UnitValueContext ctx) {
