@@ -266,7 +266,7 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 	@Override 
 	public void enterFunction(TreeSSParser.FunctionContext ctx) {
 		DocumentElement parent = parents.peek(); 
-		if (parent instanceof PseudoFunction) {			
+		if ((parent instanceof PseudoFunction) && (((Function)parent).getName() == null)) {			
 			((Function)parent).setName(ctx.IDENTIFIER().getText());  // Instance was already created in enterPseudoFuntion().
 		}
 		else {
@@ -278,11 +278,15 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 			else if (parent instanceof Expression) {
 				((Expression)parent).getChildren().add(function);
 			}
+			else if (parent instanceof Function) {
+				((Function)parent).getParameters().add(function);
+			}
 			else {
 				throw new IllegalStateException("Found parent element " + 
 						parent.getClass().getCanonicalName() + " , but expected " + 
-						PropertyRule.class.getCanonicalName() + " or " + 
-						Expression.class.getCanonicalName() + ".");
+						Function.class.getCanonicalName() + ", " +
+						PropertyRule.class.getCanonicalName() + ", " + 
+						Expression.class.getCanonicalName() + " or any subclass of these.");
 			}
 			parents.push(function);
 		}
@@ -347,7 +351,12 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 		if (ctx.IDENTIFIER() != null) {
 			unit = ctx.IDENTIFIER().getText();
 		}
-		DocumentElement value = new UnitValue(parent, ctx.getText(), ctx.DECVALUE().getText(), unit);
+		
+		String decValue = ctx.DECVALUE().getText();
+		if (ctx.MINUS() != null) {
+			decValue = "-" + decValue; 
+		}
+		DocumentElement value = new UnitValue(parent, ctx.getText(), decValue, unit);
 		if (parent instanceof Expression) {
 			((Expression)parent).getChildren().add(value);
 		}

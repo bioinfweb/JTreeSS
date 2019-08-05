@@ -33,6 +33,4 @@ public class Subtraction extends Expression {
 	public ExpressionType getType() {
 		return ExpressionType.MINUS;
 	}
-	
-
 }
