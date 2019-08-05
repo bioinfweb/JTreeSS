@@ -1,8 +1,10 @@
 package info.bioinfweb.jtreess.reader;
 
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
@@ -18,13 +20,11 @@ import info.bioinfweb.jtreess.document.PropertyRule;
 import info.bioinfweb.jtreess.document.SelectorRule;
 import info.bioinfweb.jtreess.document.expression.Addition;
 import info.bioinfweb.jtreess.document.expression.Expression;
-import info.bioinfweb.jtreess.document.expression.Subtraction;
 import info.bioinfweb.jtreess.document.expression.Expression.ExpressionType;
-import info.bioinfweb.jtreess.document.selector.ConcreteSelector;
+import info.bioinfweb.jtreess.document.expression.Subtraction;
 import info.bioinfweb.jtreess.document.selector.NonPseudoSelector;
 import info.bioinfweb.jtreess.document.selector.PseudoClass;
 import info.bioinfweb.jtreess.document.selector.PseudoFunction;
-import info.bioinfweb.jtreess.document.selector.Selector;
 import info.bioinfweb.jtreess.document.selector.SelectorType;
 import info.bioinfweb.jtreess.document.value.ColorValue;
 import info.bioinfweb.jtreess.document.value.UnitValue;
@@ -59,6 +59,7 @@ public class SyntaxTreeListenerTest {
 		assertEquals(name, property.getPropertyName());
 	}
 	
+	
 	@Test
 	public void testReadingSelectorPseudoSelectorTest() throws Exception {
 		Document document = readDocument("SelectorPseudoSelectorTest");
@@ -68,6 +69,7 @@ public class SyntaxTreeListenerTest {
 		SelectorRule selectorRule = document.getSelectorRules().get(0);
 		assertEquals(document, selectorRule.getParent());
 		assertSelector(selectorRule.getSelectors().get(0), SelectorType.UNIVERSAL_SELECTOR, "*");
+		assertEquals(SelectorType.UNIVERSAL_SELECTOR, selectorRule.getSelectors().get(0).getType());
 		assertEquals(1, selectorRule.getSelectors().size());
 		
 		assertEquals(1, selectorRule.getSelectors().get(0).getPseudoSelectors().size());
@@ -113,41 +115,48 @@ public class SyntaxTreeListenerTest {
 		assertEquals( "calc", function.getName());
 		assertEquals(1, function.getParameters().size()); 
 		assertFalse(function.isPseudofunction());
-				
-		Expression expression = (Expression) function.getParameters().get(0);
-		assertEquals(2, expression.getChildren().size());
-		assertEquals(function, expression.getParent());
-		assertEquals(ExpressionType.MINUS, expression.getType());
 		
-		Subtraction subtration = (Subtraction)expression.getChildren().get(0);
-		assertEquals(2, subtration.getChildren().size());
-		assertEquals(expression, subtration.getParent());
-		assertEquals(ExpressionType.MINUS, subtration.getType());
+		assertTrue(function.getParameters().get(0) instanceof Subtraction);
+		Subtraction upperSubtraction = (Subtraction) function.getParameters().get(0);
+		assertEquals(2, upperSubtraction.getChildren().size());
+		assertEquals(function, upperSubtraction.getParent());
+		assertEquals(ExpressionType.MINUS, upperSubtraction.getType());
 		
-		Addition addition = (Addition)subtration.getChildren().get(0);
+		assertTrue(upperSubtraction.getChildren().get(0) instanceof Subtraction);
+		Subtraction lowerSubtration = (Subtraction)upperSubtraction.getChildren().get(0);
+		assertEquals(2, lowerSubtration.getChildren().size());
+		assertEquals(upperSubtraction, lowerSubtration.getParent());
+		assertEquals(ExpressionType.MINUS, lowerSubtration.getType());
+		
+		assertTrue(lowerSubtration.getChildren().get(0) instanceof Addition);
+		Addition addition = (Addition)lowerSubtration.getChildren().get(0);
 		assertEquals(2, addition.getChildren().size()); 
-		assertEquals(subtration, addition.getParent());
+		assertEquals(lowerSubtration, addition.getParent());
 		assertEquals(ExpressionType.PLUS, addition.getType());
 		
-		Value value = (Value)expression.getChildren().get(1);
-		assertEquals(expression, value.getParent());
+		assertTrue(upperSubtraction.getChildren().get(1) instanceof UnitValue);
+		UnitValue value = (UnitValue)upperSubtraction.getChildren().get(1);
+		assertEquals(upperSubtraction, value.getParent());
 		assertEquals(ValueType.UNIT_VALUE, value.getType());
-		assertEquals("8.1", value.getText());
+		assertEquals(8.1, value.getNumber(), 0.000001);
 		
-		value = (Value)subtration.getChildren().get(1);
-		assertEquals(subtration, value.getParent());
+		assertTrue(lowerSubtration.getChildren().get(1) instanceof UnitValue);
+		value = (UnitValue)lowerSubtration.getChildren().get(1);
+		assertEquals(lowerSubtration, value.getParent());
 		assertEquals(ValueType.UNIT_VALUE, value.getType());
-		assertEquals("13", value.getText());
+		assertEquals(13, value.getNumber(), 0.000001);
 		
-		value = (Value)addition.getChildren().get(0); 
+		assertTrue(addition.getChildren().get(0) instanceof UnitValue);
+		value = (UnitValue)addition.getChildren().get(0); 
 		assertEquals(addition, value.getParent());
 		assertEquals(ValueType.UNIT_VALUE, value.getType());
-		assertEquals("8", value.getText());
+		assertEquals(8, value.getNumber(), 0.000001);
 		
-		value = (Value)addition.getChildren().get(1); 
+		assertTrue(addition.getChildren().get(1) instanceof UnitValue);
+		value = (UnitValue)addition.getChildren().get(1); 
 		assertEquals(addition, value.getParent());
 		assertEquals(ValueType.UNIT_VALUE, value.getType());
-		assertEquals("0.2", value.getText());
+		assertEquals(0.2, value.getNumber(), 0.000001);
 	}
 	
 	
@@ -412,5 +421,11 @@ public class SyntaxTreeListenerTest {
 		assertEquals(propertyRule, value.getParent());
 		assertEquals("true", value.getText());
 		assertEquals(ValueType.IDENTIFIER, value.getType());
+	}
+	
+	
+	public static void main(String[] args) {
+		int a = 2 * +3;
+		System.out.println(a);
 	}
 }
