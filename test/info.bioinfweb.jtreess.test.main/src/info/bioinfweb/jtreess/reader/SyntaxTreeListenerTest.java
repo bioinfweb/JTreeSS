@@ -88,7 +88,7 @@ public class SyntaxTreeListenerTest {
 		Value value = (Value) propertyRule.getValues().get(0); 
 		assertEquals(propertyRule, value.getParent());
 		assertEquals("rectangular", value.getText());
-		assertEquals(ValueType.IDENTIFIER, value.getType());
+		assertEquals(ValueType.CONSTANT, value.getType());
 	}
 	
 //	@Test
@@ -185,7 +185,7 @@ public class SyntaxTreeListenerTest {
 		Value value = (Value) propertyRule.getValues().get(0); 
 		assertEquals(propertyRule, value.getParent());
 		assertEquals("none", value.getText());
-		assertEquals(ValueType.IDENTIFIER, value.getType());
+		assertEquals(ValueType.CONSTANT, value.getType());
 		
 		//Selector 2
 		
@@ -205,7 +205,7 @@ public class SyntaxTreeListenerTest {
 		value = (Value) propertyRule.getValues().get(0); 
 		assertEquals(propertyRule, value.getParent());
 		assertEquals("rectangular", value.getText());
-		assertEquals(ValueType.IDENTIFIER, value.getType());
+		assertEquals(ValueType.CONSTANT, value.getType());
 		
 		//Selector 3
 		
@@ -229,7 +229,7 @@ public class SyntaxTreeListenerTest {
 		value = (Value) propertyRule.getValues().get(1); 
 		assertEquals(propertyRule, value.getParent());
 		assertEquals("sans-serif", value.getText());
-		assertEquals(ValueType.IDENTIFIER, value.getType());
+		assertEquals(ValueType.CONSTANT, value.getType());
 		
 		propertyRule = selectorRule.getPropertyRules().get(1);
 		assertEquals(1, propertyRule.getValues().size());
@@ -247,7 +247,7 @@ public class SyntaxTreeListenerTest {
 		value = (Value) propertyRule.getValues().get(0); 
 		assertEquals(propertyRule, value.getParent());
 		assertEquals("bold", value.getText());
-		assertEquals(ValueType.IDENTIFIER, value.getType());
+		assertEquals(ValueType.CONSTANT, value.getType());
 		
 		//Selector 4
 
@@ -293,7 +293,7 @@ public class SyntaxTreeListenerTest {
 		value = (Value)function.getParameters().get(0); 
 		assertEquals(function, value.getParent());
 		assertEquals("currentNode", value.getText());
-		assertEquals(ValueType.IDENTIFIER, value.getType()); 
+		assertEquals(ValueType.CONSTANT, value.getType()); 
 		
 		value = (Value)function.getParameters().get(1); 
 		assertEquals(function, value.getParent());
@@ -327,7 +327,7 @@ public class SyntaxTreeListenerTest {
 		assertEquals(1, propertyRule.getValues().size());
 		assertEquals(propertyRule, value.getParent());
 		assertEquals("blue", value.getText());
-		assertEquals(ValueType.IDENTIFIER, value.getType());
+		assertEquals(ValueType.CONSTANT, value.getType());
 		
 		
 		//Selector 6
@@ -423,7 +423,7 @@ public class SyntaxTreeListenerTest {
 		assertEquals(1, propertyRule.getValues().size());
 		assertEquals(propertyRule, value.getParent());
 		assertEquals("true", value.getText());
-		assertEquals(ValueType.IDENTIFIER, value.getType());
+		assertEquals(ValueType.CONSTANT, value.getType());
 	}
 	
 //	@Test
@@ -451,7 +451,7 @@ public class SyntaxTreeListenerTest {
 		Value value = (Value) propertyRule.getValues().get(0); 
 		assertEquals(propertyRule, value.getParent());
 		assertEquals("rectangular", value.getText());
-		assertEquals(ValueType.IDENTIFIER, value.getType());
+		assertEquals(ValueType.CONSTANT, value.getType());
 		
 		//Selector 2
 		
@@ -475,7 +475,7 @@ public class SyntaxTreeListenerTest {
 		value = (Value) propertyRule.getValues().get(1); 
 		assertEquals(propertyRule, value.getParent());
 		assertEquals("sans-serif", value.getText());
-		assertEquals(ValueType.IDENTIFIER, value.getType());
+		assertEquals(ValueType.CONSTANT, value.getType());
 		
 		propertyRule = selectorRule.getPropertyRules().get(1);
 		assertEquals(1, propertyRule.getValues().size());
@@ -493,7 +493,7 @@ public class SyntaxTreeListenerTest {
 		value = (Value) propertyRule.getValues().get(0); 
 		assertEquals(propertyRule, value.getParent());
 		assertEquals("bold", value.getText());
-		assertEquals(ValueType.IDENTIFIER, value.getType());
+		assertEquals(ValueType.CONSTANT, value.getType());
 		
 		//Selector 3
 
@@ -539,7 +539,7 @@ public class SyntaxTreeListenerTest {
 		value = (Value)function.getParameters().get(0); 
 		assertEquals(function, value.getParent());
 		assertEquals("currentNode", value.getText());
-		assertEquals(ValueType.IDENTIFIER, value.getType()); 
+		assertEquals(ValueType.CONSTANT, value.getType()); 
 		
 		value = (Value)function.getParameters().get(1); 
 		assertEquals(function, value.getParent());
