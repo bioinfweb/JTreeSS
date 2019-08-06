@@ -309,7 +309,7 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 			value = new Value(parent, Value.ValueType.STRING, ctx.STRING().getText());
 		}
 		else if (ctx.IDENTIFIER() != null) { 
-			value = new Value(parent, Value.ValueType.IDENTIFIER, ctx.IDENTIFIER().getText());
+			value = new Value(parent, Value.ValueType.CONSTANT, ctx.IDENTIFIER().getText());
 		}
 		if (value != null) {
 			if (parent instanceof Expression) {
@@ -348,7 +348,7 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 			value = new Value(parent, Value.ValueType.STRING, ctx.STRING().getText());
 		}
 		else if (ctx.identifierNode() != null) { 
-			value = new Value(parent, Value.ValueType.IDENTIFIER, ctx.identifierNode().getText());
+			value = new Value(parent, Value.ValueType.CONSTANT, ctx.identifierNode().getText());
 		}
 		
 		if (value != null) {

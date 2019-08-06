@@ -16,29 +16,28 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.document.value;
+package info.bioinfweb.languagedefinition;
 
 
-import java.awt.Color;
-import info.bioinfweb.jtreess.document.DocumentElement;
+import java.util.ArrayList;
+import java.util.List;
+
+import info.bioinfweb.jtreess.document.value.ColorValue;
+import info.bioinfweb.jtreess.document.value.Value;
 
 
 
-public class ColorValue extends Value {
-	private Color color; 
-	
-	
-	public ColorValue(DocumentElement parent, String name) {
-		super(parent, ValueType.COLOR, name);
-	}
-	
-	
-	public Color getColor() {
-		return color;
-	}
-
-	
-	public void setColor(Color color) {
-		this.color = color;
+public class AnalyseConstant {
+	public static List<ColorConstant> validColorNames = new ArrayList<ColorConstant>();
+	public static List<Constant> validConstants = new ArrayList<Constant>();
+	public static void analysisOfConstant(Value constant) {
+		if (validColorNames.contains(constant.getText())) {
+			ColorValue colorValue = new ColorValue(constant.getParent(), constant.getText());
+		}
+		else if (validConstants.contains(constant.getText())) {
+		}
+		else {
+			System.out.println("The given constant is neither a color nor a usable constant.");
+		}
 	}
 }

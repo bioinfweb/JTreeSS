@@ -38,6 +38,11 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/document/value/Value
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/package-info.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/reader/SyntaxTreeListener.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/reader/parser/package-info.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/languagedefinition/AnalyseConstant.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/languagedefinition/AnalyseExpression.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/languagedefinition/AtRule.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/languagedefinition/ColorConstant.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/languagedefinition/Constant.java -text
 test/info.bioinfweb.jtreess.test.cssparser.cssparser/.classpath -text
 test/info.bioinfweb.jtreess.test.cssparser.cssparser/.project -text
 test/info.bioinfweb.jtreess.test.cssparser.cssparser/.settings/org.eclipse.jdt.core.prefs -text

@@ -16,29 +16,14 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.document.value;
-
-
-import java.awt.Color;
-import info.bioinfweb.jtreess.document.DocumentElement;
+package info.bioinfweb.languagedefinition;
 
 
 
-public class ColorValue extends Value {
-	private Color color; 
+public class ColorConstant {
+	private String[][] validColors =  {{"PINK", "FFC0CB"}, {"Enter names of valid colors --> CSS"}, {"Enter appropriate hexadecimal values"}};
 	
-	
-	public ColorValue(DocumentElement parent, String name) {
-		super(parent, ValueType.COLOR, name);
-	}
-	
-	
-	public Color getColor() {
-		return color;
-	}
-
-	
-	public void setColor(Color color) {
-		this.color = color;
+	public String[][] getValidColors() {
+		return validColors;
 	}
 }

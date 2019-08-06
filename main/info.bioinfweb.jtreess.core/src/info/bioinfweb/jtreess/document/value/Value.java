@@ -19,12 +19,9 @@
 package info.bioinfweb.jtreess.document.value;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import info.bioinfweb.jtreess.document.AbstractDocumentElement;
 import info.bioinfweb.jtreess.document.DocumentElement;
-import info.bioinfweb.jtreess.document.expression.Expression.ExpressionType;
+import info.bioinfweb.languagedefinition.AnalyseConstant;
 
 
 
@@ -33,7 +30,7 @@ public class Value extends AbstractDocumentElement{
 		UNIT_VALUE, 
 		COLOR,
 		STRING,
-		IDENTIFIER;
+		CONSTANT;
 	}
 	
 	
@@ -67,5 +64,14 @@ public class Value extends AbstractDocumentElement{
 	 */
 	public String getText() {
 		return text;
+	}
+	
+	public void proveConstant(Value value) {
+		if (value.getType() == ValueType.CONSTANT) {
+			AnalyseConstant.analysisOfConstant(value); 
+		}
+		else if (value.getType() == ValueType.STRING) {
+			//add method to evaluate String values
+		}
 	}
 }
