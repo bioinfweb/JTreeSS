@@ -393,6 +393,9 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 		if (ctx.MINUS() != null) {
 			decValue = "-" + decValue; 
 		}
+		if (ctx.PLUS() != null) {
+			decValue = "+" + decValue; 
+		}
 		DocumentElement value = new UnitValue(parent, ctx.getText(), decValue, unit);
 		if (parent instanceof Expression) {
 			((Expression)parent).getChildren().add(value);
