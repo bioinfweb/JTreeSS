@@ -1,0 +1,13 @@
+--tr-ee- {
+	layout: rectangular; 
+}
+ 
+#--un6-gt { /* Some unique node name */
+  font-family: "Arial", sans-serif;
+  font-size: 8mm;
+  font-weight: bold;
+}
+
+node {
+	font-size---: calc(0.7em + metadataValue(currentNode, "a:flowerSize", "a:averageSize") * 0.01em);
+}

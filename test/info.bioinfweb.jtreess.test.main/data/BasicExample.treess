@@ -24,7 +24,7 @@ node:first-child:last-child, branch:terminal {
 	color: #FF0000;
 }
 
-node:not(:matches(:first-child, :last-child)) {
+node:not(:matches(:first-child, :last-child, -8cm)) {
 	color: #0F0;
 }
 

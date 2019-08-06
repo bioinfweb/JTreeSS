@@ -91,7 +91,7 @@ public class SyntaxTreeListenerTest {
 		assertEquals(ValueType.IDENTIFIER, value.getType());
 	}
 	
-	@Test
+//	@Test
 	public void testReadingSimpleCalculationTest() throws Exception {
 		Document document = readDocument("SimpleCalculationTest");
 		assertNotNull(document);
@@ -160,7 +160,7 @@ public class SyntaxTreeListenerTest {
 	}
 	
 	
-//	@Test
+	@Test
 	public void testReadingBasicExample() throws Exception {
 		Document document = readDocument("BasicExample");
 		
@@ -379,15 +379,18 @@ public class SyntaxTreeListenerTest {
 		PseudoFunction pseudoFunction = (PseudoFunction) selectorRule.getSelectors().get(0).getPseudoSelectors().get(0);
 		assertEquals(1, pseudoFunction.getParameters().size());
 		PseudoFunction innerFunction = (PseudoFunction) pseudoFunction.getParameters().get(0);
-		assertEquals(2, innerFunction.getParameters().size());
+		assertEquals(3, innerFunction.getParameters().size());
 		assertEquals("matches", innerFunction.getName());
 		assertEquals(SelectorType.PSEUDO_FUNCTION, innerFunction.getType()); 
 		PseudoClass innerFunctionFirstParameter = (PseudoClass)innerFunction.getParameters().get(0);
 		PseudoClass innerFunctionSecondParameter = (PseudoClass)innerFunction.getParameters().get(1);
+		Value innerFunctionThirdParameter = (Value)innerFunction.getParameters().get(2);
 		assertEquals("first-child", innerFunctionFirstParameter.getName()); 
 		assertEquals(SelectorType.PSEUDO_CLASS, innerFunctionFirstParameter.getType()); 
 		assertEquals("last-child", innerFunctionSecondParameter.getName()); 
 		assertEquals(SelectorType.PSEUDO_CLASS, innerFunctionSecondParameter.getType()); 
+		assertEquals("-8cm", innerFunctionThirdParameter.getText()); 
+		assertEquals(Value.ValueType.UNIT_VALUE, innerFunctionThirdParameter.getType()); 
 
 		assertNotNull(selectorRule.getPropertyRules());
 		assertEquals(1, selectorRule.getPropertyRules().size());
@@ -422,4 +425,130 @@ public class SyntaxTreeListenerTest {
 		assertEquals("true", value.getText());
 		assertEquals(ValueType.IDENTIFIER, value.getType());
 	}
+	
+//	@Test
+	public void testReadingIdentifierHyphenTest() throws Exception {
+		Document document = readDocument("IdentifierHyphenTest");
+		
+		assertNotNull(document);
+		assertEquals(3, document.getSelectorRules().size());
+	
+		//Selector 1
+		
+		SelectorRule selectorRule = document.getSelectorRules().get(0);
+		assertEquals(1, selectorRule.getSelectors().size());
+		assertEquals(document, selectorRule.getParent());
+		assertSelector(selectorRule.getSelectors().get(0), SelectorType.SIMPLE_SELECTOR, "--tr-ee-");
+		
+		assertNotNull(selectorRule.getPropertyRules());
+		assertEquals(1, selectorRule.getPropertyRules().size());
+		PropertyRule propertyRule = selectorRule.getPropertyRules().get(0);
+		assertEquals(selectorRule, propertyRule.getParent());
+		assertProperty(propertyRule,"layout"); 
+		
+		assertNotNull(propertyRule.getValues());
+		assertEquals(1, propertyRule.getValues().size());
+		Value value = (Value) propertyRule.getValues().get(0); 
+		assertEquals(propertyRule, value.getParent());
+		assertEquals("rectangular", value.getText());
+		assertEquals(ValueType.IDENTIFIER, value.getType());
+		
+		//Selector 2
+		
+		selectorRule = document.getSelectorRules().get(1);
+		assertEquals(1, selectorRule.getSelectors().size());
+		assertEquals(document, selectorRule.getParent());
+		assertSelector(selectorRule.getSelectors().get(0), SelectorType.ID_SELECTOR, "--un6-gt");
+		
+		assertNotNull(selectorRule.getPropertyRules());
+		assertEquals(3, selectorRule.getPropertyRules().size());
+		propertyRule = selectorRule.getPropertyRules().get(0);
+		assertEquals(selectorRule, propertyRule.getParent());
+		assertProperty(propertyRule,"font-family"); 
+		
+		assertNotNull(propertyRule.getValues());
+		assertEquals(2, propertyRule.getValues().size());
+		value = (Value) propertyRule.getValues().get(0); 
+		assertEquals(propertyRule, value.getParent());
+		assertEquals("\"Arial\"", value.getText());
+		assertEquals(ValueType.STRING, value.getType());
+		value = (Value) propertyRule.getValues().get(1); 
+		assertEquals(propertyRule, value.getParent());
+		assertEquals("sans-serif", value.getText());
+		assertEquals(ValueType.IDENTIFIER, value.getType());
+		
+		propertyRule = selectorRule.getPropertyRules().get(1);
+		assertEquals(1, propertyRule.getValues().size());
+		assertEquals(selectorRule, propertyRule.getParent());
+		assertProperty(propertyRule,"font-size"); 
+		value = (Value) propertyRule.getValues().get(0); 
+		assertEquals(propertyRule, value.getParent());
+		assertEquals("8mm", value.getText());
+		assertEquals(ValueType.UNIT_VALUE, value.getType());
+		
+		propertyRule = selectorRule.getPropertyRules().get(2);
+		assertEquals(1, propertyRule.getValues().size());
+		assertEquals(selectorRule, propertyRule.getParent());
+		assertProperty(propertyRule,"font-weight"); 
+		value = (Value) propertyRule.getValues().get(0); 
+		assertEquals(propertyRule, value.getParent());
+		assertEquals("bold", value.getText());
+		assertEquals(ValueType.IDENTIFIER, value.getType());
+		
+		//Selector 3
+
+		selectorRule = document.getSelectorRules().get(2);
+		assertEquals(1, selectorRule.getSelectors().size());
+		assertEquals(document, selectorRule.getParent());
+		assertSelector(selectorRule.getSelectors().get(0), SelectorType.SIMPLE_SELECTOR, "node");
+		
+		assertNotNull(selectorRule.getPropertyRules());
+		assertEquals(1, selectorRule.getPropertyRules().size());
+		propertyRule = selectorRule.getPropertyRules().get(0);
+		assertEquals(selectorRule, propertyRule.getParent());
+		assertProperty(propertyRule,"font-size---"); 
+		
+		assertNotNull(propertyRule.getValues());
+		assertEquals(1, propertyRule.getValues().size());
+		Function function = (Function) propertyRule.getValues().get(0);
+		assertEquals(propertyRule, function.getParent());
+		assertEquals( "calc", function.getName());
+		assertEquals(1, function.getParameters().size()); 
+		assertFalse(function.isPseudofunction());
+		
+		Expression expression = (Expression) function.getParameters().get(0);
+		assertEquals(function, expression.getParent());
+		assertEquals(ExpressionType.PLUS, expression.getType()); 
+		value = (Value)expression.getChildren().get(0); 
+		assertEquals(2, expression.getChildren().size());
+		assertEquals(expression, value.getParent());
+		assertEquals(ValueType.UNIT_VALUE, value.getType());
+		assertEquals("0.7em", value.getText());
+		
+		Expression subExpression = (Expression) expression.getChildren().get(1);
+		assertEquals(expression, subExpression.getParent());
+		assertEquals(2, expression.getChildren().size());
+		assertEquals(ExpressionType.MULTIPLY, subExpression.getType());
+		
+		function = (Function)subExpression.getChildren().get(0); 
+		assertEquals(subExpression, function.getParent());
+		assertFalse(function.isPseudofunction());
+		assertEquals("metadataValue", function.getName());
+		assertEquals(3, function.getParameters().size()); 
+		
+		value = (Value)function.getParameters().get(0); 
+		assertEquals(function, value.getParent());
+		assertEquals("currentNode", value.getText());
+		assertEquals(ValueType.IDENTIFIER, value.getType()); 
+		
+		value = (Value)function.getParameters().get(1); 
+		assertEquals(function, value.getParent());
+		assertEquals("\"a:flowerSize\"", value.getText());
+		assertEquals(ValueType.STRING, value.getType()); 
+		
+		value = (Value)function.getParameters().get(2); 
+		assertEquals(function, value.getParent());
+		assertEquals("\"a:averageSize\"", value.getText());
+		assertEquals(ValueType.STRING, value.getType());
+}			
 }
