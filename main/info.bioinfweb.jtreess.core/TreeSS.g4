@@ -57,40 +57,53 @@ grammar TreeSS;
 	
 //	NCNAME : [:a-zA-Z_]+ [:a-zA-Z_\-.0-9];
 	DECVALUE : ((INT E MINUS? INT)|(DOUBLE E MINUS? INT)|INT|DOUBLE);
-	IDENTIFIER : [a-zA-Z\-] [a-zA-Z\-0-9]*;
+	IDENTIFIER : [a-zA-Z] [a-zA-Z\-0-9]*;
 	STRING : '"' .*? '"';
 	HEXDIGIT : [a-fA-F0-9];
 	COLOR : HASH (HEXDIGIT HEXDIGIT HEXDIGIT| HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT);
 
 	unitValue : MINUS? DECVALUE IDENTIFIER?;
 	
+	identifierNode : (MINUS* IDENTIFIER)+ MINUS*;
+	
 	expression : 
 	(LPARAN expression RPARAN)
 	|expression (DIVIDE | STAR) expression
 	|expression (PLUS | MINUS) expression
-	|value
-	|pseudoSelector;
+	|expressionValue;
 	
-	paramList : expression (COMMA expression)*;
+	paramList : 
+	expression (COMMA expression)*
+	|expression (COMMA pseudoSelector)*
+	|pseudoSelector (COMMA expression)*
+	|pseudoSelector (COMMA pseudoSelector)*;
 	
 	function : IDENTIFIER LPARAN (paramList)? RPARAN;
 	
-	value : 
+	expressionValue : 
 	unitValue
 	|function
 	|STRING
 	|IDENTIFIER
 	|COLOR;  
 	
-	values : value (COMMA value)*;
 	
-	property : IDENTIFIER; 
+	propertyValue : 
+	unitValue
+	|function
+	|identifierNode
+	|STRING
+	|COLOR;
+ 
+ 	propertyValues : propertyValue (COMMA propertyValue)*; 
 	
-	propertyRule : property COLON values SEMICOLON; 
+	property : identifierNode; 
+	
+	propertyRule : property COLON propertyValues SEMICOLON; 
 	
 	pseudoFunction : COLON function; 
 	
-	pseudoClass : COLON IDENTIFIER; 
+	pseudoClass : COLON identifierNode; 
 	
 	pseudoSelector : 
 	pseudoClass
@@ -98,9 +111,9 @@ grammar TreeSS;
 	
 	universalSelector : STAR;
 	
-	simpleSelector : IDENTIFIER /*{System.out.println("Test: "+$IDENTIFIER.text+";");}*/;
+	simpleSelector : identifierNode;
 	
-	idSelector : HASH IDENTIFIER; 
+	idSelector : HASH identifierNode; 
 	
 	basicSelector : 
 	simpleSelector
@@ -113,6 +126,6 @@ grammar TreeSS;
 	
 	selectorRule : selector (COMMA selector)* LBRACE propertyRule* RBRACE;
 	
-	atRule : AT IDENTIFIER; /* TODO Extend expression to allow parameters or property list */
+	atRule : AT identifierNode; /* TODO Extend expression to allow parameters or property list */
 	
 	document: (selectorRule | atRule)*;

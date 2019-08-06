@@ -33,12 +33,9 @@ import info.bioinfweb.jtreess.document.expression.Multiplication;
 import info.bioinfweb.jtreess.document.expression.ParanExpression;
 import info.bioinfweb.jtreess.document.expression.Subtraction;
 import info.bioinfweb.jtreess.document.selector.ConcreteNonPseudoSelector;
-import info.bioinfweb.jtreess.document.selector.ConcreteSelector;
 import info.bioinfweb.jtreess.document.selector.NonPseudoSelector;
 import info.bioinfweb.jtreess.document.selector.PseudoClass;
 import info.bioinfweb.jtreess.document.selector.PseudoFunction;
-import info.bioinfweb.jtreess.document.selector.PseudoSelector;
-import info.bioinfweb.jtreess.document.selector.Selector;
 import info.bioinfweb.jtreess.document.selector.SelectorType;
 import info.bioinfweb.jtreess.document.value.ColorValue;
 import info.bioinfweb.jtreess.document.value.UnitValue;
@@ -46,12 +43,12 @@ import info.bioinfweb.jtreess.document.value.Value;
 import info.bioinfweb.jtreess.reader.parser.TreeSSBaseListener;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser.DocumentContext;
+import info.bioinfweb.jtreess.reader.parser.TreeSSParser.ExpressionValueContext;
+import info.bioinfweb.jtreess.reader.parser.TreeSSParser.PropertyValueContext;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser.PseudoClassContext;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser.PseudoFunctionContext;
-import info.bioinfweb.jtreess.reader.parser.TreeSSParser.PseudoSelectorContext;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser.SelectorContext;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser.SelectorRuleContext;
-import info.bioinfweb.jtreess.reader.parser.TreeSSParser.SimpleSelectorContext;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser.UnitValueContext;
 
 
@@ -102,10 +99,10 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 		NonPseudoSelector selector = null;
 		if (ctx.basicSelector() != null) {
 			if (ctx.basicSelector().simpleSelector() != null) {
-				selector = new ConcreteNonPseudoSelector(rule, SelectorType.SIMPLE_SELECTOR, ctx.basicSelector().simpleSelector().IDENTIFIER().getText());
+				selector = new ConcreteNonPseudoSelector(rule, SelectorType.SIMPLE_SELECTOR, ctx.basicSelector().simpleSelector().identifierNode().getText());
 			}
 			else if (ctx.basicSelector().idSelector() != null) {
-				selector = new ConcreteNonPseudoSelector(rule, SelectorType.ID_SELECTOR, ctx.basicSelector().idSelector().IDENTIFIER().getText());
+				selector = new ConcreteNonPseudoSelector(rule, SelectorType.ID_SELECTOR, ctx.basicSelector().idSelector().identifierNode().getText());
 			}
 			else if (ctx.basicSelector().universalSelector() != null) {
 				selector = new ConcreteNonPseudoSelector(rule, SelectorType.UNIVERSAL_SELECTOR, ctx.basicSelector().universalSelector().getText());
@@ -129,7 +126,7 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 	@Override
 	public void enterPseudoClass(PseudoClassContext ctx) {
 		DocumentElement parent = parents.peek();
-		PseudoClass pseudoClass = new PseudoClass(parent, ctx.IDENTIFIER().getText());
+		PseudoClass pseudoClass = new PseudoClass(parent, ctx.identifierNode().getText());
 		if (parent instanceof NonPseudoSelector) {
 			((NonPseudoSelector)parent).getPseudoSelectors().add(pseudoClass);
 		}
@@ -203,7 +200,7 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 	@Override 
 	public void enterProperty(TreeSSParser.PropertyContext ctx) {
 		PropertyRule rule = (PropertyRule)parents.peek();
-		rule.setPropertyName(ctx.IDENTIFIER().getText());
+		rule.setPropertyName(ctx.identifierNode().getText());
 		parents.push(rule);
 	}
 
@@ -217,7 +214,7 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 	@Override 
 	public void enterExpression(TreeSSParser.ExpressionContext ctx) { 
 		DocumentElement parent = parents.peek();
-		DocumentElement operation = null; 
+		DocumentElement operation = null;
 		if (ctx.STAR() != null) {
 			operation = new Multiplication(parent);
 		}
@@ -257,7 +254,7 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 	
 	@Override 
 	public void exitExpression(TreeSSParser.ExpressionContext ctx) { 
-	  if ((ctx.value() == null) && (ctx.pseudoSelector() == null)) {
+	  if (ctx.expressionValue() == null) {
 	  	parents.pop();
 		}
 	}
@@ -301,8 +298,8 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 	}
 
 	
-	@Override 
-	public void enterValue(TreeSSParser.ValueContext ctx) {
+	@Override
+	public void enterExpressionValue(ExpressionValueContext ctx) {
 		DocumentElement parent = parents.peek();
 		DocumentElement value = null;
 		if (ctx.COLOR() != null) {
@@ -313,6 +310,45 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 		}
 		else if (ctx.IDENTIFIER() != null) { 
 			value = new Value(parent, Value.ValueType.IDENTIFIER, ctx.IDENTIFIER().getText());
+		}
+		if (value != null) {
+			if (parent instanceof Expression) {
+				((Expression)parent).getChildren().add(value);
+			}
+			else if (parent instanceof Function) {
+				((Function)parent).getParameters().add(value);
+			}
+			else {
+				throw new IllegalStateException("Found parent element " + 
+						parent.getClass().getCanonicalName() + " , but expected either " + 
+						Expression.class.getCanonicalName() + ", " + Function.class.getCanonicalName() + 
+						" or " + PropertyRule.class.getCanonicalName() + ".");
+			}
+			parents.push(value);
+		}
+	}
+
+
+	@Override
+	public void exitExpressionValue(ExpressionValueContext ctx) {
+		if ((ctx.COLOR() != null) || (ctx.STRING() != null) || (ctx.IDENTIFIER()!= null)) {
+			parents.pop();
+		}
+	}
+
+
+	@Override
+	public void enterPropertyValue(PropertyValueContext ctx) {
+		DocumentElement parent = parents.peek();
+		DocumentElement value = null;
+		if (ctx.COLOR() != null) {
+			value = new ColorValue(parent, ctx.COLOR().getText());
+		}
+		else if (ctx.STRING() != null) {
+			value = new Value(parent, Value.ValueType.STRING, ctx.STRING().getText());
+		}
+		else if (ctx.identifierNode() != null) { 
+			value = new Value(parent, Value.ValueType.IDENTIFIER, ctx.identifierNode().getText());
 		}
 		
 		if (value != null) {
@@ -334,14 +370,15 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 			parents.push(value);
 		}
 	}
-
 	
-	@Override 
-	public void exitValue(TreeSSParser.ValueContext ctx) { 
-		if ((ctx.COLOR() != null) || (ctx.STRING() != null) || (ctx.IDENTIFIER() != null)) {
+	
+	@Override
+	public void exitPropertyValue(PropertyValueContext ctx) {
+		if ((ctx.COLOR() != null) || (ctx.STRING() != null) || (ctx.identifierNode()!= null)) {
 			parents.pop();
 		}
 	}
+
 
 
 	@Override
