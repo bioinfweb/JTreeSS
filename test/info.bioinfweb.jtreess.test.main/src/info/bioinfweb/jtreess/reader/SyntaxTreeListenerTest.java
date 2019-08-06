@@ -422,10 +422,4 @@ public class SyntaxTreeListenerTest {
 		assertEquals("true", value.getText());
 		assertEquals(ValueType.IDENTIFIER, value.getType());
 	}
-	
-	
-	public static void main(String[] args) {
-		int a = 2 * +3;
-		System.out.println(a);
-	}
 }

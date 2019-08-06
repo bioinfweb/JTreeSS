@@ -1,0 +1,33 @@
+canvas {
+	background-color: none;  /* Transparent background */
+}
+
+tree {
+	layout: rectangular; 
+}
+
+#un6gt { /* Some unique node name */
+  font-family: "Arial", sans-serif;
+  font-size: 8mm;
+  font-weight: bold;
+}
+
+node {
+	font-size: calc(0.7em + metadataValue(currentNode, "a:flowerSize", "a:averageSize") * 0.01em);
+} 
+
+*:terminal {  /* This would reference terminal nodes, branches, labels, ... */
+	color: blue;
+}
+
+node:first-child:last-child, branch:terminal {
+	color: #FF0000;
+}
+
+node:not(:matches(:first-child, :last-child)) {
+	color: #0F0;
+}
+
+scale {   
+  visible : true;
+}

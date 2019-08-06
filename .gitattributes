@@ -104,5 +104,6 @@ test/info.bioinfweb.jtreess.test.main/.settings/org.eclipse.jdt.core.prefs -text
 test/info.bioinfweb.jtreess.test.main/data/BasicExample.treess -text
 test/info.bioinfweb.jtreess.test.main/data/SelectorPseudoSelectorTest.treess -text
 test/info.bioinfweb.jtreess.test.main/data/SimpleCalculationTest.treess -text
+test/info.bioinfweb.jtreess.test.main/data/SmallTests.treess -text
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/reader/SyntaxTreeListenerTest.java -text
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/test/TestCompiler.java -text
