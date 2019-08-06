@@ -57,7 +57,7 @@ grammar TreeSS;
 	
 //	NCNAME : [:a-zA-Z_]+ [:a-zA-Z_\-.0-9];
 	DECVALUE : ((INT E MINUS? INT)|(DOUBLE E MINUS? INT)|INT|DOUBLE);
-	IDENTIFIER : [a-zA-Z] [a-zA-Z\-0-9]*;
+	IDENTIFIER : [a-zA-Z] [a-zA-Z0-9]*;
 	STRING : '"' .*? '"';
 	HEXDIGIT : [a-fA-F0-9];
 	COLOR : HASH (HEXDIGIT HEXDIGIT HEXDIGIT| HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT);
@@ -73,10 +73,7 @@ grammar TreeSS;
 	|expressionValue;
 	
 	paramList : 
-	expression (COMMA expression)*
-	|expression (COMMA pseudoSelector)*
-	|pseudoSelector (COMMA expression)*
-	|pseudoSelector (COMMA pseudoSelector)*;
+	(pseudoSelector|expression) (COMMA (pseudoSelector|expression))*;
 	
 	function : IDENTIFIER LPARAN (paramList)? RPARAN;
 	

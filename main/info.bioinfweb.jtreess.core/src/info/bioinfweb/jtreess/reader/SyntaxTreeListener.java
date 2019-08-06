@@ -288,7 +288,7 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 			parents.push(function);
 		}
 	}
-
+	
 	
 	@Override 
 	public void exitFunction(TreeSSParser.FunctionContext ctx) {
