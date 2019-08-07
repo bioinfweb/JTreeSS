@@ -31,9 +31,9 @@ public class AnalyseExpression{
 	
 	public void proveExpression(Expression expression) {
 		if ((expression.getChildren().get(0) instanceof Value) && (expression.getChildren().get(1) instanceof Value)) {
-			Value firstValue= (Value)expression.getChildren().get(0);
-			Value secondValue= (Value)expression.getChildren().get(1);
-			if (firstValue.getType() == ValueType.UNIT_VALUE) {
+			UnitValue firstValue= (UnitValue)expression.getChildren().get(0);
+			UnitValue secondValue= (UnitValue)expression.getChildren().get(1);
+			if (firstValue.getType().equals(ValueType.UNIT_VALUE) && secondValue.getType().equals(ValueType.UNIT_VALUE)) {
 				firstValue = (UnitValue)firstValue; 
 				secondValue = (UnitValue)secondValue; 
 				if (expression.getType() == ExpressionType.MINUS) { // it also should be tested whether the unit matches (UnitValue --> UnitType) 

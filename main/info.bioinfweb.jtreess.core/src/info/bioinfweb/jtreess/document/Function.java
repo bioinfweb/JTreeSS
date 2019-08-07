@@ -53,7 +53,6 @@ public class Function extends AbstractDocumentElement {
 			this.name = identifier;
 		}
 		else if (validPseudoFunctionNames.contains(identifier) || (pseudofunction = true)) {
-			
 		}
 		else {
 			System.out.println(identifier + " is no valid identifier for a function.");

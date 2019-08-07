@@ -82,8 +82,7 @@ grammar TreeSS;
 	|function
 	|STRING
 	|IDENTIFIER
-	|COLOR;  
-	
+	|COLOR;
 	
 	propertyValue : 
 	unitValue
