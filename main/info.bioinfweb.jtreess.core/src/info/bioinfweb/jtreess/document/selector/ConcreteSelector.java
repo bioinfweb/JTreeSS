@@ -19,6 +19,9 @@
 package info.bioinfweb.jtreess.document.selector;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import info.bioinfweb.jtreess.document.AbstractDocumentElement;
 import info.bioinfweb.jtreess.document.DocumentElement;
 
@@ -27,7 +30,10 @@ import info.bioinfweb.jtreess.document.DocumentElement;
 public class ConcreteSelector extends AbstractDocumentElement implements Selector {
 	private SelectorType type;
 	private String name; 
-
+	final List<String> validIdSelectorNames = new ArrayList<String>();
+	final List<String> validSimpleSelectorNames = new ArrayList<String>(); 
+	final List<String> validPseudoClassNames = new ArrayList<String>(); 
+	final List<String> validPseudoFunctionNames = new ArrayList<String>(); 
 
 	public ConcreteSelector(DocumentElement parent, SelectorType type, String name) {
 		super(parent);
@@ -35,8 +41,20 @@ public class ConcreteSelector extends AbstractDocumentElement implements Selecto
 			throw new IllegalArgumentException("The type must not be null.");
 		}
 		else {
-			this.type = type;
-			this.name = name;  //TODO May the name be null or not?
+			this.type = type; 
+		}
+		
+		if ((type == SelectorType.ID_SELECTOR) && !(validIdSelectorNames.contains(name))) {
+			System.out.println(name + "is no valid name for an ID selector.");				
+		}
+		else if ((type == SelectorType.SIMPLE_SELECTOR) && !(validSimpleSelectorNames.contains(name))) {
+			System.out.println(name + "is no valid name for a simple selector.");				
+		}
+		else if ((type == SelectorType.PSEUDO_CLASS) && !(validPseudoClassNames.contains(name))) {
+			System.out.println(name + "is no valid name for a pseudo class.");				
+		}
+		else {
+			this.name = name; 
 		}
 	}
 	

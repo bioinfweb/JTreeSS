@@ -19,11 +19,22 @@
 package info.bioinfweb.languagedefinition;
 
 
+import java.util.HashMap;
+
+
 
 public class ColorConstant {
-	private String[][] validColors =  {{"PINK", "FFC0CB"}, {"Enter names of valid colors --> CSS"}, {"Enter appropriate hexadecimal values"}};
+	HashMap<String, String> validColors = new HashMap<String, String>();
+
 	
-	public String[][] getValidColors() {
+	public HashMap<String, String> putColors() {
+		 validColors.put("PINK", "FFC0CB");
+		 validColors.put("Enter names of valid colors --> CSS", "Enter appropriate hexadecimal values");
+		 return validColors;
+	 }
+
+	
+	 public HashMap<String, String> getValidColors() {
 		return validColors;
 	}
 }

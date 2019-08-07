@@ -28,6 +28,8 @@ public class Function extends AbstractDocumentElement {
 	private boolean pseudofunction; 
 	private String name;
 	private List<DocumentElement> parameters = new ArrayList<DocumentElement>(); 
+	private List<String> validFunctionNames = new ArrayList<String>(); 
+	private List<String> validPseudoFunctionNames = new ArrayList<String>(); 
 
 	
 	public Function(DocumentElement parent, boolean pseudofunction) {
@@ -47,7 +49,15 @@ public class Function extends AbstractDocumentElement {
 
 	
 	public void setName(String identifier) {
-		this.name = identifier;
+		if ((validFunctionNames.contains(identifier)) || (pseudofunction = false)) {
+			this.name = identifier;
+		}
+		else if (validPseudoFunctionNames.contains(identifier) || (pseudofunction = true)) {
+			
+		}
+		else {
+			System.out.println(identifier + " is no valid identifier for a function.");
+		}
 	}
 	
 	

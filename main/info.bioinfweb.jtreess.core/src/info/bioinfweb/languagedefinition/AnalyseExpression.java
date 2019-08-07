@@ -25,7 +25,6 @@ import info.bioinfweb.jtreess.document.value.Value;
 import info.bioinfweb.jtreess.document.value.Value.ValueType;
 
 public class AnalyseExpression{
-	private boolean isUnitValue; 
 	private double unitValueResult; 
 	private String stringResult; 
 	
@@ -37,7 +36,7 @@ public class AnalyseExpression{
 			if (firstValue.getType() == ValueType.UNIT_VALUE) {
 				firstValue = (UnitValue)firstValue; 
 				secondValue = (UnitValue)secondValue; 
-				if (expression.getType() == ExpressionType.MINUS) {
+				if (expression.getType() == ExpressionType.MINUS) { // it also should be tested whether the unit matches (UnitValue --> UnitType) 
 //					result = firstValue.getNumber() - secondValue.getNumber(); 
 				}
 				else if (expression.getType() == ExpressionType.PLUS) {
@@ -64,6 +63,10 @@ public class AnalyseExpression{
 				else if (expression.getType() == ExpressionType.DIVIDE) {
 					System.out.println("A String cannot be divided.");
 				} 
+			}
+			else {
+				System.out.println("To execute an operation, the value have to be a unit value (numeric value, optional with unit). "
+						+ "In Additions it is also possible to use Strings as values.");
 			}
 		}
 	}

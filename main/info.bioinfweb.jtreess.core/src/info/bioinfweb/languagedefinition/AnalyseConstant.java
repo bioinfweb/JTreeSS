@@ -22,20 +22,19 @@ package info.bioinfweb.languagedefinition;
 import java.util.ArrayList;
 import java.util.List;
 
-import info.bioinfweb.jtreess.document.value.ColorValue;
 import info.bioinfweb.jtreess.document.value.Value;
 
 
 
 public class AnalyseConstant {
-	public static List<ColorConstant> validColorNames = new ArrayList<ColorConstant>();
-	public static List<Constant> validConstants = new ArrayList<Constant>();
-	public static void analysisOfConstant(Value constant) {
-		if (validColorNames.contains(constant.getText())) {
-			ColorValue colorValue = new ColorValue(constant.getParent(), constant.getText());
+	
+	public static void analyseValueConstant(Value constant) {
+		final List<ColorConstant> validColorNames = new ArrayList<ColorConstant>(); 
+		// Could be also built with a HashMap consisting out of two strings which will be set here
+		if (validColorNames.contains(constant)) {
+			// It's a color --> set color for property
 		}
-		else if (validConstants.contains(constant.getText())) {
-		}
+//		else if (otherListOfValidNames.contains(constant)) {}
 		else {
 			System.out.println("The given constant is neither a color nor a usable constant.");
 		}

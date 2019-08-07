@@ -24,7 +24,7 @@ import info.bioinfweb.jtreess.document.DocumentElement;
 
 
 public class UnitValue extends Value {
-	public enum UnitType {
+	public enum UnitType { //Could be replaced by a list which compares the unit with the entries in the unitList
 		MM, //W3C does not recommend that 
 		CM, //W3C does not recommend that 
 		IN, //W3C does not recommend that 
@@ -52,7 +52,7 @@ public class UnitValue extends Value {
 	public UnitValue(DocumentElement parent, String numberUnitRepresentation, String numberRepresentation, String unit) {
 		super(parent, ValueType.UNIT_VALUE, numberUnitRepresentation);
 		this.numberRepresentation = numberRepresentation;
-		this.number = Double.parseDouble(numberRepresentation);
+		this.number = Double.parseDouble(numberRepresentation); //Maybe there has to be a test whether the number is in an acceptable range before setting the value
 		this.unit = unit;
 		setUnitType(unit); 
 	}

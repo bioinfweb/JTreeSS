@@ -42,7 +42,6 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/languagedefinition/AnalyseCo
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/languagedefinition/AnalyseExpression.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/languagedefinition/AtRule.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/languagedefinition/ColorConstant.java -text
-main/info.bioinfweb.jtreess.core/src/info/bioinfweb/languagedefinition/Constant.java -text
 test/info.bioinfweb.jtreess.test.cssparser.cssparser/.classpath -text
 test/info.bioinfweb.jtreess.test.cssparser.cssparser/.project -text
 test/info.bioinfweb.jtreess.test.cssparser.cssparser/.settings/org.eclipse.jdt.core.prefs -text
