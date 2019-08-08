@@ -50,6 +50,7 @@ grammar TreeSS;
 	MINUS : '-';
 	STAR : '*';
 	DIVIDE : '/';
+	PERCENT : '%';
 	fragment INT: [0-9]+;
 	fragment DOUBLE: [0-9]* DOT [0-9]+;
 	fragment E : 'e'|'E';
@@ -62,7 +63,7 @@ grammar TreeSS;
 	HEXDIGIT : [a-fA-F0-9];
 	COLOR : HASH (HEXDIGIT HEXDIGIT HEXDIGIT| HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT);
 
-	unitValue : (MINUS|PLUS)? DECVALUE IDENTIFIER?;
+	unitValue : (MINUS|PLUS)? DECVALUE (IDENTIFIER|PERCENT)?;
 	
 	expression : 
 	(LPARAN expression RPARAN)

@@ -347,6 +347,9 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 		if (ctx.IDENTIFIER() != null) {
 			unit = ctx.IDENTIFIER().getText();
 		}
+		else if (ctx.PERCENT()!= null) {
+			unit = ctx.PERCENT().getText();
+		}
 		
 		String decValue = ctx.DECVALUE().getText();
 		if (ctx.MINUS() != null) {
