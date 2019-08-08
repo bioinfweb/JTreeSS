@@ -237,7 +237,7 @@ public class SyntaxTreeListenerTest {
 		assertProperty(propertyRule,"font-size"); 
 		value = (Value) propertyRule.getValues().get(0); 
 		assertEquals(propertyRule, value.getParent());
-		assertEquals("8mm", value.getText());
+		assertEquals("8%", value.getText());
 		assertEquals(ValueType.UNIT_VALUE, value.getType());
 		
 		propertyRule = selectorRule.getPropertyRules().get(2);
