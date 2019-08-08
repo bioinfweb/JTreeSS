@@ -83,11 +83,11 @@ grammar TreeSS;
 	|IDENTIFIER
 	|COLOR;
  
- 	propertyValues :value (COMMA value)*; 
+ 	values : value (COMMA value)*; 
 	
 	property : IDENTIFIER; 
 	
-	propertyRule : property COLON propertyValues SEMICOLON; 
+	propertyRule : property COLON values SEMICOLON; 
 	
 	pseudoFunction : COLON function; 
 	
