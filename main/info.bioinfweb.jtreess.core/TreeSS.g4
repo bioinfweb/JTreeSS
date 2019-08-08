@@ -57,49 +57,40 @@ grammar TreeSS;
 	
 //	NCNAME : [:a-zA-Z_]+ [:a-zA-Z_\-.0-9];
 	DECVALUE : ((INT E MINUS? INT)|(DOUBLE E MINUS? INT)|INT|DOUBLE);
-	IDENTIFIER : [a-zA-Z] [a-zA-Z0-9]*;
+	IDENTIFIER : [\-]? [a-zA-Z\_] [a-zA-Z\-\_0-9]*;
 	STRING : '"' .*? '"';
 	HEXDIGIT : [a-fA-F0-9];
 	COLOR : HASH (HEXDIGIT HEXDIGIT HEXDIGIT| HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT HEXDIGIT);
 
 	unitValue : (MINUS|PLUS)? DECVALUE IDENTIFIER?;
 	
-	identifierNode : (MINUS* IDENTIFIER)+ MINUS*;
-	
 	expression : 
 	(LPARAN expression RPARAN)
 	|expression (DIVIDE | STAR) expression
 	|expression (PLUS | MINUS) expression
-	|expressionValue;
+	|value;
 	
 	paramList : 
 	(pseudoSelector|expression) (COMMA (pseudoSelector|expression))*;
 	
 	function : IDENTIFIER LPARAN (paramList)? RPARAN;
 	
-	expressionValue : 
+	value : 
 	unitValue
 	|function
 	|STRING
 	|IDENTIFIER
 	|COLOR;
-	
-	propertyValue : 
-	unitValue
-	|function
-	|identifierNode
-	|STRING
-	|COLOR;
  
- 	propertyValues : propertyValue (COMMA propertyValue)*; 
+ 	propertyValues :value (COMMA value)*; 
 	
-	property : identifierNode; 
+	property : IDENTIFIER; 
 	
 	propertyRule : property COLON propertyValues SEMICOLON; 
 	
 	pseudoFunction : COLON function; 
 	
-	pseudoClass : COLON identifierNode; 
+	pseudoClass : COLON IDENTIFIER; 
 	
 	pseudoSelector : 
 	pseudoClass
@@ -107,9 +98,9 @@ grammar TreeSS;
 	
 	universalSelector : STAR;
 	
-	simpleSelector : identifierNode;
+	simpleSelector : IDENTIFIER;
 	
-	idSelector : HASH identifierNode; 
+	idSelector : HASH IDENTIFIER; 
 	
 	basicSelector : 
 	simpleSelector
@@ -122,6 +113,6 @@ grammar TreeSS;
 	
 	selectorRule : selector (COMMA selector)* LBRACE propertyRule* RBRACE;
 	
-	atRule : AT identifierNode; /* TODO Extend expression to allow parameters or property list */
+	atRule : AT IDENTIFIER; /* TODO Extend expression to allow parameters or property list */
 	
 	document: (selectorRule | atRule)*;

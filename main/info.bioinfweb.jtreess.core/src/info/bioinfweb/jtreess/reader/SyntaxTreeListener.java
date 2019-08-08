@@ -43,13 +43,12 @@ import info.bioinfweb.jtreess.document.value.Value;
 import info.bioinfweb.jtreess.reader.parser.TreeSSBaseListener;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser.DocumentContext;
-import info.bioinfweb.jtreess.reader.parser.TreeSSParser.ExpressionValueContext;
-import info.bioinfweb.jtreess.reader.parser.TreeSSParser.PropertyValueContext;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser.PseudoClassContext;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser.PseudoFunctionContext;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser.SelectorContext;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser.SelectorRuleContext;
 import info.bioinfweb.jtreess.reader.parser.TreeSSParser.UnitValueContext;
+import info.bioinfweb.jtreess.reader.parser.TreeSSParser.ValueContext;
 
 
 
@@ -99,10 +98,10 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 		NonPseudoSelector selector = null;
 		if (ctx.basicSelector() != null) {
 			if (ctx.basicSelector().simpleSelector() != null) {
-				selector = new ConcreteNonPseudoSelector(rule, SelectorType.SIMPLE_SELECTOR, ctx.basicSelector().simpleSelector().identifierNode().getText());
+				selector = new ConcreteNonPseudoSelector(rule, SelectorType.SIMPLE_SELECTOR, ctx.basicSelector().simpleSelector().IDENTIFIER().getText());
 			}
 			else if (ctx.basicSelector().idSelector() != null) {
-				selector = new ConcreteNonPseudoSelector(rule, SelectorType.ID_SELECTOR, ctx.basicSelector().idSelector().identifierNode().getText());
+				selector = new ConcreteNonPseudoSelector(rule, SelectorType.ID_SELECTOR, ctx.basicSelector().idSelector().IDENTIFIER().getText());
 			}
 			else if (ctx.basicSelector().universalSelector() != null) {
 				selector = new ConcreteNonPseudoSelector(rule, SelectorType.UNIVERSAL_SELECTOR, ctx.basicSelector().universalSelector().getText());
@@ -126,7 +125,7 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 	@Override
 	public void enterPseudoClass(PseudoClassContext ctx) {
 		DocumentElement parent = parents.peek();
-		PseudoClass pseudoClass = new PseudoClass(parent, ctx.identifierNode().getText());
+		PseudoClass pseudoClass = new PseudoClass(parent, ctx.IDENTIFIER().getText());
 		if (parent instanceof NonPseudoSelector) {
 			((NonPseudoSelector)parent).getPseudoSelectors().add(pseudoClass);
 		}
@@ -200,7 +199,7 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 	@Override 
 	public void enterProperty(TreeSSParser.PropertyContext ctx) {
 		PropertyRule rule = (PropertyRule)parents.peek();
-		rule.setPropertyName(ctx.identifierNode().getText());
+		rule.setPropertyName(ctx.IDENTIFIER().getText());
 		parents.push(rule);
 	}
 
@@ -254,7 +253,7 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 	
 	@Override 
 	public void exitExpression(TreeSSParser.ExpressionContext ctx) { 
-	  if (ctx.expressionValue() == null) {
+	  if (ctx.value() == null) {
 	  	parents.pop();
 		}
 	}
@@ -299,7 +298,7 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 
 	
 	@Override
-	public void enterExpressionValue(ExpressionValueContext ctx) {
+	public void enterValue(ValueContext ctx) {
 		DocumentElement parent = parents.peek();
 		DocumentElement value = null;
 		if (ctx.COLOR() != null) {
@@ -318,49 +317,9 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 			else if (parent instanceof Function) {
 				((Function)parent).getParameters().add(value);
 			}
-			else {
-				throw new IllegalStateException("Found parent element " + 
-						parent.getClass().getCanonicalName() + " , but expected either " + 
-						Expression.class.getCanonicalName() + ", " + Function.class.getCanonicalName() + 
-						" or " + PropertyRule.class.getCanonicalName() + ".");
-			}
-			parents.push(value);
-		}
-	}
-
-
-	@Override
-	public void exitExpressionValue(ExpressionValueContext ctx) {
-		if ((ctx.COLOR() != null) || (ctx.STRING() != null) || (ctx.IDENTIFIER()!= null)) {
-			parents.pop();
-		}
-	}
-
-
-	@Override
-	public void enterPropertyValue(PropertyValueContext ctx) {
-		DocumentElement parent = parents.peek();
-		DocumentElement value = null;
-		if (ctx.COLOR() != null) {
-			value = new ColorValue(parent, ctx.COLOR().getText());
-		}
-		else if (ctx.STRING() != null) {
-			value = new Value(parent, Value.ValueType.STRING, ctx.STRING().getText());
-		}
-		else if (ctx.identifierNode() != null) { 
-			value = new Value(parent, Value.ValueType.CONSTANT, ctx.identifierNode().getText());
-		}
-		
-		if (value != null) {
-			if (parent instanceof Expression) {
-				((Expression)parent).getChildren().add(value);
-			}
 			else if (parent instanceof PropertyRule) {
 				((PropertyRule)parent).getValues().add(value);
 			}
-			else if (parent instanceof Function) {
-				((Function)parent).getParameters().add(value);
-			}
 			else {
 				throw new IllegalStateException("Found parent element " + 
 						parent.getClass().getCanonicalName() + " , but expected either " + 
@@ -370,11 +329,11 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 			parents.push(value);
 		}
 	}
-	
-	
+
+
 	@Override
-	public void exitPropertyValue(PropertyValueContext ctx) {
-		if ((ctx.COLOR() != null) || (ctx.STRING() != null) || (ctx.identifierNode()!= null)) {
+	public void exitValue(ValueContext ctx) {
+		if ((ctx.COLOR() != null) || (ctx.STRING() != null) || (ctx.IDENTIFIER()!= null)) {
 			parents.pop();
 		}
 	}
