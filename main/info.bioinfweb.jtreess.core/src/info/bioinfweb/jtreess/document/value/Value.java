@@ -66,9 +66,9 @@ public class Value extends AbstractDocumentElement{
 		return text;
 	}
 	
-	public void proveConstant(Value value) {
-		if (value.getType().equals(ValueType.CONSTANT)) {
-			AnalyseConstant.analyseValueConstant(value); 
-		}
-	}
+//	public void proveConstant(Value value) {
+//		if (value.getType().equals(ValueType.CONSTANT)) {
+//			AnalyseConstant.analyseValueConstant(value); 
+//		}
+//	}
 }

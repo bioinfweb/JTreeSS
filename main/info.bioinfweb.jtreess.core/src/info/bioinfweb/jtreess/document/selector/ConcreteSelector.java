@@ -44,18 +44,18 @@ public class ConcreteSelector extends AbstractDocumentElement implements Selecto
 			this.type = type; 
 		}
 		
-		if ((type == SelectorType.ID_SELECTOR) && !(validIdSelectorNames.contains(name))) {
-			System.out.println(name + "is no valid name for an ID selector.");				
-		}
-		else if ((type == SelectorType.SIMPLE_SELECTOR) && !(validSimpleSelectorNames.contains(name))) {
-			System.out.println(name + "is no valid name for a simple selector.");				
-		}
-		else if ((type == SelectorType.PSEUDO_CLASS) && !(validPseudoClassNames.contains(name))) {
-			System.out.println(name + "is no valid name for a pseudo class.");				
-		}
-		else {
+//		if ((type == SelectorType.ID_SELECTOR) && !(validIdSelectorNames.contains(name))) {
+//			System.out.println(name + "is no valid name for an ID selector.");				
+//		}
+//		else if ((type == SelectorType.SIMPLE_SELECTOR) && !(validSimpleSelectorNames.contains(name))) {
+//			System.out.println(name + "is no valid name for a simple selector.");				
+//		}
+//		else if ((type == SelectorType.PSEUDO_CLASS) && !(validPseudoClassNames.contains(name))) {
+//			System.out.println(name + "is no valid name for a pseudo class.");				
+//		}
+//		else {
 			this.name = name; 
-		}
+//		}
 	}
 	
 

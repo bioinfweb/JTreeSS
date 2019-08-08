@@ -49,14 +49,14 @@ public class Function extends AbstractDocumentElement {
 
 	
 	public void setName(String identifier) {
-		if ((validFunctionNames.contains(identifier)) || (pseudofunction = false)) {
+//		if ((validFunctionNames.contains(identifier)) || (pseudofunction = false)) {
 			this.name = identifier;
-		}
-		else if (validPseudoFunctionNames.contains(identifier) || (pseudofunction = true)) {
-		}
-		else {
-			System.out.println(identifier + " is no valid identifier for a function.");
-		}
+//		}
+//		else if (validPseudoFunctionNames.contains(identifier) || (pseudofunction = true)) {
+//		}
+//		else {
+//			System.out.println(identifier + " is no valid identifier for a function.");
+//		}
 	}
 	
 	

@@ -55,11 +55,11 @@ public class PropertyRule extends AbstractDocumentElement{
 	
 
 	public void setPropertyName(String propertyName) {
-		if (validPropertyNames.contains(propertyName)) {
+//		if (validPropertyNames.contains(propertyName)) {
 			this.propertyName = propertyName;
-		}
-		else {
-			System.out.println(propertyName + "is no valid identifier for a property name.");
-		}
+//		}
+//		else {
+//			System.out.println(propertyName + "is no valid identifier for a property name.");
+//		}
 	}
 }
