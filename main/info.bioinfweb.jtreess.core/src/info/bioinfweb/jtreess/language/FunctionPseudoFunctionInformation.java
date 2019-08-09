@@ -18,7 +18,10 @@
  */
 package info.bioinfweb.jtreess.language;
 
+
 import java.util.HashMap;
+
+
 
 public class FunctionPseudoFunctionInformation {
 	private HashMap<PseudoSelectorInformation, ParamListEntry> functionInformation = new HashMap<PseudoSelectorInformation, ParamListEntry>(); 

@@ -21,7 +21,7 @@ package info.bioinfweb.jtreess.language;
 
 public class ParamListEntry {
 	private Type paramType;
-	private Value value; 
+	private RuntimeValue value; 
 
 	
 	public Type getParamType() {
@@ -34,12 +34,12 @@ public class ParamListEntry {
 	}
 
 	
-	public Value getValue() {
+	public RuntimeValue getValue() {
 		return value;
 	}
 
 	
-	public void setValue(Value value) {
+	public void setValue(RuntimeValue value) {
 		this.value = value;
 	}
 }

@@ -18,6 +18,8 @@
  */
 package info.bioinfweb.jtreess.language;
 
-public class Value {
+
+
+public class RuntimeValue {
 
 }
