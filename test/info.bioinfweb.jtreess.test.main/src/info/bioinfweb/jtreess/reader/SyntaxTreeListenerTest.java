@@ -37,7 +37,7 @@ import info.bioinfweb.jtreess.reader.parser.TreeSSParser;
 
 public class SyntaxTreeListenerTest {
 	private Document readDocument(String fileName) throws IOException {
-		TreeSSLexer lexer = new TreeSSLexer(CharStreams.fromFileName("data\\" + fileName + ".treess"));
+		TreeSSLexer lexer = new TreeSSLexer(CharStreams.fromFileName("data\\TreeSS\\" + fileName + ".treess"));
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		ParseTree tree = new TreeSSParser(tokens).document(); 
 		ParseTreeWalker walker = new ParseTreeWalker();

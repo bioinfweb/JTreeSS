@@ -115,10 +115,11 @@ test/info.bioinfweb.jtreess.test.javacc/src/info/bioinfweb/jtreess/test/javacc/p
 test/info.bioinfweb.jtreess.test.main/.classpath -text
 test/info.bioinfweb.jtreess.test.main/.project -text
 test/info.bioinfweb.jtreess.test.main/.settings/org.eclipse.jdt.core.prefs -text
-test/info.bioinfweb.jtreess.test.main/data/BasicExample.treess -text
-test/info.bioinfweb.jtreess.test.main/data/IdentifierHyphenTest.treess -text
-test/info.bioinfweb.jtreess.test.main/data/SelectorPseudoSelectorTest.treess -text
-test/info.bioinfweb.jtreess.test.main/data/SimpleCalculationTest.treess -text
-test/info.bioinfweb.jtreess.test.main/data/SmallTests.treess -text
+test/info.bioinfweb.jtreess.test.main/data/TreeSS/BasicExample.treess -text
+test/info.bioinfweb.jtreess.test.main/data/TreeSS/IdentifierHyphenTest.treess -text
+test/info.bioinfweb.jtreess.test.main/data/TreeSS/SelectorPseudoSelectorTest.treess -text
+test/info.bioinfweb.jtreess.test.main/data/TreeSS/SimpleCalculationTest.treess -text
+test/info.bioinfweb.jtreess.test.main/data/TreeSS/SmallTests.treess -text
+test/info.bioinfweb.jtreess.test.main/data/language/properties/color.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/reader/SyntaxTreeListenerTest.java -text
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/test/TestCompiler.java -text
