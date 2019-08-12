@@ -21,7 +21,6 @@ package info.bioinfweb.jtreess.document.value;
 
 import info.bioinfweb.jtreess.document.AbstractDocumentElement;
 import info.bioinfweb.jtreess.document.DocumentElement;
-import info.bioinfweb.languagedefinition.AnalyseConstant;
 
 
 
@@ -65,10 +64,4 @@ public class Value extends AbstractDocumentElement{
 	public String getText() {
 		return text;
 	}
-	
-//	public void proveConstant(Value value) {
-//		if (value.getType().equals(ValueType.CONSTANT)) {
-//			AnalyseConstant.analyseValueConstant(value); 
-//		}
-//	}
 }

@@ -16,25 +16,27 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.languagedefinition;
+package info.bioinfweb.jtreess.language;
 
+import java.util.ArrayList;
+import java.util.List;
 
-import java.util.HashMap;
-
-
-
-public class ColorConstant {
-	HashMap<String, String> validColors = new HashMap<String, String>();
-
+public class SupportedSoftwareEntry {
+	private String name; 
+	private List<SoftwareVersionInterval> supportedVersions = new ArrayList<SoftwareVersionInterval>();
 	
-	public HashMap<String, String> putColors() {
-		 validColors.put("PINK", "FFC0CB");
-		 validColors.put("Enter names of valid colors --> CSS", "Enter appropriate hexadecimal values");
-		 return validColors;
-	 }
-
 	
-	 public HashMap<String, String> getValidColors() {
-		return validColors;
+	public String getName() {
+		return name;
+	}
+	
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public List<SoftwareVersionInterval> getSupportedVersions() {
+		return supportedVersions;
 	}
 }

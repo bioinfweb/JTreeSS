@@ -19,17 +19,16 @@
 package info.bioinfweb.jtreess.language;
 
 
+import java.util.HashSet;
+import java.util.Set;
 
-public class ParamListEntry {
-	private RuntimeType paramType;
+
+
+public class EnumerationTypeInformation extends BasicInformation {
+	private Set<String> validValueConstants = new HashSet<String>();
 
 	
-	public RuntimeType getParamType() {
-		return paramType;
-	}
-
-	
-	public void setParamType(RuntimeType paramType) {
-		this.paramType = paramType;
+	public Set<String> getValidValueConstants() {
+		return validValueConstants;
 	}
 }

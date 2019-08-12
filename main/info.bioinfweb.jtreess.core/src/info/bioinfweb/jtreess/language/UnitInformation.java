@@ -18,8 +18,17 @@
  */
 package info.bioinfweb.jtreess.language;
 
+import info.bioinfweb.jtreess.execute.implementation.ConversionImplementation;
 
+public class UnitInformation extends BasicInformation {
+	private ConversionImplementation conversionImplementation;
 
-public class UnitInformation {
+	
+	public ConversionImplementation getConversionImplementation() {
+		return conversionImplementation;
+	}
 
+	public void setConversionImplementation(ConversionImplementation conversionImplementation) {
+		this.conversionImplementation = conversionImplementation;
+	} 
 }

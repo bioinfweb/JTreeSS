@@ -16,20 +16,8 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.language;
+package info.bioinfweb.jtreess.execute.implementation;
 
+public class DynamicValueImplementation {
 
-
-public class ParamListEntry {
-	private RuntimeType paramType;
-
-	
-	public RuntimeType getParamType() {
-		return paramType;
-	}
-
-	
-	public void setParamType(RuntimeType paramType) {
-		this.paramType = paramType;
-	}
 }

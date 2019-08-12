@@ -29,7 +29,6 @@ import info.bioinfweb.jtreess.document.value.Value;
 public class PropertyRule extends AbstractDocumentElement{
 	private String propertyName;
 	private List <DocumentElement> values = new ArrayList<>();
-	private List <String> validPropertyNames = new ArrayList<>();
 		
 	
 	public PropertyRule(DocumentElement parent) {
@@ -55,11 +54,6 @@ public class PropertyRule extends AbstractDocumentElement{
 	
 
 	public void setPropertyName(String propertyName) {
-//		if (validPropertyNames.contains(propertyName)) {
 			this.propertyName = propertyName;
-//		}
-//		else {
-//			System.out.println(propertyName + "is no valid identifier for a property name.");
-//		}
 	}
 }

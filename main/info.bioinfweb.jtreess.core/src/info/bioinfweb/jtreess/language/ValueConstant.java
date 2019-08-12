@@ -18,8 +18,35 @@
  */
 package info.bioinfweb.jtreess.language;
 
+import info.bioinfweb.jtreess.execute.implementation.DynamicValueImplementation;
 
-
-public class ValueConstant {
-
+public class ValueConstant extends BasicInformation {
+	private RuntimeType valueType;
+	private RuntimeValue value;
+	private DynamicValueImplementation dynamicValueImplementation;  //TODO Is this necessary or can dynamic values just be written into the value property?
+	
+	
+	public RuntimeType getValueType() {
+		return valueType;
+	}
+	
+	
+	public void setValueType(RuntimeType valueType) {
+		this.valueType = valueType;
+	}
+	
+	
+	public RuntimeValue getValue() {
+		return value;
+	}
+	
+	
+	public void setValue(RuntimeValue value) {
+		this.value = value;
+	}
+	
+	
+	public DynamicValueImplementation getDynamicValueImplementation() {
+		return dynamicValueImplementation;
+	}
 }

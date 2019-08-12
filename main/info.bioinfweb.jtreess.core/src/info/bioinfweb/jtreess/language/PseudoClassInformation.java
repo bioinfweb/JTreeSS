@@ -18,18 +18,18 @@
  */
 package info.bioinfweb.jtreess.language;
 
+import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 
-
-public class ParamListEntry {
-	private RuntimeType paramType;
+public class PseudoClassInformation extends BasicInformation {
+	private SelectorImplementation pseudoClassImplementation;
 
 	
-	public RuntimeType getParamType() {
-		return paramType;
+	public SelectorImplementation getPseudoClassImplementation() {
+		return pseudoClassImplementation;
 	}
 
 	
-	public void setParamType(RuntimeType paramType) {
-		this.paramType = paramType;
+	public void setPseudoClassImplementation(SelectorImplementation pseudoClassImplementation) {
+		this.pseudoClassImplementation = pseudoClassImplementation;
 	}
 }

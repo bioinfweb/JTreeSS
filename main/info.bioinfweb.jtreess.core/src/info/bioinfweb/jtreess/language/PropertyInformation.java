@@ -19,15 +19,22 @@
 package info.bioinfweb.jtreess.language;
 
 
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 
 
-public class PropertyInformation {
-	private HashMap<PropertyInformation, ParamListEntry> propertyInformation = new HashMap<PropertyInformation, ParamListEntry>();
+public class PropertyInformation extends BasicInformation {
+	private Set<String> validSelectors = new HashSet<String>();
+	private Set<String>	valueList = new HashSet<String>();
 
 	
-	public HashMap<PropertyInformation, ParamListEntry> getPropertyInformation() {
-		return propertyInformation;
-	}
+	public Set<String> getValidSelectors() {
+		return validSelectors;
+	}	
+	
+	
+	public Set<String> getValueList() {
+		return valueList;
+	}	
 }

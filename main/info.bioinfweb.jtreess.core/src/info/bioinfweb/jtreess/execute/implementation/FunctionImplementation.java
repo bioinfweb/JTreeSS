@@ -16,27 +16,8 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.languagedefinition;
+package info.bioinfweb.jtreess.execute.implementation;
 
+public class FunctionImplementation {
 
-import java.util.ArrayList;
-import java.util.List;
-
-import info.bioinfweb.jtreess.document.value.Value;
-
-
-
-public class AnalyseConstant {
-	
-	public static void analyseValueConstant(Value constant) {
-		final List<ColorConstant> validColorNames = new ArrayList<ColorConstant>(); 
-		// Could be also built with a HashMap consisting out of two strings which will be set here
-		if (validColorNames.contains(constant)) {
-			// It's a color --> set color for property
-		}
-//		else if (otherListOfValidNames.contains(constant)) {}
-		else {
-			System.out.println("The given constant is neither a color nor a usable constant.");
-		}
-	}
 }

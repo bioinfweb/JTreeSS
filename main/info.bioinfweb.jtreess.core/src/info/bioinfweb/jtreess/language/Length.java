@@ -18,6 +18,29 @@
  */
 package info.bioinfweb.jtreess.language;
 
-public class PseudoSelectorInformation {
 
+
+public class Length {
+	private double numericValue;
+	private String unit;
+	
+	
+	public double getNumericValue() {
+		return numericValue;
+	}
+	
+	
+	public void setNumericValue(double numericValue) {
+		this.numericValue = numericValue;
+	}
+	
+	
+	public String getUnit() {
+		return unit;
+	}
+	
+	
+	public void setUnit(String unit) {
+		this.unit = unit;
+	} 
 }

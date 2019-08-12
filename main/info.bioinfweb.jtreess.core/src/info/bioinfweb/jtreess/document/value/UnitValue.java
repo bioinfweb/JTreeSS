@@ -24,18 +24,6 @@ import info.bioinfweb.jtreess.document.DocumentElement;
 
 
 public class UnitValue extends Value {
-//	public enum UnitType { //Could be replaced by a list which compares the unit with the entries in the unitList
-//		MM, //W3C does not recommend that 
-//		CM, //W3C does not recommend that 
-//		IN, //W3C does not recommend that 
-//		PT, //W3C does not recommend that 
-//		PC, //W3C does not recommend that 
-//		PX,
-//		EM,
-//		REM,
-//		NONE; //font-size of root element
-//	}
-//	private UnitType unitType;
 	private String unit; 
 	private double number;
 	private String numberRepresentation;
@@ -54,47 +42,7 @@ public class UnitValue extends Value {
 		this.numberRepresentation = numberRepresentation;
 		this.number = Double.parseDouble(numberRepresentation); //Maybe there has to be a test whether the number is in an acceptable range before setting the value
 		this.unit = unit;
-//		setUnitType(unit); 
 	}
-	
-	
-//	public UnitType getUnitType() {
-//		return unitType;
-//	}
-//
-//
-//	public void setUnitType(String unit) {
-//		if (unit == "cm" || unit == "CM") {
-//			this.unitType = UnitType.CM;
-//		}
-//		else if (unit == "mm" || unit == "MM") {
-//			this.unitType = UnitType.MM;
-//		}
-//		else if (unit == "in" || unit == "IN") {
-//			this.unitType = UnitType.IN;
-//		}
-//		else if (unit == "pt" || unit == "PT") {
-//			this.unitType = UnitType.PT;
-//		}
-//		else if (unit == "pc" || unit == "PC") {
-//			this.unitType = UnitType.MM;
-//		}
-//		else if (unit == "px" || unit == "PX") {
-//			this.unitType = UnitType.MM;
-//		}
-//		else if (unit == "em" || unit == "EM") {
-//			this.unitType = UnitType.MM;
-//		}
-//		else if (unit == "rem" || unit == "REM") {
-//			this.unitType = UnitType.MM;
-//		}
-//		else if (unit == null){
-//			this.unitType = UnitType.NONE;
-//		}
-//		else {
-//			System.out.println(unit + "is an invalid unit. Valid units are cm, mm, in, pt, pc, px, em, rem and no unit.");
-//		}
-//	}
 
 	
 	public String getUnit() {

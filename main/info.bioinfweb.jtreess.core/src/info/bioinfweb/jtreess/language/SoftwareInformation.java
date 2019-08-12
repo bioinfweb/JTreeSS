@@ -18,6 +18,38 @@
  */
 package info.bioinfweb.jtreess.language;
 
-public class SelectorImplementation {
-
+public class SoftwareInformation extends BasicInformation {
+	private String name; 
+	private String url; 
+	private String bioToolsID;
+	
+	
+	public String getName() {
+		return name;
+	}
+	
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+	public String getUrl() {
+		return url;
+	}
+	
+	
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	
+	public String getBioToolsID() {
+		return bioToolsID;
+	}
+	
+	
+	public void setBioToolsID(String bioToolsID) {
+		this.bioToolsID = bioToolsID;
+	}
 }

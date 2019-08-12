@@ -18,8 +18,23 @@
  */
 package info.bioinfweb.jtreess.language;
 
-import java.util.HashMap;
 
-public class SimpleSelectorInformation {
+import java.util.HashSet;
+import java.util.Set;
 
+
+
+public class SimpleSelectorInformation extends BasicInformation {
+	private Set<String> validProperties = new HashSet<String>();
+	private Set<String> validPseudoSelectors = new HashSet<String>();
+	
+	
+	public Set<String> getValidProperties() {
+		return validProperties;
+	}
+	
+	
+	public Set<String> getValidPseudoSelectors() {
+		return validPseudoSelectors;
+	}
 }

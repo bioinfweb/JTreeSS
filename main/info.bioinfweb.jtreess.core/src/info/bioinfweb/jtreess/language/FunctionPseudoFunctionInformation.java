@@ -19,10 +19,56 @@
 package info.bioinfweb.jtreess.language;
 
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import info.bioinfweb.jtreess.execute.implementation.FunctionImplementation;
 
 
 
-public class FunctionPseudoFunctionInformation {
-	private HashMap<PseudoSelectorInformation, ParamListEntry> functionInformation = new HashMap<PseudoSelectorInformation, ParamListEntry>(); 
+public class FunctionPseudoFunctionInformation extends BasicInformation {
+	public static final int NO_VARIABLE_PARAM = -1; 
+	
+	
+	private FunctionImplementation functionImplementation; 
+	private RuntimeType returnType;
+	private List<ParamListEntry> validParamList = new ArrayList<ParamListEntry>();
+	private int variableParamIndex = NO_VARIABLE_PARAM;
+	
+	
+	public FunctionImplementation getFunctionImplementation() {
+		return functionImplementation;
+	}
+	
+	
+	public void setFunctionImplementation(FunctionImplementation functionImplementation) {
+		this.functionImplementation = functionImplementation;
+	}
+	
+	
+	public RuntimeType getReturnType() {
+		return returnType;
+	}
+	
+	
+	public void setReturnType(RuntimeType returnType) {
+		this.returnType = returnType;
+	}
+
+
+	public List<ParamListEntry> getValidParamList() {
+		return validParamList;
+	}
+
+
+	public int getVariableParamIndex() {
+		return variableParamIndex;
+	}
+
+
+	public void setVariableParamIndex(int variableParamIndex) {
+		this.variableParamIndex = variableParamIndex;
+	}
 }
