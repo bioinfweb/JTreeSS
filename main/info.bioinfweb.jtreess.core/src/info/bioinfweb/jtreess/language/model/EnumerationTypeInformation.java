@@ -16,40 +16,19 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.language;
+package info.bioinfweb.jtreess.language.model;
 
-public class SoftwareInformation extends BasicInformation {
-	private String name; 
-	private String url; 
-	private String bioToolsID;
+
+import java.util.HashSet;
+import java.util.Set;
+
+
+
+public class EnumerationTypeInformation extends BasicInformation {
+	private Set<String> validValueConstants = new HashSet<String>();
+
 	
-	
-	public String getName() {
-		return name;
-	}
-	
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	
-	public String getUrl() {
-		return url;
-	}
-	
-	
-	public void setUrl(String url) {
-		this.url = url;
-	}
-	
-	
-	public String getBioToolsID() {
-		return bioToolsID;
-	}
-	
-	
-	public void setBioToolsID(String bioToolsID) {
-		this.bioToolsID = bioToolsID;
+	public Set<String> getValidValueConstants() {
+		return validValueConstants;
 	}
 }

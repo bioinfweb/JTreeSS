@@ -16,27 +16,19 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.language;
+package info.bioinfweb.jtreess.language.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import info.bioinfweb.jtreess.execute.implementation.ConversionImplementation;
 
-public class SupportedSoftwareEntry {
-	private String name; 
-	private List<SoftwareVersionInterval> supportedVersions = new ArrayList<SoftwareVersionInterval>();
+public class UnitInformation extends BasicInformation {
+	private ConversionImplementation conversionImplementation;
+
 	
-	
-	public String getName() {
-		return name;
-	}
-	
-	
-	public void setName(String name) {
-		this.name = name;
+	public ConversionImplementation getConversionImplementation() {
+		return conversionImplementation;
 	}
 
-
-	public List<SoftwareVersionInterval> getSupportedVersions() {
-		return supportedVersions;
-	}
+	public void setConversionImplementation(ConversionImplementation conversionImplementation) {
+		this.conversionImplementation = conversionImplementation;
+	} 
 }

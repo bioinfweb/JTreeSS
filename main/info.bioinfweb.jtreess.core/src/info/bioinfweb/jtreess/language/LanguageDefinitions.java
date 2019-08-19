@@ -20,6 +20,16 @@ package info.bioinfweb.jtreess.language;
 
 
 import java.util.HashMap;
+import java.util.Map;
+
+import info.bioinfweb.jtreess.language.model.EnumerationTypeInformation;
+import info.bioinfweb.jtreess.language.model.FunctionPseudoFunctionInformation;
+import info.bioinfweb.jtreess.language.model.PropertyInformation;
+import info.bioinfweb.jtreess.language.model.PseudoClassInformation;
+import info.bioinfweb.jtreess.language.model.SimpleSelectorInformation;
+import info.bioinfweb.jtreess.language.model.SoftwareInformation;
+import info.bioinfweb.jtreess.language.model.UnitInformation;
+import info.bioinfweb.jtreess.language.model.ValueConstant;
 
 
 
@@ -27,14 +37,14 @@ public class LanguageDefinitions {
 	private static LanguageDefinitions firstInstance = null;
 	
 	
-	private HashMap<String, SimpleSelectorInformation> simpleSelectorInformation = new HashMap<String, SimpleSelectorInformation>();
-	private HashMap<String, PseudoClassInformation> pseudoClassInformation = new HashMap<String, PseudoClassInformation>(); 
-	private HashMap<String, FunctionPseudoFunctionInformation> functionInformation = new HashMap<String, FunctionPseudoFunctionInformation>(); 
-	private HashMap<String, PropertyInformation> propertyInformation = new HashMap<String, PropertyInformation>();
-	private HashMap<String, ValueConstant> constantsInformation = new HashMap<String, ValueConstant>(); 
-	private HashMap<String, UnitInformation> unitInformation = new HashMap<String, UnitInformation>();
-	private HashMap<String, EnumerationTypeInformation> enumTypeInformation = new HashMap<String, EnumerationTypeInformation>(); 
-	private HashMap<String, SoftwareInformation> softwareInformation = new HashMap<String, SoftwareInformation>();
+	private Map<String, SimpleSelectorInformation> simpleSelectorInformation = new HashMap<String, SimpleSelectorInformation>();
+	private Map<String, PseudoClassInformation> pseudoClassInformation = new HashMap<String, PseudoClassInformation>(); 
+	private Map<String, FunctionPseudoFunctionInformation> functionInformation = new HashMap<String, FunctionPseudoFunctionInformation>(); 
+	private Map<String, PropertyInformation> propertyInformation = new HashMap<String, PropertyInformation>();
+	private Map<String, ValueConstant> constantsInformation = new HashMap<String, ValueConstant>(); 
+	private Map<String, UnitInformation> unitInformation = new HashMap<String, UnitInformation>();
+	private Map<String, EnumerationTypeInformation> enumTypeInformation = new HashMap<String, EnumerationTypeInformation>(); 
+	private Map<String, SoftwareInformation> softwareInformation = new HashMap<String, SoftwareInformation>();
 	
 	
 	private LanguageDefinitions() {
@@ -50,42 +60,42 @@ public class LanguageDefinitions {
 	}
 	
 	
-	public HashMap<String, SimpleSelectorInformation> getSimpleSelectorInformation() {
+	public Map<String, SimpleSelectorInformation> getSimpleSelectorInformation() {
 		return simpleSelectorInformation;
 	}
 	
 	
-	public HashMap<String, PseudoClassInformation> getPseudoClassInformation() {
+	public Map<String, PseudoClassInformation> getPseudoClassInformation() {
 		return pseudoClassInformation;
 	}
 	
 	
-	public HashMap<String, FunctionPseudoFunctionInformation> getFunctionInformation() {
+	public Map<String, FunctionPseudoFunctionInformation> getFunctionInformation() {
 		return functionInformation;
 	}
 	
 	
-	public HashMap<String, PropertyInformation> getPropertyInformation() {
+	public Map<String, PropertyInformation> getPropertyInformation() {
 		return propertyInformation;
 	}
 	
 	
-	public HashMap<String, ValueConstant> getConstantsInformation() {
+	public Map<String, ValueConstant> getConstantsInformation() {
 		return constantsInformation;
 	}
 	
 	
-	public HashMap<String, UnitInformation> getUnitInformation() {
+	public Map<String, UnitInformation> getUnitInformation() {
 		return unitInformation;
 	}
 	
 	
-	public HashMap<String, EnumerationTypeInformation> getEnumTypeInformation() {
+	public Map<String, EnumerationTypeInformation> getEnumTypeInformation() {
 		return enumTypeInformation;
 	}
 	
 	
-	public HashMap<String, SoftwareInformation> getSoftwareInformation() {
+	public Map<String, SoftwareInformation> getSoftwareInformation() {
 		return softwareInformation;
 	}
 }

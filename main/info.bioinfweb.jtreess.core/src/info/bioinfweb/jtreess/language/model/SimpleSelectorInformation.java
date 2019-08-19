@@ -16,29 +16,25 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.language;
+package info.bioinfweb.jtreess.language.model;
 
-public class SoftwareVersionInterval {
-	private String start; 
-	private String end;
+
+import java.util.HashSet;
+import java.util.Set;
+
+
+
+public class SimpleSelectorInformation extends BasicInformation {
+	private Set<String> validProperties = new HashSet<String>();
+	private Set<String> validPseudoSelectors = new HashSet<String>();
 	
 	
-	public String getStart() {
-		return start;
+	public Set<String> getValidProperties() {
+		return validProperties;
 	}
 	
 	
-	public void setStart(String start) {
-		this.start = start;
-	}
-	
-	
-	public String getEnd() {
-		return end;
-	}
-	
-	
-	public void setEnd(String end) {
-		this.end = end;
+	public Set<String> getValidPseudoSelectors() {
+		return validPseudoSelectors;
 	}
 }

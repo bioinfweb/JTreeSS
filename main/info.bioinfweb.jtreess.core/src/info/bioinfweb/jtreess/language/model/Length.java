@@ -16,20 +16,31 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.language;
+package info.bioinfweb.jtreess.language.model;
 
-import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 
-public class PseudoClassInformation extends BasicInformation {
-	private SelectorImplementation pseudoClassImplementation;
 
+public class Length {
+	private double numericValue;
+	private String unit;
 	
-	public SelectorImplementation getPseudoClassImplementation() {
-		return pseudoClassImplementation;
-	}
-
 	
-	public void setPseudoClassImplementation(SelectorImplementation pseudoClassImplementation) {
-		this.pseudoClassImplementation = pseudoClassImplementation;
+	public double getNumericValue() {
+		return numericValue;
 	}
+	
+	
+	public void setNumericValue(double numericValue) {
+		this.numericValue = numericValue;
+	}
+	
+	
+	public String getUnit() {
+		return unit;
+	}
+	
+	
+	public void setUnit(String unit) {
+		this.unit = unit;
+	} 
 }

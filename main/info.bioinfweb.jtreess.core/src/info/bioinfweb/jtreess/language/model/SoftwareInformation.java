@@ -16,37 +16,40 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.language;
+package info.bioinfweb.jtreess.language.model;
 
-import info.bioinfweb.jtreess.execute.implementation.DynamicValueImplementation;
-
-public class ValueConstant extends BasicInformation {
-	private RuntimeType valueType;
-	private RuntimeValue value;
-	private DynamicValueImplementation dynamicValueImplementation;  //TODO Is this necessary or can dynamic values just be written into the value property?
+public class SoftwareInformation extends BasicInformation {
+	private String name; 
+	private String url; 
+	private String bioToolsID;
 	
 	
-	public RuntimeType getValueType() {
-		return valueType;
+	public String getName() {
+		return name;
 	}
 	
 	
-	public void setValueType(RuntimeType valueType) {
-		this.valueType = valueType;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	
-	public RuntimeValue getValue() {
-		return value;
+	public String getUrl() {
+		return url;
 	}
 	
 	
-	public void setValue(RuntimeValue value) {
-		this.value = value;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 	
 	
-	public DynamicValueImplementation getDynamicValueImplementation() {
-		return dynamicValueImplementation;
+	public String getBioToolsID() {
+		return bioToolsID;
+	}
+	
+	
+	public void setBioToolsID(String bioToolsID) {
+		this.bioToolsID = bioToolsID;
 	}
 }

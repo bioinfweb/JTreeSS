@@ -16,25 +16,20 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.language;
+package info.bioinfweb.jtreess.language.model;
 
+import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 
-import java.util.HashSet;
-import java.util.Set;
-
-
-
-public class PropertyInformation extends BasicInformation {
-	private Set<String> validSelectors = new HashSet<String>();
-	private Set<String>	valueList = new HashSet<String>();
+public class PseudoClassInformation extends BasicInformation {
+	private SelectorImplementation pseudoClassImplementation;
 
 	
-	public Set<String> getValidSelectors() {
-		return validSelectors;
-	}	
+	public SelectorImplementation getPseudoClassImplementation() {
+		return pseudoClassImplementation;
+	}
+
 	
-	
-	public Set<String> getValueList() {
-		return valueList;
-	}	
+	public void setPseudoClassImplementation(SelectorImplementation pseudoClassImplementation) {
+		this.pseudoClassImplementation = pseudoClassImplementation;
+	}
 }

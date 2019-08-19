@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.language;
+package info.bioinfweb.jtreess.language.model;
 
 
 import java.util.HashSet;
@@ -24,11 +24,17 @@ import java.util.Set;
 
 
 
-public class EnumerationTypeInformation extends BasicInformation {
-	private Set<String> validValueConstants = new HashSet<String>();
+public class PropertyInformation extends BasicInformation {
+	private Set<String> validSelectors = new HashSet<String>();
+	private Set<String>	valueList = new HashSet<String>();
 
 	
-	public Set<String> getValidValueConstants() {
-		return validValueConstants;
-	}
+	public Set<String> getValidSelectors() {
+		return validSelectors;
+	}	
+	
+	
+	public Set<String> getValueList() {
+		return valueList;
+	}	
 }
