@@ -22,7 +22,7 @@ package info.bioinfweb.jtreess.language.model;
 
 public class RuntimeType {
 	public static final RuntimeType LENGTH = new RuntimeType(BasicType.LENGTH);
-	public static final RuntimeType UNIFORM_NUM_VAL = new RuntimeType(BasicType.UNIFORM_NUM_VAL);
+	public static final RuntimeType NUMERIC_VALUE_NO_UNIT = new RuntimeType(BasicType.NUMERIC_VALUE_NO_UNIT);
 	public static final RuntimeType COLOR = new RuntimeType(BasicType.COLOR);
 	public static final RuntimeType STRING = new RuntimeType(BasicType.STRING);
 	public static final RuntimeType BOOLEAN = new RuntimeType(BasicType.BOOLEAN);
@@ -31,7 +31,7 @@ public class RuntimeType {
 	
 	public static enum BasicType {
 		LENGTH, 
-		UNIFORM_NUM_VAL, 
+		NUMERIC_VALUE_NO_UNIT, 
 		COLOR, 
 		STRING,
 		BOOLEAN,

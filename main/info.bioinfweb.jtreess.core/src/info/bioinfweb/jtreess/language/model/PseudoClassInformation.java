@@ -18,7 +18,10 @@
  */
 package info.bioinfweb.jtreess.language.model;
 
+
 import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
+
+
 
 public class PseudoClassInformation extends BasicInformation {
 	private SelectorImplementation pseudoClassImplementation;
