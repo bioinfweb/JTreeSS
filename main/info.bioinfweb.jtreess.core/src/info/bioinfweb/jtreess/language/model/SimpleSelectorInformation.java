@@ -22,13 +22,31 @@ package info.bioinfweb.jtreess.language.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
+
+@XmlRootElement(name = "treeSSLangDefition")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class SimpleSelectorInformation extends BasicInformation {
+	@XmlElementWrapper(name="validProperties")
+	@XmlElement(name="property")
 	private Set<String> validProperties = new HashSet<String>();
+	
+	@XmlElementWrapper(name="validPseudoSelectors")
+	@XmlElement(name="selector")
 	private Set<String> validPseudoSelectors = new HashSet<String>();
 	
 	
+	public SimpleSelectorInformation() {
+		super("simpleSelector");
+	}
+
+
 	public Set<String> getValidProperties() {
 		return validProperties;
 	}

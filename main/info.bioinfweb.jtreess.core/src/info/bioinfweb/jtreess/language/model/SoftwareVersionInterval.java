@@ -18,7 +18,10 @@
  */
 package info.bioinfweb.jtreess.language.model;
 
-
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Instances of this class store an interval of software versions to be used with {@link SupportedSoftwareEntry}.
@@ -28,11 +31,21 @@ package info.bioinfweb.jtreess.language.model;
  * @author Ben Stouml;ver
  * @author Charlotte Schmitt
  */
+@XmlRootElement(name = "versionInterval")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class SoftwareVersionInterval {
+	@XmlElement(name="firstVersion")
 	private String start; 
+
+	@XmlElement(name="versionAfter")
 	private String end;
 	
 	
+	private SoftwareVersionInterval() {  // Defined for JAXB.
+		super();
+	}
+
+
 	/**
 	 * Creates a new instance of this class.
 	 * 
@@ -82,6 +95,11 @@ public class SoftwareVersionInterval {
 	}
 	
 	
+	/**
+	 * Returns the first version after the end of this interval or {@code null} if this interval is not terminated.
+	 * 
+	 * @return the version or {@code null}
+	 */
 	public String getEnd() {
 		return end;
 	}

@@ -21,8 +21,12 @@ package info.bioinfweb.jtreess.language.model;
 
 import java.net.URL;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Example {
 	private String code;
 	private String description;

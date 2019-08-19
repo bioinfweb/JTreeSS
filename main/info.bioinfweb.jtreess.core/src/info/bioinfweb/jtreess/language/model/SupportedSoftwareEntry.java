@@ -22,10 +22,20 @@ package info.bioinfweb.jtreess.language.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
+
+@XmlRootElement(name = "support")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class SupportedSoftwareEntry {
-	private String name; 
+	@XmlElement(name="software")
+	private String name;
+	
+	@XmlElement(name="versionInterval")
 	private List<SoftwareVersionInterval> supportedVersions = new ArrayList<SoftwareVersionInterval>();
 	
 	

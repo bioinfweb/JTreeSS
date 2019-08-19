@@ -19,15 +19,26 @@
 package info.bioinfweb.jtreess.language.model;
 
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import info.bioinfweb.jtreess.execute.implementation.FunctionImplementation;
 
 
 
+@XmlRootElement(name = "treeSSLangDefition")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class FunctionPseudoFunctionInformation extends ParameterListInformation {
 	private FunctionImplementation functionImplementation = null; 
 	private RuntimeType returnType = null;
 	
 	
+	public FunctionPseudoFunctionInformation() {
+		super("function");  // Distinguish between function and pseudofunction?
+	}
+	
+
 	public FunctionImplementation getFunctionImplementation() {
 		return functionImplementation;
 	}

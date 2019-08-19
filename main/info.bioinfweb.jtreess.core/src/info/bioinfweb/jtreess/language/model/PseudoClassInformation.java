@@ -27,6 +27,11 @@ public class PseudoClassInformation extends BasicInformation {
 	private SelectorImplementation pseudoClassImplementation;
 
 	
+	public PseudoClassInformation() {
+		super("pseudoClass");
+	}
+	
+
 	public SelectorImplementation getPseudoClassImplementation() {
 		return pseudoClassImplementation;
 	}

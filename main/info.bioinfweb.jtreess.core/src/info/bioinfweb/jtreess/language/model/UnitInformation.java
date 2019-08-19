@@ -27,6 +27,11 @@ public class UnitInformation extends BasicInformation {
 	private ConversionImplementation conversionImplementation;
 
 	
+	public UnitInformation() {
+		super("unit");
+	}
+	
+
 	public ConversionImplementation getConversionImplementation() {
 		return conversionImplementation;
 	}

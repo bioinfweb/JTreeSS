@@ -35,6 +35,11 @@ public class ValueConstant extends BasicInformation {
 	private DynamicValueImplementation dynamicValueImplementation;  //TODO Is this necessary or can dynamic values just be written into the value property? If it is, should there still be a value property at the same time?
 	
 	
+	public ValueConstant() {
+		super("constant");
+	}
+	
+
 	public RuntimeValue getValue() {
 		return value;
 	}

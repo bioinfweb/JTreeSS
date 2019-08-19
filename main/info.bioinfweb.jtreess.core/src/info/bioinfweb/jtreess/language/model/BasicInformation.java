@@ -22,16 +22,39 @@ package info.bioinfweb.jtreess.language.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 
 
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class BasicInformation {
-	private String description; 
-	private Example example; 
+	@XmlAttribute(name="type")
+	private String treeSSLangDefitionType = "simpleSelector";	
+
+	private String description;
+	
+	@XmlElement(name="example")
+	private List<Example> examples = new ArrayList<Example>();
+	
+	@XmlElement(name="support")
 	private List<SupportedSoftwareEntry> supportedSoftware = new ArrayList<SupportedSoftwareEntry>();
+
+	@XmlElement(name="firstVersion")
 	private String introductoryVersion;  //TODO Which class should this have?
+	
+	@XmlElement(name="versionAfter")
 	private String removingVersion;  //TODO Which class should this have?
 	
 	
+	public BasicInformation(String treeSSLangDefitionType) {
+		super();
+		this.treeSSLangDefitionType = treeSSLangDefitionType;
+	}
+
+
 	public String getDescription() {
 		return description;
 	}
@@ -42,13 +65,8 @@ public class BasicInformation {
 	}
 	
 	
-	public Example getExample() {
-		return example;
-	}
-	
-	
-	public void setExample(Example example) {
-		this.example = example;
+	public List<Example> getExamples() {
+		return examples;
 	}
 	
 	

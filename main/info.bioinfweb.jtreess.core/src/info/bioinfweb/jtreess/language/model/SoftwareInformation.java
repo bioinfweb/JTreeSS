@@ -26,6 +26,11 @@ public class SoftwareInformation extends BasicInformation {
 	private String bioToolsID;
 	
 	
+	public SoftwareInformation() {
+		super("software");
+	}
+	
+
 	public String getName() {
 		return name;
 	}

@@ -22,9 +22,18 @@ package info.bioinfweb.jtreess.language.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
 
 
 public class PropertyInformation extends ParameterListInformation {
+	public PropertyInformation() {
+		super("property");
+	}
+	
+
 	private Set<String> validSelectors = new HashSet<String>();
 
 	

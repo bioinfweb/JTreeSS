@@ -25,6 +25,11 @@ import java.util.Set;
 
 
 public class EnumerationTypeInformation extends BasicInformation {
+	public EnumerationTypeInformation() {
+		super("");
+	}
+
+
 	private Set<String> validValueConstants = new HashSet<String>();
 
 	

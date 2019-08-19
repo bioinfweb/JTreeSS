@@ -32,10 +32,10 @@ public class ParameterListInformation extends BasicInformation {
 	private int variableParamIndex = NO_VARIABLE_PARAM;
 	
 	
-	public ParameterListInformation() {
-		super();
+	public ParameterListInformation(String treeSSLangDefitionType) {
+		super(treeSSLangDefitionType);
 	}
-	
+
 
 	public List<RuntimeType> getValidParamList() {
 		return validParamList;
