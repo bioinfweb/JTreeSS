@@ -4,6 +4,7 @@ main/info.bioinfweb.jtreess.core/.project -text
 main/info.bioinfweb.jtreess.core/.settings/com.github.jknack.antlr4ide.Antlr4.prefs -text
 main/info.bioinfweb.jtreess.core/.settings/org.eclipse.jdt.core.prefs -text
 main/info.bioinfweb.jtreess.core/.settings/org.eclipse.jdt.ui.prefs -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/ReadMe.txt -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/TreeSS.g4 -text
 main/info.bioinfweb.jtreess.core/include/GPL.txt -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/include/LGPL.txt -text svneol=unset#text/plain
