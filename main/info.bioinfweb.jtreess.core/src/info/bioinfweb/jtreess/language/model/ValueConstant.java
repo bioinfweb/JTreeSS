@@ -18,22 +18,20 @@
  */
 package info.bioinfweb.jtreess.language.model;
 
+
 import info.bioinfweb.jtreess.execute.implementation.DynamicValueImplementation;
 
+
+
+/**
+ * Models the value of a <i>TreeSS</i> constant. Its type can be determined using {@link #getValue()} and then {@link RuntimeValue#getType()}. 
+ * 
+ * @author Ben St&ouml;ver
+ * @author Charlotte Schmitt
+ */
 public class ValueConstant extends BasicInformation {
-	private RuntimeType valueType;
 	private RuntimeValue value;
-	private DynamicValueImplementation dynamicValueImplementation;  //TODO Is this necessary or can dynamic values just be written into the value property?
-	
-	
-	public RuntimeType getValueType() {
-		return valueType;
-	}
-	
-	
-	public void setValueType(RuntimeType valueType) {
-		this.valueType = valueType;
-	}
+	private DynamicValueImplementation dynamicValueImplementation;  //TODO Is this necessary or can dynamic values just be written into the value property? If it is, should there still be a value property at the same time?
 	
 	
 	public RuntimeValue getValue() {

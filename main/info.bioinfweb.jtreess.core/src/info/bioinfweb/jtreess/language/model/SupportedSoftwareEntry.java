@@ -18,8 +18,11 @@
  */
 package info.bioinfweb.jtreess.language.model;
 
+
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 public class SupportedSoftwareEntry {
 	private String name; 

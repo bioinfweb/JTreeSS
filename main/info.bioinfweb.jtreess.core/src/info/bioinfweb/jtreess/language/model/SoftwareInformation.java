@@ -18,6 +18,8 @@
  */
 package info.bioinfweb.jtreess.language.model;
 
+
+
 public class SoftwareInformation extends BasicInformation {
 	private String name; 
 	private String url; 
