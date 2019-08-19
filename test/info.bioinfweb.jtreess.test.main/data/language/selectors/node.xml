@@ -1,0 +1,28 @@
+<treeSSLangDefition type="simpleSelector">
+  <keyword>node</keyword><!-- May be omitted since the file name actually defined the name. -->
+  <description>Selects all nodes of a tree.</description>
+  <firstVersion>2.1</firstVersion>
+  <versionAfter>2.12</versionAfter>
+
+  <example>
+    <code>
+      node {
+        text-height: 0.8em;
+      }
+    </code>
+    <description>Sets the font size of all nodes in a tree to 80 % of the default font size of the document.</description>
+    <tree>Tree.nexml</tree><!-- Path relative the example directory of the repository. -->
+    <result>Tree_terminal_selector.svg</result>
+  </example>
+
+  <support>
+    <software>TreeGraph 2</software>
+    <versionInterval>
+	    <firstVersion>2.14.0</firstVersion>
+	    <versionAfter>2.22.0</versionAfter>
+    </versionInterval>
+    <versionInterval>
+	    <firstVersion>3.0.0</firstVersion>
+    </versionInterval>
+  </support>
+</treeSSLangDefition>
