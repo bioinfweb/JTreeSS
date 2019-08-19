@@ -19,23 +19,13 @@
 package info.bioinfweb.jtreess.language.model;
 
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import info.bioinfweb.jtreess.execute.implementation.FunctionImplementation;
 
 
 
-public class FunctionPseudoFunctionInformation extends BasicInformation {
-	public static final int NO_VARIABLE_PARAM = -1; 
-	
-	
-	private FunctionImplementation functionImplementation; 
-	private RuntimeType returnType;
-	private List<ParamListEntry> validParamList = new ArrayList<ParamListEntry>();
-	private int variableParamIndex = NO_VARIABLE_PARAM;
+public class FunctionPseudoFunctionInformation extends ParameterListInformation {
+	private FunctionImplementation functionImplementation = null; 
+	private RuntimeType returnType = null;
 	
 	
 	public FunctionImplementation getFunctionImplementation() {
@@ -55,20 +45,5 @@ public class FunctionPseudoFunctionInformation extends BasicInformation {
 	
 	public void setReturnType(RuntimeType returnType) {
 		this.returnType = returnType;
-	}
-
-
-	public List<ParamListEntry> getValidParamList() {
-		return validParamList;
-	}
-
-
-	public int getVariableParamIndex() {
-		return variableParamIndex;
-	}
-
-
-	public void setVariableParamIndex(int variableParamIndex) {
-		this.variableParamIndex = variableParamIndex;
 	}
 }

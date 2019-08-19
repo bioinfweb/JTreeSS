@@ -19,17 +19,35 @@
 package info.bioinfweb.jtreess.language.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class ParamListEntry {
-	private RuntimeType paramType;
 
+
+public class ParameterListInformation extends BasicInformation {
+	public static final int NO_VARIABLE_PARAM = -1; 
 	
-	public RuntimeType getParamType() {
-		return paramType;
+	
+	private List<RuntimeType> validParamList = new ArrayList<RuntimeType>();
+	private int variableParamIndex = NO_VARIABLE_PARAM;
+	
+	
+	public ParameterListInformation() {
+		super();
 	}
-
 	
-	public void setParamType(RuntimeType paramType) {
-		this.paramType = paramType;
+
+	public List<RuntimeType> getValidParamList() {
+		return validParamList;
+	}
+	
+
+	public int getVariableParamIndex() {
+		return variableParamIndex;
+	}
+	
+
+	public void setVariableParamIndex(int variableParamIndex) {
+		this.variableParamIndex = variableParamIndex;
 	}
 }

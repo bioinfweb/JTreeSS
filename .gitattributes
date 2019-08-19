@@ -45,7 +45,7 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/Basic
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/EnumerationTypeInformation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/FunctionPseudoFunctionInformation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/Length.java -text
-main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/ParamListEntry.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/ParameterListInformation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/PropertyInformation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/PseudoClassInformation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/RuntimeType.java -text

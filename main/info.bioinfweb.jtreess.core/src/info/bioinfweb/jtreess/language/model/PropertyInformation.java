@@ -24,17 +24,11 @@ import java.util.Set;
 
 
 
-public class PropertyInformation extends BasicInformation {
+public class PropertyInformation extends ParameterListInformation {
 	private Set<String> validSelectors = new HashSet<String>();
-	private Set<String>	valueList = new HashSet<String>();
 
 	
 	public Set<String> getValidSelectors() {
 		return validSelectors;
-	}	
-	
-	
-	public Set<String> getValueList() {
-		return valueList;
 	}	
 }

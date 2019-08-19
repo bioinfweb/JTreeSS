@@ -20,6 +20,13 @@ package info.bioinfweb.jtreess.language.model;
 
 
 
+/**
+ * Instances of this class are used with {@link RuntimeValue#setValue(Object)} and {@link RuntimeValue#getLengthValue()} 
+ * and represent distances that consist of a numeric values and a unit of length.
+ * 
+ * @author Charlotte Schmitt
+ * @author Ben St&ouml;ver
+ */
 public class Length {
 	private double numericValue;
 	private String unit;
