@@ -19,17 +19,25 @@
 package info.bioinfweb.jtreess.language.model;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.net.URL;
 
 
 
-public class BasicInformation {
-	private String description; 
-	private Example example; 
-	private List<SupportedSoftwareEntry> supportedSoftware = new ArrayList<SupportedSoftwareEntry>();
-	private String introductoryVersion;  //TODO Which class should this have?
-	private String removingVersion;  //TODO Which class should this have?
+public class Example {
+	private String code;
+	private String description;
+	private URL tree;
+	private URL result;
+	
+	
+	public String getCode() {
+		return code;
+	}
+	
+	
+	public void setCode(String code) {
+		this.code = code;
+	}
 	
 	
 	public String getDescription() {
@@ -42,37 +50,22 @@ public class BasicInformation {
 	}
 	
 	
-	public Example getExample() {
-		return example;
+	public URL getTree() {
+		return tree;
 	}
 	
 	
-	public void setExample(Example example) {
-		this.example = example;
+	public void setTree(URL tree) {
+		this.tree = tree;
 	}
 	
 	
-	public List<SupportedSoftwareEntry> getSupportedSoftware() {
-		return supportedSoftware;
+	public URL getResult() {
+		return result;
 	}
-
-
-	public String getIntroductoryVersion() {
-		return introductoryVersion;
-	}
-
-
-	public void setIntroductoryVersion(String introductoryVersion) {
-		this.introductoryVersion = introductoryVersion;
-	}
-
-
-	public String getRemovingVersion() {
-		return removingVersion;
-	}
-
-
-	public void setRemovingVersion(String removingVersion) {
-		this.removingVersion = removingVersion;
+	
+	
+	public void setResult(URL result) {
+		this.result = result;
 	}
 }
