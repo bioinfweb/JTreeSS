@@ -16,12 +16,14 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.language.model;
+package info.bioinfweb.jtreess.execute;
 
 
 import java.awt.Color;
 
 import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
+import info.bioinfweb.jtreess.language.model.RuntimeType;
+import info.bioinfweb.jtreess.language.model.RuntimeType.BasicType;
 
 
 

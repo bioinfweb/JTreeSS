@@ -16,9 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.language.model;
-
-
+package info.bioinfweb.jtreess.execute;
 
 /**
  * Instances of this class are used with {@link RuntimeValue#setValue(Object)} and {@link RuntimeValue#getLengthValue()} 
