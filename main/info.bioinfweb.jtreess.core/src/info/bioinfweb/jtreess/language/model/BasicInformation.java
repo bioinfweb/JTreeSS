@@ -39,15 +39,15 @@ public class BasicInformation {
 	@XmlElement(name="example")
 	private List<Example> examples = new ArrayList<Example>();
 	
-	@XmlElement(name="support")
-	private List<SupportedSoftwareEntry> supportedSoftware = new ArrayList<SupportedSoftwareEntry>();
-
 	@XmlElement(name="firstVersion")
 	private String introductoryVersion;  //TODO Which class should this have?
 	
 	@XmlElement(name="versionAfter")
 	private String removingVersion;  //TODO Which class should this have?
 	
+	@XmlElement(name="support")
+	private List<SupportedSoftwareEntry> supportedSoftware = new ArrayList<SupportedSoftwareEntry>();
+
 	
 	public BasicInformation(String treeSSLangDefitionType) {
 		super();
