@@ -1,0 +1,22 @@
+<treeSSLangDefition type="property">
+	<value type="color">#0000FF</value>
+	<firstVersion>1.0</firstVersion>
+
+	<example>
+		<code>
+			branch {
+				line-color: blue;
+			}
+		</code>
+		<description>Sets the line color of all branches in a tree to blue.</description>
+		<tree>Tree.nexml</tree><!-- Path relative the example directory of the repository. -->
+		<result>Tree_blue_branches.svg</result>
+	</example>
+
+	<support>
+		<software>TreeGraph 2</software>
+		<versionInterval>
+			<firstVersion>2.14.0</firstVersion>
+		</versionInterval>
+	</support>
+</treeSSLangDefition>
