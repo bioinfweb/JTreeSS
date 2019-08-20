@@ -134,6 +134,9 @@ test/info.bioinfweb.jtreess.test.main/data/TreeSS/SmallTests.treess -text
 test/info.bioinfweb.jtreess.test.main/data/language/properties/line-color.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/properties/text-height.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/selectors/node.xml -text svneol=unset#text/plain
+test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/model/PropertyInformationTest.java -text svneol=unset#text/plain
+test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/model/SimpleSelectorInformationTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/reader/SyntaxTreeListenerTest.java -text
+test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/test/JTreeSSTestTools.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/test/MarshallerTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/test/TestCompiler.java -text
