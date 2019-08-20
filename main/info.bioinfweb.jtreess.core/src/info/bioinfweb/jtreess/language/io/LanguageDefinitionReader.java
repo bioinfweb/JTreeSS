@@ -18,6 +18,13 @@
  */
 package info.bioinfweb.jtreess.language.io;
 
-public class LanguageDefinitionReader {
 
+import info.bioinfweb.jtreess.language.LanguageDefinitions;
+
+
+
+public class LanguageDefinitionReader {
+	public LanguageDefinitions readDefinitions() {
+		return null;
+	}
 }

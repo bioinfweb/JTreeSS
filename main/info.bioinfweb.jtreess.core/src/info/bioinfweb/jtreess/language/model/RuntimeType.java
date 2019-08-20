@@ -50,6 +50,11 @@ public class RuntimeType {
 	private String enumType;
 
 	
+	private RuntimeType() {  // For use by JAXB.
+		this(BasicType.LENGTH);
+	}
+	
+	
 	public RuntimeType(BasicType basicType) {
 		super();
 		if (BasicType.ENUM_TYPE.equals(basicType)) {

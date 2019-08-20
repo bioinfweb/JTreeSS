@@ -19,10 +19,9 @@
 package info.bioinfweb.jtreess.language.model;
 
 
-import java.net.URL;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 
 
 
@@ -30,8 +29,12 @@ import javax.xml.bind.annotation.XmlAccessorType;
 public class Example {
 	private String code;
 	private String description;
-	private URL tree;
-	private URL result;
+	
+	@XmlElement(name = "tree")
+	private String treeURL;
+
+	@XmlElement(name = "result")
+	private String resultImageURL;
 	
 	
 	public String getCode() {
@@ -54,22 +57,22 @@ public class Example {
 	}
 	
 	
-	public URL getTree() {
-		return tree;
+	public String getTreeURL() {
+		return treeURL;
 	}
 	
 	
-	public void setTree(URL tree) {
-		this.tree = tree;
+	public void setTreeURL(String tree) {
+		this.treeURL = tree;
 	}
 	
 	
-	public URL getResult() {
-		return result;
+	public String getResultImageURL() {
+		return resultImageURL;
 	}
 	
 	
-	public void setResult(URL result) {
-		this.result = result;
+	public void setResultImageURL(String result) {
+		this.resultImageURL = result;
 	}
 }

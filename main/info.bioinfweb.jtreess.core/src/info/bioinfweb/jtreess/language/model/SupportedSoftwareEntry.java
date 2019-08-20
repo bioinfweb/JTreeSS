@@ -49,7 +49,7 @@ public class SupportedSoftwareEntry {
 	}
 
 
-	public List<SoftwareVersionInterval> getSupportedVersions() {
+	public List<SoftwareVersionInterval> getSupportedVersionIntervals() {
 		return supportedVersions;
 	}
 }
