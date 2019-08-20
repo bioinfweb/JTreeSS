@@ -10,6 +10,7 @@ main/info.bioinfweb.jtreess.core/include/GPL.txt -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/include/LGPL.txt -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/include/NOTICE.txt -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/include/lib/antlr.jar -text
+main/info.bioinfweb.jtreess.core/include/lib/eclipselink-2.7.4.jar -text
 main/info.bioinfweb.jtreess.core/src/GPL.txt -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/LGPL.txt -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/NOTICE.txt -text svneol=unset#text/plain
@@ -45,6 +46,10 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementati
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/LanguageDefinitions.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/LanguageDefinitionReader.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeTypeAdapter.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeValueAttributeTransformer.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeValueTypeFieldTransformer.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeValueValueFieldTransformer.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/XMLConstants.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/BasicInformation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/EnumerationTypeInformation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/Example.java -text svneol=unset#text/plain
@@ -59,7 +64,8 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/Softw
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/SoftwareVersionInterval.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/SupportedSoftwareEntry.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/UnitInformation.java -text
-main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/ValueConstant.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/ValueConstantInformation.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/package-info.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/package-info.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/reader/SyntaxTreeListener.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/reader/parser/package-info.java -text

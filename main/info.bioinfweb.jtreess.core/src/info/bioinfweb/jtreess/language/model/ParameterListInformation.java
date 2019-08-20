@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ParameterListInformation extends BasicInformation {
+public abstract class ParameterListInformation extends BasicInformation {
 	@XmlElement(name="parameterList")
 	private List<ParameterList> validParamLists = new ArrayList<ParameterList>();
 	

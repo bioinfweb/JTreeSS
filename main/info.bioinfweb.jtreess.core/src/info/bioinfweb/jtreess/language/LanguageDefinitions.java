@@ -29,7 +29,7 @@ import info.bioinfweb.jtreess.language.model.PseudoClassInformation;
 import info.bioinfweb.jtreess.language.model.SimpleSelectorInformation;
 import info.bioinfweb.jtreess.language.model.SoftwareInformation;
 import info.bioinfweb.jtreess.language.model.UnitInformation;
-import info.bioinfweb.jtreess.language.model.ValueConstant;
+import info.bioinfweb.jtreess.language.model.ValueConstantInformation;
 
 
 
@@ -41,7 +41,7 @@ public class LanguageDefinitions {
 	private Map<String, PseudoClassInformation> pseudoClassInformation = new HashMap<String, PseudoClassInformation>(); 
 	private Map<String, FunctionPseudoFunctionInformation> functionInformation = new HashMap<String, FunctionPseudoFunctionInformation>(); 
 	private Map<String, PropertyInformation> propertyInformation = new HashMap<String, PropertyInformation>();
-	private Map<String, ValueConstant> constantsInformation = new HashMap<String, ValueConstant>(); 
+	private Map<String, ValueConstantInformation> constantsInformation = new HashMap<String, ValueConstantInformation>(); 
 	private Map<String, UnitInformation> unitInformation = new HashMap<String, UnitInformation>();
 	private Map<String, EnumerationTypeInformation> enumTypeInformation = new HashMap<String, EnumerationTypeInformation>(); 
 	private Map<String, SoftwareInformation> softwareInformation = new HashMap<String, SoftwareInformation>();
@@ -80,7 +80,7 @@ public class LanguageDefinitions {
 	}
 	
 	
-	public Map<String, ValueConstant> getConstantsInformation() {
+	public Map<String, ValueConstantInformation> getConstantsInformation() {
 		return constantsInformation;
 	}
 	

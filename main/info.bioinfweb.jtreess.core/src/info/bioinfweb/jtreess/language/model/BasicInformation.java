@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class BasicInformation {
+public abstract class BasicInformation {
 	@XmlAttribute(name="type")
 	private final String treeSSLangDefitionType;	
 

@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/info.bioinfweb.commons.core"/>
 	<classpathentry kind="lib" path="include/lib/antlr.jar"/>
+	<classpathentry kind="lib" path="include/lib/eclipselink-2.7.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

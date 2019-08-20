@@ -23,7 +23,6 @@ import java.awt.Color;
 
 import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 import info.bioinfweb.jtreess.language.model.RuntimeType;
-import info.bioinfweb.jtreess.language.model.RuntimeType.BasicType;
 
 
 
@@ -36,7 +35,7 @@ import info.bioinfweb.jtreess.language.model.RuntimeType.BasicType;
  * @author Charlotte Schmitt
  */
 public class RuntimeValue {
-	private RuntimeType type = null; 
+	private RuntimeType type = null;
 	private Object value = null; 
 	
 	
