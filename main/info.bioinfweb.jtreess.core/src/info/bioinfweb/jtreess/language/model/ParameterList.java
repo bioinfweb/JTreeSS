@@ -19,29 +19,40 @@
 package info.bioinfweb.jtreess.language.model;
 
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlList;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import info.bioinfweb.jtreess.language.io.RuntimeTypeAdapter;
 
 
 
-@XmlRootElement(name = "treeSSLangDefition")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class PropertyInformation extends ParameterListInformation {
-	@XmlList
-	private Set<String> validSelectors = new HashSet<String>();
+public class ParameterList {
+	public static final int NO_VARIABLE_PARAM = -1; 
 
 	
-	public PropertyInformation() {
-		super("property");
+	@XmlElement(name="parameter")
+	private List<RuntimeType> validParamList = new ArrayList<RuntimeType>();
+
+	private int variableParamIndex = NO_VARIABLE_PARAM;
+	
+	
+	public int getVariableParamIndex() {
+		return variableParamIndex;
 	}
 	
-
-	public Set<String> getValidSelectors() {
-		return validSelectors;
-	}	
+	
+	public void setVariableParamIndex(int variableParamIndex) {
+		this.variableParamIndex = variableParamIndex;
+	}
+	
+	
+	public List<RuntimeType> getValidParamList() {
+		return validParamList;
+	}
 }

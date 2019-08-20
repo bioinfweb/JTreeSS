@@ -16,32 +16,24 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.language.model;
+package info.bioinfweb.jtreess.language.io;
 
 
-import java.util.HashSet;
-import java.util.Set;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlList;
-import javax.xml.bind.annotation.XmlRootElement;
+import info.bioinfweb.jtreess.language.model.RuntimeType;
 
 
 
-@XmlRootElement(name = "treeSSLangDefition")
-@XmlAccessorType(XmlAccessType.FIELD)
-public class PropertyInformation extends ParameterListInformation {
-	@XmlList
-	private Set<String> validSelectors = new HashSet<String>();
-
-	
-	public PropertyInformation() {
-		super("property");
+public class RuntimeTypeAdapter extends XmlAdapter<RuntimeType, String> {
+	@Override
+	public RuntimeType marshal(String representation) throws Exception {
+		return RuntimeType.parseRuntimeType(representation);
 	}
-	
 
-	public Set<String> getValidSelectors() {
-		return validSelectors;
-	}	
+	
+	@Override
+	public String unmarshal(RuntimeType value) throws Exception {
+		return value.toString();
+	}
 }

@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class BasicInformation {
 	@XmlAttribute(name="type")
-	private String treeSSLangDefitionType = "simpleSelector";	
+	private final String treeSSLangDefitionType;	
 
 	private String description;
 	

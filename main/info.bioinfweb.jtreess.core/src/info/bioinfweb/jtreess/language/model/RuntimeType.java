@@ -19,7 +19,13 @@
 package info.bioinfweb.jtreess.language.model;
 
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import info.bioinfweb.jtreess.language.io.RuntimeTypeAdapter;
+
+
+
+@XmlJavaTypeAdapter(RuntimeTypeAdapter.class)
 public class RuntimeType {
 	public static final RuntimeType LENGTH = new RuntimeType(BasicType.LENGTH);
 	public static final RuntimeType NUMERIC_VALUE_NO_UNIT = new RuntimeType(BasicType.NUMERIC_VALUE_NO_UNIT);
@@ -113,10 +119,35 @@ public class RuntimeType {
 
 	@Override
 	public String toString() {
-		String result = getBasicType().toString();
 		if (BasicType.ENUM_TYPE.equals(getBasicType())) {
-			result += ": " + getEnumType();
+			return getEnumType();
 		}
-		return result;
+		else {
+			return getBasicType().toString();
+		}
+	}
+	
+	
+	public static RuntimeType parseRuntimeType(String representation) {
+		if (representation == null) {
+			throw new IllegalArgumentException("Cannot parse from a string representation that is null.");
+		}
+		else if ("".equals(representation)) {
+			throw new IllegalArgumentException("Cannot parse from an empty string representation.");
+		}
+		else {
+			BasicType basicType = null;
+			try {
+				basicType = BasicType.valueOf(representation);
+			}
+			catch (IllegalArgumentException e) {}
+			
+			if (basicType == null) {
+				return new RuntimeType(representation);  // Enum type.  //TODO Edit case?
+			}
+			else {
+				return new RuntimeType(basicType);
+			}
+		}
 	}
 }

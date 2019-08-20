@@ -43,10 +43,13 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementati
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/FunctionImplementation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/SelectorImplementation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/LanguageDefinitions.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/LanguageDefinitionReader.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeTypeAdapter.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/BasicInformation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/EnumerationTypeInformation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/Example.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/FunctionPseudoFunctionInformation.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/ParameterList.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/ParameterListInformation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/PropertyInformation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/PseudoClassInformation.java -text

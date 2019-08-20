@@ -22,14 +22,16 @@ package info.bioinfweb.jtreess.language.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 
 
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ParameterListInformation extends BasicInformation {
-	public static final int NO_VARIABLE_PARAM = -1; 
-	
-	
-	private List<RuntimeType> validParamList = new ArrayList<RuntimeType>();
-	private int variableParamIndex = NO_VARIABLE_PARAM;
+	@XmlElement(name="parameterList")
+	private List<ParameterList> validParamLists = new ArrayList<ParameterList>();
 	
 	
 	public ParameterListInformation(String treeSSLangDefitionType) {
@@ -37,17 +39,7 @@ public class ParameterListInformation extends BasicInformation {
 	}
 
 
-	public List<RuntimeType> getValidParamList() {
-		return validParamList;
-	}
-	
-
-	public int getVariableParamIndex() {
-		return variableParamIndex;
-	}
-	
-
-	public void setVariableParamIndex(int variableParamIndex) {
-		this.variableParamIndex = variableParamIndex;
+	public List<ParameterList> getValidParamLists() {
+		return validParamLists;
 	}
 }
