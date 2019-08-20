@@ -9,6 +9,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
 import info.bioinfweb.jtreess.language.model.Example;
+import info.bioinfweb.jtreess.language.model.PropertyInformation;
 import info.bioinfweb.jtreess.language.model.SimpleSelectorInformation;
 import info.bioinfweb.jtreess.language.model.SoftwareVersionInterval;
 import info.bioinfweb.jtreess.language.model.SupportedSoftwareEntry;
@@ -17,8 +18,9 @@ import info.bioinfweb.jtreess.language.model.SupportedSoftwareEntry;
 
 public class MarshallerTest {
 	public static void main(String[] args) throws JAXBException, MalformedURLException {
-		JAXBContext jaxbContext = JAXBContext.newInstance(SimpleSelectorInformation.class);
+		JAXBContext jaxbContext = JAXBContext.newInstance(SimpleSelectorInformation.class, PropertyInformation.class);
 		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		 
 		SimpleSelectorInformation selector = new SimpleSelectorInformation();
 		selector.setIntroductoryVersion("1.2");

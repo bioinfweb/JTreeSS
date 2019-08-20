@@ -1,0 +1,28 @@
+<treeSSLangDefition type="property">
+	<description>Sets the font size of a text element.</description>
+	<firstVersion>1.0</firstVersion>
+
+	<parameterList>
+		<parameter>LENGTH</parameter>
+	</parameterList>
+	
+	<validSelectors>node scale</validSelectors>
+
+	<example>
+		<code>
+			node {
+				text-height: 0.8em;
+			}
+		</code>
+		<description>Sets the font size of all nodes in a tree to 80 % of the default font size of the document.</description>
+		<tree>Tree.nexml</tree><!-- Path relative the example directory of the repository. -->
+		<result>Tree_terminal_selector.svg</result>
+	</example>
+
+	<support>
+		<software>TreeGraph 2</software>
+		<versionInterval>
+			<firstVersion>2.14.0</firstVersion>
+		</versionInterval>
+	</support>
+</treeSSLangDefition>

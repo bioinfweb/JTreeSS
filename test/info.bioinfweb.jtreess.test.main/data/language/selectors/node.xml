@@ -1,5 +1,4 @@
 <treeSSLangDefition type="simpleSelector">
-  <keyword>node</keyword><!-- May be omitted since the file name actually defined the name. -->
   <description>Selects all nodes of a tree.</description>
   <firstVersion>2.1</firstVersion>
   <versionAfter>2.12</versionAfter>
