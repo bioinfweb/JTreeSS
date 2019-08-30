@@ -21,20 +21,15 @@ package info.bioinfweb.jtreess.language.io;
 
 import org.eclipse.persistence.mappings.foundation.AbstractTransformationMapping;
 import org.eclipse.persistence.mappings.transformers.FieldTransformer;
-import org.eclipse.persistence.sessions.Session;
 
 
 
-public class RuntimeValueTypeFieldTransformer implements FieldTransformer {
-	@Override
+public abstract class AbstractWriteTransformer implements FieldTransformer {
+	protected AbstractTransformationMapping mapping;
+	
+	
+  @Override
 	public void initialize(AbstractTransformationMapping mapping) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Object buildFieldValue(Object instance, String xPath, Session session) {
-		// TODO Auto-generated method stub
-		return null;
+  	this.mapping = mapping;
 	}
 }

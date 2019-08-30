@@ -18,6 +18,8 @@
  */
 package info.bioinfweb.jtreess.execute;
 
+
+
 /**
  * Instances of this class are used with {@link RuntimeValue#setValue(Object)} and {@link RuntimeValue#getLengthValue()} 
  * and represent distances that consist of a numeric values and a unit of length.
@@ -30,6 +32,21 @@ public class Length {
 	private String unit;
 	
 	
+	public Length(double numericValue, String unit) {
+		super();
+		if ((unit == null) && (numericValue != 0.0)) {
+			throw new IllegalArgumentException("The unit may only be null if the numeric value is 0.0.");
+		}
+		else if ("".equals(unit) && (numericValue != 0.0)) {
+			throw new IllegalArgumentException("The unit may only be an empty string if the numeric value is 0.0.");
+		}
+		else {
+			this.numericValue = numericValue;
+			this.unit = unit;
+		}
+	}
+
+
 	public double getNumericValue() {
 		return numericValue;
 	}

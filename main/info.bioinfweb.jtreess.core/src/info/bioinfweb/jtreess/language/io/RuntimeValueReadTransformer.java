@@ -19,8 +19,10 @@
 package info.bioinfweb.jtreess.language.io;
 
 
+import org.eclipse.persistence.internal.helper.DatabaseField;
 import org.eclipse.persistence.mappings.foundation.AbstractTransformationMapping;
 import org.eclipse.persistence.mappings.transformers.AttributeTransformer;
+import org.eclipse.persistence.oxm.record.DOMRecord;
 import org.eclipse.persistence.sessions.Record;
 import org.eclipse.persistence.sessions.Session;
 
@@ -28,7 +30,7 @@ import info.bioinfweb.jtreess.execute.RuntimeValue;
 
 
 
-public class RuntimeValueAttributeTransformer implements AttributeTransformer, XMLConstants {
+public class RuntimeValueReadTransformer implements AttributeTransformer, XMLConstants {
 	private AbstractTransformationMapping mapping;
 	
 	
@@ -40,8 +42,21 @@ public class RuntimeValueAttributeTransformer implements AttributeTransformer, X
 
 	@Override
 	public Object buildAttributeValue(Record record, Object instance, Session session) {
-		System.out.println(record.entrySet());
-		System.out.println(mapping.getFields());
+		String type = null;
+		String value = null;
+		
+		for (DatabaseField field : mapping.getFields()) {
+			if (field.getName().contains(ATTR_TYPE)) {
+				type = (String)record.get(field);
+			} 
+			else if (field.getName().contains(TAG_VALUE)) {
+				value = (String)record.get(field);
+			}
+		}
+		
+		System.out.println(type);
+		System.out.println(value);
+		
 		return new RuntimeValue();
 	}
 }

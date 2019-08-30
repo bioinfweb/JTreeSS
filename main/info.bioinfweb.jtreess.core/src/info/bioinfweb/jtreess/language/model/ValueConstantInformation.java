@@ -30,9 +30,9 @@ import org.eclipse.persistence.oxm.annotations.XmlWriteTransformers;
 
 import info.bioinfweb.jtreess.execute.RuntimeValue;
 import info.bioinfweb.jtreess.execute.implementation.DynamicValueImplementation;
-import info.bioinfweb.jtreess.language.io.RuntimeValueAttributeTransformer;
-import info.bioinfweb.jtreess.language.io.RuntimeValueTypeFieldTransformer;
-import info.bioinfweb.jtreess.language.io.RuntimeValueValueFieldTransformer;
+import info.bioinfweb.jtreess.language.io.RuntimeValueReadTransformer;
+import info.bioinfweb.jtreess.language.io.RuntimeValueTypeWriteTransformer;
+import info.bioinfweb.jtreess.language.io.RuntimeValueValueWriteTransformer;
 import info.bioinfweb.jtreess.language.io.XMLConstants;
 
 
@@ -47,10 +47,10 @@ import info.bioinfweb.jtreess.language.io.XMLConstants;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ValueConstantInformation extends BasicInformation {
 	@XmlTransformation
-	@XmlReadTransformer(transformerClass=RuntimeValueAttributeTransformer.class)
+	@XmlReadTransformer(transformerClass = RuntimeValueReadTransformer.class)
   @XmlWriteTransformers({
-      @XmlWriteTransformer(xmlPath=XMLConstants.TAG_VALUE + "/text()", transformerClass=RuntimeValueValueFieldTransformer.class),
-      @XmlWriteTransformer(xmlPath=XMLConstants.ATTR_TYPE + "/text()", transformerClass=RuntimeValueTypeFieldTransformer.class),  //TODO Is "attribute()" correct?
+      @XmlWriteTransformer(xmlPath = XMLConstants.TAG_VALUE + "/text()", transformerClass = RuntimeValueValueWriteTransformer.class),
+      @XmlWriteTransformer(xmlPath = XMLConstants.ATTR_TYPE + "/text()", transformerClass = RuntimeValueTypeWriteTransformer.class),  //TODO Is "attribute()" correct?
   })  //TODO Is writing even necessary?
 	private RuntimeValue value;
 	

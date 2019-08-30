@@ -20,6 +20,8 @@ package info.bioinfweb.jtreess.execute;
 
 
 import java.awt.Color;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 import info.bioinfweb.jtreess.language.model.RuntimeType;
@@ -35,8 +37,62 @@ import info.bioinfweb.jtreess.language.model.RuntimeType;
  * @author Charlotte Schmitt
  */
 public class RuntimeValue {
+	public static final String NUMBER_CAPTURING_GROUP = "number";
+	public static final String UNIT_CAPTURING_GROUP = "unit";
+	public static final Pattern UNIT_VALUE_PATTERN = Pattern.compile(
+			"(?<" + NUMBER_CAPTURING_GROUP + ">\\-?(\\d*\\.)?\\d+((e|E)\\-?\\d+)?)\\s*" +
+			"(?<" + UNIT_CAPTURING_GROUP + ">(\\-?[a-zA-Z\\_][a-zA-Z\\-\\_0-9]*)|\\%)?");
+	
+	
 	private RuntimeType type = null;
 	private Object value = null; 
+	
+	
+	public static RuntimeValue parseRuntimeValue(String text, RuntimeType type) {
+		Object value = null;
+		if (!"".equals(text)) {
+			switch (type.getBasicType()) {
+				case NUMERIC_VALUE_NO_UNIT:
+					value = Double.parseDouble(text);
+					break;
+					
+				case COLOR:
+					value = Color.decode(text);
+					break;
+					
+				case BOOLEAN:
+					value = Boolean.parseBoolean(text);
+					break;
+					
+				case STRING:
+				case ENUM_TYPE:
+					value = text;
+					break;
+					
+				case LENGTH:
+					Matcher matcher = UNIT_VALUE_PATTERN.matcher(text);
+					if (matcher.matches()) {
+						value = new Length(Double.parseDouble(matcher.group(NUMBER_CAPTURING_GROUP)), matcher.group(UNIT_CAPTURING_GROUP));
+					}
+					else {
+						throw new IllegalArgumentException("\"" + text + "\" does not represent a valid unit value.");
+					}
+					break;
+					
+				default:
+					break;
+			}
+		}
+		
+		RuntimeValue result = new RuntimeValue();
+		if (RuntimeType.BasicType.ENUM_TYPE.equals(type.getBasicType())) {
+			result.setEnumValue(text, type.getEnumType());
+		}
+		else {
+			result.setValue(value);
+		}
+		return result;
+	}
 	
 	
 	/**
@@ -223,5 +279,11 @@ public class RuntimeValue {
 	 */
 	public RuntimeType getType() {
 		return type;
+	}
+
+
+	@Override
+	public String toString() {
+		return value.toString();
 	}
 }

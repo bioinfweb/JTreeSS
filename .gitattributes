@@ -44,11 +44,12 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementati
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/FunctionImplementation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/SelectorImplementation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/LanguageDefinitions.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/AbstractWriteTransformer.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/LanguageDefinitionReader.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeTypeAdapter.java -text svneol=unset#text/plain
-main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeValueAttributeTransformer.java -text svneol=unset#text/plain
-main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeValueTypeFieldTransformer.java -text svneol=unset#text/plain
-main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeValueValueFieldTransformer.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeValueReadTransformer.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeValueTypeWriteTransformer.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeValueValueWriteTransformer.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/XMLConstants.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/BasicInformation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/EnumerationTypeInformation.java -text
