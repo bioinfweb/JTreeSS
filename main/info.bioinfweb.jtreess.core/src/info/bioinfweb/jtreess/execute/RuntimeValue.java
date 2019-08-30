@@ -41,7 +41,7 @@ public class RuntimeValue {
 	public static final String UNIT_CAPTURING_GROUP = "unit";
 	public static final Pattern UNIT_VALUE_PATTERN = Pattern.compile(
 			"(?<" + NUMBER_CAPTURING_GROUP + ">\\-?(\\d*\\.)?\\d+((e|E)\\-?\\d+)?)\\s*" +
-			"(?<" + UNIT_CAPTURING_GROUP + ">(\\-?[a-zA-Z\\_][a-zA-Z\\-\\_0-9]*)|\\%)?");
+			"(?<" + UNIT_CAPTURING_GROUP + ">(\\-?[a-zA-Z\\_][a-zA-Z\\-\\_0-9]*)|\\%)?");  // This pattern is redundant to the grammar definition.
 	
 	
 	private RuntimeType type = null;
