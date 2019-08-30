@@ -51,7 +51,7 @@ public class ValueConstantInformation extends BasicInformation {
   @XmlWriteTransformers({
       @XmlWriteTransformer(xmlPath = XMLConstants.TAG_VALUE + "/text()", transformerClass = RuntimeValueValueWriteTransformer.class),
       @XmlWriteTransformer(xmlPath = XMLConstants.TAG_VALUE + "/@" + XMLConstants.ATTR_TYPE, transformerClass = RuntimeValueTypeWriteTransformer.class),
-  })  //TODO Is writing even necessary?
+  })
 	private RuntimeValue value;
 	
 	private DynamicValueImplementation dynamicValueImplementation;  //TODO Is this necessary or can dynamic values just be written into the value property? If it is, should there still be a value property at the same time?
@@ -72,6 +72,7 @@ public class ValueConstantInformation extends BasicInformation {
 	}
 	
 	
+	//TODO Should any information in Value implementations be loaded from the language definition, e.g. full class names that are then loaded by an adapter?
 	public DynamicValueImplementation getDynamicValueImplementation() {
 		return dynamicValueImplementation;
 	}
