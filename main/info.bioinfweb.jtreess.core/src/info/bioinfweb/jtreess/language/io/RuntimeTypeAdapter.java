@@ -25,15 +25,15 @@ import info.bioinfweb.jtreess.language.model.RuntimeType;
 
 
 
-public class RuntimeTypeAdapter extends XmlAdapter<RuntimeType, String> {
+public class RuntimeTypeAdapter extends XmlAdapter<String, RuntimeType> {
 	@Override
-	public RuntimeType marshal(String representation) throws Exception {
+	public RuntimeType unmarshal(String representation) throws Exception {
 		return RuntimeType.parseRuntimeType(representation);
 	}
 
 	
 	@Override
-	public String unmarshal(RuntimeType value) throws Exception {
+	public String marshal(RuntimeType value) throws Exception {
 		return value.toString();
 	}
 }

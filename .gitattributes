@@ -65,6 +65,7 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/Softw
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/SupportedSoftwareEntry.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/UnitInformation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/ValueConstantInformation.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/jaxb.properties -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/package-info.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/package-info.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/reader/SyntaxTreeListener.java -text
