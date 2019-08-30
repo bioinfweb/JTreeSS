@@ -1,0 +1,28 @@
+<treeSSLangDefition type="type">
+	<constants>
+		<constant>
+			<name>left</name>
+			<description>Left text alignment.</description>
+		</constant>
+		<constant>
+			<name>right</name>
+		</constant>
+		<constant>
+			<name>center</name>
+		</constant>
+		<constant>
+			<name>justify</name>
+		</constant>
+	</constants>
+
+	<example>
+		<code>
+			node {
+				text-align: center;
+			}
+		</code>
+		<description>Sets the text alignment of all nodes to center.</description>
+		<tree>Tree.nexml</tree><!-- Path relative the example directory of the repository. -->
+		<result>Tree_center_alignment.svg</result>
+	</example>
+</treeSSLangDefition>
