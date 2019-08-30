@@ -10,6 +10,7 @@ main/info.bioinfweb.jtreess.core/include/GPL.txt -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/include/LGPL.txt -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/include/NOTICE.txt -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/include/lib/antlr.jar -text
+main/info.bioinfweb.jtreess.core/include/lib/commons-collections4-4.1.jar -text
 main/info.bioinfweb.jtreess.core/include/lib/eclipselink-2.7.4.jar -text
 main/info.bioinfweb.jtreess.core/src/GPL.txt -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/LGPL.txt -text svneol=unset#text/plain
@@ -45,6 +46,7 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementati
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/SelectorImplementation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/LanguageDefinitions.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/AbstractWriteTransformer.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/EnumerationConstantsMapAdapter.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/LanguageDefinitionReader.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeTypeAdapter.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeValueReadTransformer.java -text svneol=unset#text/plain
