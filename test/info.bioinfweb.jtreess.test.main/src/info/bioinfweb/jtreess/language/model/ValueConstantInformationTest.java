@@ -16,6 +16,6 @@ public class ValueConstantInformationTest {
 	@Test
 	public void test_Unmashalling() throws JAXBException {
 		ValueConstantInformation constantInformation = JTreeSSTestTools.createJAXBContext().createUnmarshaller().unmarshal(
-				new StreamSource(new File("data/language/properties/text-height.xml")), ValueConstantInformation.class).getValue();
+				new StreamSource(new File("data/language/constants/blue.xml")), ValueConstantInformation.class).getValue();
 	}
 }
