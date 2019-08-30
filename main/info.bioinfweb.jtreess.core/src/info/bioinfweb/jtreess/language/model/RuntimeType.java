@@ -28,7 +28,7 @@ import info.bioinfweb.jtreess.language.io.RuntimeTypeAdapter;
 @XmlJavaTypeAdapter(RuntimeTypeAdapter.class)
 public class RuntimeType {
 	public static final RuntimeType LENGTH = new RuntimeType(BasicType.LENGTH);
-	public static final RuntimeType NUMERIC_VALUE_NO_UNIT = new RuntimeType(BasicType.NUMERIC_VALUE_NO_UNIT);
+	public static final RuntimeType NUMERIC_VALUE_NO_UNIT = new RuntimeType(BasicType.NUMBER);
 	public static final RuntimeType COLOR = new RuntimeType(BasicType.COLOR);
 	public static final RuntimeType STRING = new RuntimeType(BasicType.STRING);
 	public static final RuntimeType BOOLEAN = new RuntimeType(BasicType.BOOLEAN);
@@ -36,12 +36,20 @@ public class RuntimeType {
 	
 	
 	public static enum BasicType {
-		LENGTH, 
-		NUMERIC_VALUE_NO_UNIT, 
-		COLOR, 
+		/** Indicates a length value with a unit. */
+		LENGTH,
+		
+		/** Indicates a numeric value without a unit. */
+		NUMBER, 
+		
+		COLOR,
+		
 		STRING,
+		
 		BOOLEAN,
-		SELECTOR_IMPLEMENTATION, 
+		
+		SELECTOR_IMPLEMENTATION,
+		
 		ENUM_TYPE;	
 	}
 	
@@ -143,7 +151,7 @@ public class RuntimeType {
 		else {
 			BasicType basicType = null;
 			try {
-				basicType = BasicType.valueOf(representation);
+				basicType = BasicType.valueOf(representation.toUpperCase());
 			}
 			catch (IllegalArgumentException e) {}
 			

@@ -22,11 +22,11 @@ package info.bioinfweb.jtreess.language.io;
 import org.eclipse.persistence.internal.helper.DatabaseField;
 import org.eclipse.persistence.mappings.foundation.AbstractTransformationMapping;
 import org.eclipse.persistence.mappings.transformers.AttributeTransformer;
-import org.eclipse.persistence.oxm.record.DOMRecord;
 import org.eclipse.persistence.sessions.Record;
 import org.eclipse.persistence.sessions.Session;
 
 import info.bioinfweb.jtreess.execute.RuntimeValue;
+import info.bioinfweb.jtreess.language.model.RuntimeType;
 
 
 
@@ -54,9 +54,6 @@ public class RuntimeValueReadTransformer implements AttributeTransformer, XMLCon
 			}
 		}
 		
-		System.out.println(type);
-		System.out.println(value);
-		
-		return new RuntimeValue();
+		return RuntimeValue.parseRuntimeValue(value, RuntimeType.parseRuntimeType(type));  //TODO Catch or wrap any parse exceptions here?
 	}
 }

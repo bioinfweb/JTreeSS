@@ -50,7 +50,7 @@ public class ValueConstantInformation extends BasicInformation {
 	@XmlReadTransformer(transformerClass = RuntimeValueReadTransformer.class)
   @XmlWriteTransformers({
       @XmlWriteTransformer(xmlPath = XMLConstants.TAG_VALUE + "/text()", transformerClass = RuntimeValueValueWriteTransformer.class),
-      @XmlWriteTransformer(xmlPath = XMLConstants.ATTR_TYPE + "/text()", transformerClass = RuntimeValueTypeWriteTransformer.class),  //TODO Is "attribute()" correct?
+      @XmlWriteTransformer(xmlPath = XMLConstants.TAG_VALUE + "/@" + XMLConstants.ATTR_TYPE, transformerClass = RuntimeValueTypeWriteTransformer.class),
   })  //TODO Is writing even necessary?
 	private RuntimeValue value;
 	
