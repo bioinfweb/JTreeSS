@@ -19,29 +19,53 @@
 package info.bioinfweb.jtreess.language.io;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
+
+import org.apache.commons.collections4.map.HashedMap;
 
 
 
 public class EnumerationConstantsMapAdapter extends XmlAdapter<List<EnumerationConstantsMapAdapter.Entry>, Map<String, String>> {
+	@XmlAccessorType(XmlAccessType.FIELD)
 	public static class Entry {
-		public String name;
-		public String description;
+		@XmlElement	public String name;
+		@XmlElement	public String description;
+		
+		private Entry() {  // For JAXB.
+			super();
+		}
+		
+		public Entry(String name, String description) {
+			super();
+			this.name = name;
+			this.description = description;
+		}
 	}
 	
 	
 	@Override
 	public List<Entry> marshal(Map<String, String> map) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Entry> result = new ArrayList<EnumerationConstantsMapAdapter.Entry>(map.size());
+		for (String constant : map.keySet()) {
+			result.add(new Entry(constant, map.get(constant)));
+		}
+		return result;
 	}
 	
 
 	@Override
 	public Map<String, String> unmarshal(List<Entry> list) throws Exception {
-		return null;  //TODO Returning a new map does not work. The current map should be edited, since the source of the decorator set "constants" would not be updated when the map is replaced.
+		Map<String, String> result = new HashedMap<String, String>();
+		for (Entry entry : list) {
+			result.put(entry.name, entry.description);
+		}
+		return result;
 	}
 }

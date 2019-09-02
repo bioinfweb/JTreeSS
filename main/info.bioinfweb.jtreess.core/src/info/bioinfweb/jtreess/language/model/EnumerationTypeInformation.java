@@ -26,6 +26,7 @@ import java.util.Set;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -37,19 +38,52 @@ import info.bioinfweb.jtreess.language.io.EnumerationConstantsMapAdapter;
 
 
 @XmlRootElement(name = "treeSSLangDefition")
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.PROPERTY)
 public class EnumerationTypeInformation extends BasicInformation {
-	@XmlJavaTypeAdapter(EnumerationConstantsMapAdapter.class)
 	private Map<String, String> constantsToDescriptionsMap;
-	
-	@XmlTransient
 	private Set<String> constants;
 	
 
 	public EnumerationTypeInformation() {
 		super("type");
-		constantsToDescriptionsMap = new HashMap<>();
-		constants = new AbstractSetDecorator<String>() {
+		setConstantsToDescriptionsMap(new HashMap<>());
+	}
+
+
+	@XmlTransient
+	public Set<String> getConstants() {
+		return constants;
+	}
+	
+	
+	@XmlTransient
+	public String getConstantDescription(String constant) {
+		return constantsToDescriptionsMap.get(constant);
+	}
+
+
+	//@XmlElementWrapper(name="constants")
+	@XmlElement(name="constants")
+	@XmlJavaTypeAdapter(EnumerationConstantsMapAdapter.class)
+	public Map<String, String> getConstantsToDescriptionsMap() {
+		return constantsToDescriptionsMap;
+	}
+
+
+	/**
+	 * Sets a new instance that maps enumeration constant names to their optional descriptions.
+	 * <p>
+	 * Note that a new key set decorator is also created and {@link #getConstants()} will also return a new instance from now on.
+	 * External references to this set need to be updated after calling this method.
+	 * 
+	 * @param constantsToDescriptionsMap the new map instance
+	 */
+	//@XmlElementWrapper(name="constants")
+	@XmlElement(name="constants")
+	@XmlJavaTypeAdapter(EnumerationConstantsMapAdapter.class)
+	public void setConstantsToDescriptionsMap(Map<String, String> constantsToDescriptionsMap) {
+		this.constantsToDescriptionsMap = constantsToDescriptionsMap;
+		constants = new AbstractSetDecorator<String>(constantsToDescriptionsMap.keySet()) {
 			private static final long serialVersionUID = 1L;
 
 
@@ -72,20 +106,5 @@ public class EnumerationTypeInformation extends BasicInformation {
 				return result;
 			}
 		};
-	}
-
-
-	public Set<String> getConstants() {
-		return constants;
-	}
-	
-	
-	public String getConstantDescription(String constant) {
-		return constantsToDescriptionsMap.get(constant);
-	}
-
-
-	public Map<String, String> getConstantsToDescriptionsMap() {
-		return constantsToDescriptionsMap;
 	}
 }
