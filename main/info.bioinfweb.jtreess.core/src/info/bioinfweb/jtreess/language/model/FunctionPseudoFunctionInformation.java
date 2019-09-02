@@ -30,7 +30,10 @@ import info.bioinfweb.jtreess.execute.implementation.FunctionImplementation;
 @XmlRootElement(name = "treeSSLangDefition")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class FunctionPseudoFunctionInformation extends ParameterListInformation {
-	private FunctionImplementation functionImplementation = null; 
+	//TODO Use adapter
+	private FunctionImplementation functionImplementation = null;
+	
+	
 	private RuntimeType returnType = null;
 	
 	
