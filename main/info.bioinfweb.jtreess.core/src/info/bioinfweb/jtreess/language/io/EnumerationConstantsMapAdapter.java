@@ -31,8 +31,8 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 /**
  * Adapter used to read and write enumeration constants and their descriptions.
  * <p>
- * The sole purpose of this class is to represent the {@link Map} in XML using different tag names then the default ones {@code entry}, 
- * {@code key} and {@code value}. (Otherwise the automatic JAXB transformation of {@link Map} would have been sufficient.)
+ * The sole purpose of this class is to represent the {@link Map} in <i>XML</i> using different tag names then the default ones {@code entry}, 
+ * {@code key} and {@code value}. (Otherwise the automatic <i>JAXB</i> transformation of {@link Map} would have been sufficient.)
  * 
  * @author Ben St&ouml;ver
  */
