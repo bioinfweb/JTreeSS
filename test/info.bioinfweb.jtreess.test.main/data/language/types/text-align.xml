@@ -22,7 +22,7 @@
 			}
 		</code>
 		<description>Sets the text alignment of all nodes to center.</description>
-		<tree>Tree.nexml</tree><!-- Path relative the example directory of the repository. -->
+		<tree>Tree.nexml</tree>
 		<result>Tree_center_alignment.svg</result>
 	</example>
 </treeSSLangDefition>
