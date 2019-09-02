@@ -52,6 +52,7 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeT
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeValueReadTransformer.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeValueTypeWriteTransformer.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeValueValueWriteTransformer.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/SelectorImplementationAdapter.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/XMLConstants.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/BasicInformation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/EnumerationTypeInformation.java -text

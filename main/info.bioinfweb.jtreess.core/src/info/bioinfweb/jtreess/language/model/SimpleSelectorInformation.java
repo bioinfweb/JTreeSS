@@ -27,6 +27,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
+import info.bioinfweb.jtreess.language.io.SelectorImplementationAdapter;
 
 
 
@@ -41,6 +45,9 @@ public class SimpleSelectorInformation extends BasicInformation {
 	@XmlElement(name="selector")
 	private Set<String> validPseudoSelectors = new HashSet<String>();
 	
+	@XmlJavaTypeAdapter(SelectorImplementationAdapter.class)  //TODO Adjust to XML structure when defined. (Will probably contain language-specific parent tags.)
+	private SelectorImplementation selectorImplementation;
+	
 	
 	public SimpleSelectorInformation() {
 		super("simpleSelector");
@@ -54,5 +61,10 @@ public class SimpleSelectorInformation extends BasicInformation {
 	
 	public Set<String> getValidPseudoSelectors() {
 		return validPseudoSelectors;
+	}
+
+
+	public SelectorImplementation getSelectorImplementation() {
+		return selectorImplementation;
 	}
 }
