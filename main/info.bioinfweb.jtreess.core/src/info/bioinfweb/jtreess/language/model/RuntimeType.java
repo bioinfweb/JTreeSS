@@ -28,11 +28,11 @@ import info.bioinfweb.jtreess.language.io.RuntimeTypeAdapter;
 @XmlJavaTypeAdapter(RuntimeTypeAdapter.class)
 public class RuntimeType {
 	public static final RuntimeType LENGTH = new RuntimeType(BasicType.LENGTH);
-	public static final RuntimeType NUMERIC_VALUE_NO_UNIT = new RuntimeType(BasicType.NUMBER);
+	public static final RuntimeType NUMBER = new RuntimeType(BasicType.NUMBER);
 	public static final RuntimeType COLOR = new RuntimeType(BasicType.COLOR);
 	public static final RuntimeType STRING = new RuntimeType(BasicType.STRING);
 	public static final RuntimeType BOOLEAN = new RuntimeType(BasicType.BOOLEAN);
-	public static final RuntimeType SELECTOR_IMPLEMENTATION = new RuntimeType(BasicType.SELECTOR_IMPLEMENTATION);
+	public static final RuntimeType SELECTOR = new RuntimeType(BasicType.SELECTOR);
 	
 	
 	public static enum BasicType {
@@ -48,7 +48,8 @@ public class RuntimeType {
 		
 		BOOLEAN,
 		
-		SELECTOR_IMPLEMENTATION,
+		/** Indicates a selector implementation. */
+		SELECTOR,
 		
 		ENUM_TYPE;	
 	}

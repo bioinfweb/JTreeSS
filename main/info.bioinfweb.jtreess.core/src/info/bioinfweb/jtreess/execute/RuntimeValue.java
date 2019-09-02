@@ -100,12 +100,12 @@ public class RuntimeValue {
 	 * <p>
 	 * Instances of the following classes are valid:
 	 * <ul>
-	 *   <li>{@link Double} for numeric values without any unit (The type will be set to {@link RuntimeType#NUMERIC_VALUE_NO_UNIT}.)</i>
+	 *   <li>{@link Double} for numeric values without any unit (The type will be set to {@link RuntimeType#NUMBER}.)</i>
 	 *   <li>{@link Color} for color values (The type will be set to {@link RuntimeType#COLOR}.)</li>
 	 *   <li>{@link Boolean} for boolean values (The type will be set to {@link RuntimeType#BOOLEAN}.)</i>
 	 *   <li>{@link String} for string values (The type will be set to {@link RuntimeType#STRING}.)</i>
 	 *   <li>{@link Length} for length values, i.e., numeric values with a unit of length (The type will be set to {@link RuntimeType#LENGTH}.)</li>
-	 *   <li>{@link SelectorImplementation} for selector implementations (The type will be set to {@link RuntimeType#SELECTOR_IMPLEMENTATION}.)</li>
+	 *   <li>{@link SelectorImplementation} for selector implementations (The type will be set to {@link RuntimeType#SELECTOR}.)</li>
 	 * </ul>
 	 * Note that {@link #setEnumValue(String, String)} must be used to set enumeration states as values of this instance. If a {@link String}
 	 * is specified here, it will be interpreted as {@link RuntimeType#STRING}.
@@ -134,7 +134,7 @@ public class RuntimeValue {
 			this.type = new RuntimeType(RuntimeType.BasicType.LENGTH);
 		}
 		else if (value instanceof SelectorImplementation) {
-			this.type = new RuntimeType(RuntimeType.BasicType.SELECTOR_IMPLEMENTATION);
+			this.type = new RuntimeType(RuntimeType.BasicType.SELECTOR);
 		}
 		else {
 			throw new IllegalArgumentException("No matching runtime time for " + type + "could be found.");
@@ -175,9 +175,9 @@ public class RuntimeValue {
 	 * @throws IllegalStateException if the stored value does not represent a numeric value without unit
 	 */
 	public double getNumericValue() {
-		if (!RuntimeType.NUMERIC_VALUE_NO_UNIT.equals(getType())) {
+		if (!RuntimeType.NUMBER.equals(getType())) {
 			throw new IllegalStateException("Cannot return a value of type \"" + type + "\" as an \"" + 
-					RuntimeType.NUMERIC_VALUE_NO_UNIT + "\".");
+					RuntimeType.NUMBER + "\".");
 		}
 		return (Double)value;
 	}
@@ -253,9 +253,9 @@ public class RuntimeValue {
 	 * @throws IllegalStateException if the stored value does not represent a selector implementation
 	 */
 	public SelectorImplementation getSelectorImplementationValue() {
-		if (!RuntimeType.SELECTOR_IMPLEMENTATION.equals(getType())) {
+		if (!RuntimeType.SELECTOR.equals(getType())) {
 			throw new IllegalStateException("Cannot return a value of type \"" + type + "\" as an \"" + 
-				 RuntimeType.BasicType.SELECTOR_IMPLEMENTATION + "\".");
+				 RuntimeType.BasicType.SELECTOR + "\".");
 		}
 		return (SelectorImplementation)value;
 	}
