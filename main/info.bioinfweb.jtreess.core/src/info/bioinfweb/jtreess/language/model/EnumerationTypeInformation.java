@@ -62,7 +62,6 @@ public class EnumerationTypeInformation extends BasicInformation {
 	}
 
 
-	//@XmlElementWrapper(name="constants")
 	@XmlElement(name="constants")
 	@XmlJavaTypeAdapter(EnumerationConstantsMapAdapter.class)
 	public Map<String, String> getConstantsToDescriptionsMap() {
@@ -78,7 +77,6 @@ public class EnumerationTypeInformation extends BasicInformation {
 	 * 
 	 * @param constantsToDescriptionsMap the new map instance
 	 */
-	//@XmlElementWrapper(name="constants")
 	@XmlElement(name="constants")
 	@XmlJavaTypeAdapter(EnumerationConstantsMapAdapter.class)
 	public void setConstantsToDescriptionsMap(Map<String, String> constantsToDescriptionsMap) {
