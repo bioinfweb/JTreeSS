@@ -143,7 +143,7 @@ test/info.bioinfweb.jtreess.test.main/data/TreeSS/SelectorPseudoSelectorTest.tre
 test/info.bioinfweb.jtreess.test.main/data/TreeSS/SimpleCalculationTest.treess -text
 test/info.bioinfweb.jtreess.test.main/data/TreeSS/SmallTests.treess -text
 test/info.bioinfweb.jtreess.test.main/data/language/constants/blue.xml -text svneol=unset#text/plain
-test/info.bioinfweb.jtreess.test.main/data/language/properties/line-color.xml -text svneol=unset#text/plain
+test/info.bioinfweb.jtreess.test.main/data/language/functions/matches.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/properties/text-height.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/selectors/node.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/types/text-align.xml -text svneol=unset#text/plain

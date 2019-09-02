@@ -1,0 +1,20 @@
+<treeSSLangDefition type="function">
+	<description>Psuedofunction that allows to combine multiple selectors.</description>
+	<firstVersion>1.0</firstVersion>
+
+	<returnType>SELECTOR</returnType>
+	<parameterList>
+		<parameter repeat="true">SELECTOR</parameter>
+	</parameterList>
+
+	<example>
+		<code>
+			node:matches(:first, :last) {
+				text-height: 0.8em;
+			}
+		</code>
+		<description>Sets the font size of all nodes in a subtree that are the first or last element on their level to 80 % of the default font size of the document.</description>
+		<tree>Tree.nexml</tree><!-- Path relative the example directory of the repository. -->
+		<result>Tree_terminal_selector_firstLast.svg</result>
+	</example>
+</treeSSLangDefition>
