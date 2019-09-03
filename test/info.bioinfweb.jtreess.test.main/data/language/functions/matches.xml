@@ -3,8 +3,8 @@
 	<firstVersion>1.0</firstVersion>
 
 	<returnType>SELECTOR</returnType>
-	<parameterList>
-		<parameter repeat="true">SELECTOR</parameter>
+	<parameterList repeatParamIndex="0">
+		<parameter>SELECTOR</parameter>
 	</parameterList>
 
 	<example>
