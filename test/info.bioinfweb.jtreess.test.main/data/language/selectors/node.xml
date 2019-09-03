@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <treeSSLangDefition type="simpleSelector">
 	<description>Selects all nodes of a tree.</description>
 	<firstVersion>2.1</firstVersion>
