@@ -24,15 +24,19 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.eclipse.persistence.oxm.annotations.XmlPath;
+
 import info.bioinfweb.jtreess.execute.implementation.FunctionImplementation;
-import info.bioinfweb.jtreess.language.io.ImplementationAdapter.FunctionImplementationAdapter;
+import info.bioinfweb.jtreess.language.io.ImplementationAdapter;
+import info.bioinfweb.jtreess.language.io.XMLConstants;
 
 
 
 @XmlRootElement(name = "treeSSLangDefition")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class FunctionPseudoFunctionInformation extends ParameterListInformation {
-	@XmlJavaTypeAdapter(FunctionImplementationAdapter.class)  //TODO Adjust to XML structure when defined. (Will probably contain language-specific parent tags.)
+	@XmlPath(XMLConstants.IMPLEMENTATION_CLASS_XPATH)
+	@XmlJavaTypeAdapter(ImplementationAdapter.FunctionImplementationAdapter.class)
 	private FunctionImplementation functionImplementation = null;
 	
 	
