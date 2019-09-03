@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<software>
+	<url>http://treegraph.bioinfweb.info/</url>
+	<ids>
+		<id type="bio.tools">treegraph_2</id>
+	</ids>
+</software>

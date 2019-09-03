@@ -8,6 +8,7 @@ import info.bioinfweb.jtreess.language.model.EnumerationTypeInformation;
 import info.bioinfweb.jtreess.language.model.FunctionPseudoFunctionInformation;
 import info.bioinfweb.jtreess.language.model.PropertyInformation;
 import info.bioinfweb.jtreess.language.model.SimpleSelectorInformation;
+import info.bioinfweb.jtreess.language.model.SoftwareInformation;
 import info.bioinfweb.jtreess.language.model.ValueConstantInformation;
 
 
@@ -15,6 +16,6 @@ import info.bioinfweb.jtreess.language.model.ValueConstantInformation;
 public class JTreeSSTestTools {
 	public static JAXBContext createJAXBContext() throws JAXBException {
 		return JAXBContext.newInstance(SimpleSelectorInformation.class, PropertyInformation.class, ValueConstantInformation.class, 
-				EnumerationTypeInformation.class, FunctionPseudoFunctionInformation.class);
+				EnumerationTypeInformation.class, FunctionPseudoFunctionInformation.class, SoftwareInformation.class);
 	}
 }
