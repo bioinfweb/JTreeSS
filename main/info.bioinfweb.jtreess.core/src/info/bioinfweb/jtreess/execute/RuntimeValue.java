@@ -23,6 +23,7 @@ import java.awt.Color;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import info.bioinfweb.commons.graphics.GraphicsUtils;
 import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 import info.bioinfweb.jtreess.language.model.RuntimeType;
 
@@ -284,7 +285,12 @@ public class RuntimeValue {
 
 	@Override
 	public String toString() {
-		return value.toString();
+		if (value instanceof Color) {
+			return GraphicsUtils.colorToHexString((Color)value);
+		}
+		else {
+			return value.toString();
+		}
 	}
 
 
