@@ -2,6 +2,7 @@ package info.bioinfweb.jtreess.language.model;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -11,6 +12,7 @@ import javax.xml.transform.stream.StreamSource;
 
 import org.junit.Test;
 
+import info.bioinfweb.jtreess.test.FunctionImplementationPlaceholder;
 import info.bioinfweb.jtreess.test.JTreeSSTestTools;
 
 
@@ -28,6 +30,9 @@ public class FunctionPseudofunctionInformationTest {
 		assertEquals(0, list.getVariableParamIndex());
 		assertEquals(1, list.getValidParamList().size());
 		assertEquals(RuntimeType.SELECTOR, list.getValidParamList().get(0));
+
+		assertNotNull(info.getFunctionImplementation());
+		assertEquals(FunctionImplementationPlaceholder.class.getCanonicalName(), info.getFunctionImplementation().getClass().getCanonicalName());
 		
 		assertEquals(1, info.getExamples().size());
 		Example example = info.getExamples().get(0);
