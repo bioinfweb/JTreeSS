@@ -24,6 +24,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
 
@@ -36,6 +37,7 @@ public class ParameterList {
 	@XmlElement(name="parameter")
 	private List<RuntimeType> validParamList = new ArrayList<RuntimeType>();
 
+	@XmlAttribute(name="repeatParamIndex")
 	private int variableParamIndex = NO_VARIABLE_PARAM;
 	
 	
