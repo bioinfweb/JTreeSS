@@ -19,11 +19,19 @@
 package info.bioinfweb.jtreess.language.model;
 
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import org.eclipse.persistence.oxm.annotations.XmlPath;
+
 import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
+import info.bioinfweb.jtreess.language.io.ImplementationAdapter;
+import info.bioinfweb.jtreess.language.io.XMLConstants;
 
 
 
 public class PseudoClassInformation extends BasicInformation {
+	@XmlPath(XMLConstants.IMPLEMENTATION_CLASS_XPATH)
+	@XmlJavaTypeAdapter(ImplementationAdapter.SelectorImplementationAdapter.class)
 	private SelectorImplementation pseudoClassImplementation;
 
 	

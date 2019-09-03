@@ -22,7 +22,9 @@ package info.bioinfweb.jtreess.language.model;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import org.eclipse.persistence.oxm.annotations.XmlPath;
 import org.eclipse.persistence.oxm.annotations.XmlReadTransformer;
 import org.eclipse.persistence.oxm.annotations.XmlTransformation;
 import org.eclipse.persistence.oxm.annotations.XmlWriteTransformer;
@@ -30,6 +32,7 @@ import org.eclipse.persistence.oxm.annotations.XmlWriteTransformers;
 
 import info.bioinfweb.jtreess.execute.RuntimeValue;
 import info.bioinfweb.jtreess.execute.implementation.DynamicValueImplementation;
+import info.bioinfweb.jtreess.language.io.ImplementationAdapter;
 import info.bioinfweb.jtreess.language.io.RuntimeValueReadTransformer;
 import info.bioinfweb.jtreess.language.io.RuntimeValueTypeWriteTransformer;
 import info.bioinfweb.jtreess.language.io.RuntimeValueValueWriteTransformer;
@@ -54,6 +57,8 @@ public class ValueConstantInformation extends BasicInformation {
   })
 	private RuntimeValue value;
 	
+	@XmlPath(XMLConstants.IMPLEMENTATION_CLASS_XPATH)
+	@XmlJavaTypeAdapter(ImplementationAdapter.DynamicValueImplementationAdapter.class)
 	private DynamicValueImplementation dynamicValueImplementation;  //TODO Is this necessary or can dynamic values just be written into the value property? If it is, should there still be a value property at the same time?
 	
 	
@@ -72,7 +77,6 @@ public class ValueConstantInformation extends BasicInformation {
 	}
 	
 	
-	//TODO Should any information in Value implementations be loaded from the language definition, e.g. full class names that are then loaded by an adapter?
 	public DynamicValueImplementation getDynamicValueImplementation() {
 		return dynamicValueImplementation;
 	}

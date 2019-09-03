@@ -19,11 +19,19 @@
 package info.bioinfweb.jtreess.language.model;
 
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import org.eclipse.persistence.oxm.annotations.XmlPath;
+
 import info.bioinfweb.jtreess.execute.implementation.ConversionImplementation;
+import info.bioinfweb.jtreess.language.io.ImplementationAdapter;
+import info.bioinfweb.jtreess.language.io.XMLConstants;
 
 
 
 public class UnitInformation extends BasicInformation {
+	@XmlPath(XMLConstants.IMPLEMENTATION_CLASS_XPATH)
+	@XmlJavaTypeAdapter(ImplementationAdapter.ConversionImplementationAdapter.class)
 	private ConversionImplementation conversionImplementation;
 
 	
