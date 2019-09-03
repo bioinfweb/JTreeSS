@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
-import info.bioinfweb.jtreess.language.io.SelectorImplementationAdapter;
+import info.bioinfweb.jtreess.language.io.ImplementationAdapter.SelectorImplementationAdapter;
 
 
 

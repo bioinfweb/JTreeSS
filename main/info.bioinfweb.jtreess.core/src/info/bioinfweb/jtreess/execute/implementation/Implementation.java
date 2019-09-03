@@ -18,8 +18,6 @@
  */
 package info.bioinfweb.jtreess.execute.implementation;
 
-
-
-public class SelectorImplementation extends Implementation {
+public class Implementation {
 
 }

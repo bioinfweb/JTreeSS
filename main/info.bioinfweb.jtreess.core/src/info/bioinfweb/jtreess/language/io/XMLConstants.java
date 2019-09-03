@@ -21,6 +21,9 @@ package info.bioinfweb.jtreess.language.io;
 
 
 public interface XMLConstants {
+	public static final String LANGUAGE_DEFINITION_NS = "http://bioinfweb.info/xmlns/TreeSS/languageDefinition";
+	public static final String LANGUAGE_DEFINITION_NS_PREFIX = "ld";
+	
 	public static final String TAG_VALUE = "value";
 	public static final String ATTR_TYPE = "type";
 }

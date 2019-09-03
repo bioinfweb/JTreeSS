@@ -22,15 +22,17 @@ package info.bioinfweb.jtreess.language.model;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import info.bioinfweb.jtreess.execute.implementation.FunctionImplementation;
+import info.bioinfweb.jtreess.language.io.ImplementationAdapter.FunctionImplementationAdapter;
 
 
 
 @XmlRootElement(name = "treeSSLangDefition")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class FunctionPseudoFunctionInformation extends ParameterListInformation {
-	//TODO Use adapter
+	@XmlJavaTypeAdapter(FunctionImplementationAdapter.class)  //TODO Adjust to XML structure when defined. (Will probably contain language-specific parent tags.)
 	private FunctionImplementation functionImplementation = null;
 	
 	

@@ -18,6 +18,8 @@
  */
 package info.bioinfweb.jtreess.execute.implementation;
 
-public class FunctionImplementation {
+
+
+public class FunctionImplementation extends Implementation  {
 
 }

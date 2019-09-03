@@ -18,6 +18,8 @@
  */
 package info.bioinfweb.jtreess.execute.implementation;
 
-public class DynamicValueImplementation {
+
+
+public class DynamicValueImplementation extends Implementation {
 
 }

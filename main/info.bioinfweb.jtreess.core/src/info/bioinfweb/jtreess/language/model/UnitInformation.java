@@ -36,6 +36,7 @@ public class UnitInformation extends BasicInformation {
 		return conversionImplementation;
 	}
 
+	
 	public void setConversionImplementation(ConversionImplementation conversionImplementation) {
 		this.conversionImplementation = conversionImplementation;
 	} 

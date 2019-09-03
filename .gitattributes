@@ -43,18 +43,21 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/RuntimeValue
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/ConversionImplementation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/DynamicValueImplementation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/FunctionImplementation.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/Implementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/SelectorImplementation.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/package-info.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/LanguageDefinitions.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/AbstractWriteTransformer.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/EnumerationConstantsMapAdapter.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/ImplementationAdapter.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/LanguageDefinitionReader.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeTypeAdapter.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeValueReadTransformer.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeValueTypeWriteTransformer.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/RuntimeValueValueWriteTransformer.java -text svneol=unset#text/plain
-main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/SelectorImplementationAdapter.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/SoftwareIDMapAdapter.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/XMLConstants.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/package-info.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/BasicInformation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/EnumerationTypeInformation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/model/Example.java -text svneol=unset#text/plain
