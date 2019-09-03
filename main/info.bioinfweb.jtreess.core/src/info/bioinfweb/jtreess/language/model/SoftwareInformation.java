@@ -19,26 +19,25 @@
 package info.bioinfweb.jtreess.language.model;
 
 
+import java.util.Map;
+import java.util.TreeMap;
 
-public class SoftwareInformation extends BasicInformation {
-	private String name; 
-	private String url; 
-	private String bioToolsID;
-	
-	
-	public SoftwareInformation() {
-		super("software");
-	}
-	
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-	public String getName() {
-		return name;
-	}
+import info.bioinfweb.jtreess.language.io.SoftwareIDMapAdapter;
+
+
+
+@XmlRootElement(name = "software")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class SoftwareInformation {
+	private String url;
 	
-	
-	public void setName(String name) {
-		this.name = name;
-	}
+	@XmlJavaTypeAdapter(SoftwareIDMapAdapter.class)
+	private Map<String, String> ids = new TreeMap<String, String>();
 	
 	
 	public String getUrl() {
@@ -49,14 +48,19 @@ public class SoftwareInformation extends BasicInformation {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
-	
-	public String getBioToolsID() {
-		return bioToolsID;
+
+
+	/**
+	 * Returns a map that contains ID types as keys and IDs as values (e.g., "bio.tools" -> "treegraph_2"). 
+	 * 
+	 * @return an editable map instance
+	 */
+	public Map<String, String> getIds() {
+		return ids;
 	}
-	
-	
-	public void setBioToolsID(String bioToolsID) {
-		this.bioToolsID = bioToolsID;
+
+
+	public void setIds(Map<String, String> ids) {  // For use in JAXB.
+		this.ids = ids;
 	}
 }
