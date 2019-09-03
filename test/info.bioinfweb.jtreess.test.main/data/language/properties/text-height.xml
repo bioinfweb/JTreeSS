@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<treeSSLangDefition type="property">
+<treeSSLangDefition xmlns="http://bioinfweb.info/xmlns/TreeSS/languageDefinition" type="property">
 	<description>Sets the font size of a text element.</description>
 	<firstVersion>1.0</firstVersion>
 

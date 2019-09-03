@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<treeSSLangDefition type="function">
+<treeSSLangDefition type="function" xmlns="http://bioinfweb.info/xmlns/TreeSS/languageDefinition" xmlns:ns="http://example.org/someOtherLanguageInformation">
 	<description>Psuedofunction that allows to combine multiple selectors.</description>
 	<firstVersion>1.0</firstVersion>
 
@@ -7,6 +7,16 @@
 	<parameterList repeatParamIndex="0">
 		<parameter>SELECTOR</parameter>
 	</parameterList>
+	
+	<implementations>
+		<implementation language="Java">
+			<class>info.bioinfweb.jtreess.test.FunctionImplementationPlaceholder</class><!-- TODO: Construct schema in a way that externally defined tags (with different namespaces) can be used for each language. -->
+		</implementation>
+		<implementation language="someOtherLanguage">
+			<ns:someOtherTag>some other value</ns:someOtherTag>
+			<ns:yetAnotherTag someAttribute="some attribute value">yet another value</ns:yetAnotherTag>
+		</implementation>		
+	</implementations>
 
 	<example>
 		<code>

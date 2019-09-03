@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.transform.stream.StreamSource;
 
 import org.junit.Test;
@@ -40,5 +41,15 @@ public class ValueConstantInformationTest {
 		assertEquals("TreeGraph 2", entry.getName());
 		assertEquals(1, entry.getSupportedVersionIntervals().size());
 		assertEquals(entry.getSupportedVersionIntervals().get(0), new SoftwareVersionInterval("2.14.0"));
+	}
+	
+	
+	public static void main(String[] args) throws JAXBException {
+		ValueConstantInformation info = new ValueConstantInformation();
+		info.setValue(RuntimeValue.parseRuntimeValue("#0000FF", RuntimeType.COLOR));
+		
+		Marshaller marshaller = JTreeSSTestTools.createJAXBContext().createMarshaller();
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		marshaller.marshal(info, System.out);
 	}
 }
