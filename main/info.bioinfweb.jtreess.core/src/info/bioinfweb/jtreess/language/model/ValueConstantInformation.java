@@ -48,16 +48,18 @@ import info.bioinfweb.jtreess.language.io.XMLConstants;
  */
 @XmlRootElement(name = "treeSSLangDefition")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ValueConstantInformation extends BasicInformation {
+public class ValueConstantInformation extends BasicInformation implements XMLConstants {
 	@XmlTransformation
 	@XmlReadTransformer(transformerClass = RuntimeValueReadTransformer.class)
   @XmlWriteTransformers({
-      @XmlWriteTransformer(xmlPath = XMLConstants.LANGUAGE_DEFINITION_NS_PREFIX + ":" + XMLConstants.TAG_VALUE + "/text()", transformerClass = RuntimeValueValueWriteTransformer.class),
-      @XmlWriteTransformer(xmlPath = XMLConstants.LANGUAGE_DEFINITION_NS_PREFIX + ":" + XMLConstants.TAG_VALUE + "/@" + XMLConstants.ATTR_TYPE, transformerClass = RuntimeValueTypeWriteTransformer.class)
+      @XmlWriteTransformer(xmlPath = LANGUAGE_DEFINITION_NS_PREFIX + ":" + TAG_VALUE + "/text()", 
+      		transformerClass = RuntimeValueValueWriteTransformer.class),
+      @XmlWriteTransformer(xmlPath = LANGUAGE_DEFINITION_NS_PREFIX + ":" + TAG_VALUE + "/@" + ATTR_TYPE, 
+      		transformerClass = RuntimeValueTypeWriteTransformer.class)
   })
 	private RuntimeValue value;
 	
-	@XmlPath(XMLConstants.IMPLEMENTATION_CLASS_XPATH)
+	@XmlPath(IMPLEMENTATION_CLASS_XPATH)
 	@XmlJavaTypeAdapter(ImplementationAdapter.DynamicValueImplementationAdapter.class)
 	private DynamicValueImplementation dynamicValueImplementation;  //TODO Is this necessary or can dynamic values just be written into the value property? If it is, should there still be a value property at the same time?
 	
