@@ -53,7 +53,7 @@ public class ValueConstantInformation extends BasicInformation {
 	@XmlReadTransformer(transformerClass = RuntimeValueReadTransformer.class)
   @XmlWriteTransformers({
       @XmlWriteTransformer(xmlPath = XMLConstants.LANGUAGE_DEFINITION_NS_PREFIX + ":" + XMLConstants.TAG_VALUE + "/text()", transformerClass = RuntimeValueValueWriteTransformer.class),
-      @XmlWriteTransformer(xmlPath = XMLConstants.LANGUAGE_DEFINITION_NS_PREFIX + ":" +XMLConstants.TAG_VALUE + "/@" + XMLConstants.ATTR_TYPE, transformerClass = RuntimeValueTypeWriteTransformer.class)
+      @XmlWriteTransformer(xmlPath = XMLConstants.LANGUAGE_DEFINITION_NS_PREFIX + ":" + XMLConstants.TAG_VALUE + "/@" + XMLConstants.ATTR_TYPE, transformerClass = RuntimeValueTypeWriteTransformer.class)
   })
 	private RuntimeValue value;
 	
