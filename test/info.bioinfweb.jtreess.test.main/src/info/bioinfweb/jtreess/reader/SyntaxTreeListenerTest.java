@@ -60,7 +60,7 @@ public class SyntaxTreeListenerTest {
 	}
 	
 	
-//	@Test
+	@Test
 	public void testReadingSelectorPseudoSelectorTest() throws Exception {
 		Document document = readDocument("SelectorPseudoSelectorTest");
 		assertNotNull(document);
@@ -91,7 +91,7 @@ public class SyntaxTreeListenerTest {
 		assertEquals(ValueType.CONSTANT, value.getType());
 	}
 	
-//	@Test
+	@Test
 	public void testReadingSimpleCalculationTest() throws Exception {
 		Document document = readDocument("SimpleCalculationTest");
 		assertNotNull(document);
@@ -106,7 +106,7 @@ public class SyntaxTreeListenerTest {
 		assertEquals(1, selectorRule.getPropertyRules().size());
 		PropertyRule propertyRule = selectorRule.getPropertyRules().get(0);
 		assertEquals(selectorRule, propertyRule.getParent());
-		assertProperty(propertyRule,"font-size"); 
+		assertProperty(propertyRule, "font-size"); 
 		
 		assertNotNull(propertyRule.getValues());
 		assertEquals(1, propertyRule.getValues().size());
@@ -178,7 +178,7 @@ public class SyntaxTreeListenerTest {
 		assertEquals(1, selectorRule.getPropertyRules().size());
 		PropertyRule propertyRule = selectorRule.getPropertyRules().get(0);
 		assertEquals(selectorRule, propertyRule.getParent());
-		assertProperty(propertyRule,"background-color"); 
+		assertProperty(propertyRule, "background-color"); 
 		
 		assertNotNull(propertyRule.getValues());
 		assertEquals(1, propertyRule.getValues().size());
@@ -198,7 +198,7 @@ public class SyntaxTreeListenerTest {
 		assertEquals(1, selectorRule.getPropertyRules().size());
 		propertyRule = selectorRule.getPropertyRules().get(0);
 		assertEquals(selectorRule, propertyRule.getParent());
-		assertProperty(propertyRule,"layout"); 
+		assertProperty(propertyRule, "layout"); 
 		
 		assertNotNull(propertyRule.getValues());
 		assertEquals(1, propertyRule.getValues().size());
@@ -218,7 +218,7 @@ public class SyntaxTreeListenerTest {
 		assertEquals(3, selectorRule.getPropertyRules().size());
 		propertyRule = selectorRule.getPropertyRules().get(0);
 		assertEquals(selectorRule, propertyRule.getParent());
-		assertProperty(propertyRule,"font-family"); 
+		assertProperty(propertyRule, "font-family"); 
 		
 		assertNotNull(propertyRule.getValues());
 		assertEquals(2, propertyRule.getValues().size());
@@ -234,7 +234,7 @@ public class SyntaxTreeListenerTest {
 		propertyRule = selectorRule.getPropertyRules().get(1);
 		assertEquals(1, propertyRule.getValues().size());
 		assertEquals(selectorRule, propertyRule.getParent());
-		assertProperty(propertyRule,"font-size"); 
+		assertProperty(propertyRule, "font-size"); 
 		value = (Value) propertyRule.getValues().get(0); 
 		assertEquals(propertyRule, value.getParent());
 		assertEquals("8%", value.getText());
@@ -243,7 +243,7 @@ public class SyntaxTreeListenerTest {
 		propertyRule = selectorRule.getPropertyRules().get(2);
 		assertEquals(1, propertyRule.getValues().size());
 		assertEquals(selectorRule, propertyRule.getParent());
-		assertProperty(propertyRule,"font-weight"); 
+		assertProperty(propertyRule, "font-weight"); 
 		value = (Value) propertyRule.getValues().get(0); 
 		assertEquals(propertyRule, value.getParent());
 		assertEquals("bold", value.getText());
@@ -260,7 +260,7 @@ public class SyntaxTreeListenerTest {
 		assertEquals(1, selectorRule.getPropertyRules().size());
 		propertyRule = selectorRule.getPropertyRules().get(0);
 		assertEquals(selectorRule, propertyRule.getParent());
-		assertProperty(propertyRule,"font-size"); 
+		assertProperty(propertyRule, "font-size"); 
 		
 		assertNotNull(propertyRule.getValues());
 		assertEquals(1, propertyRule.getValues().size());
@@ -426,7 +426,7 @@ public class SyntaxTreeListenerTest {
 		assertEquals(ValueType.CONSTANT, value.getType());
 	}
 	
-//	@Test
+	@Test
 	public void testReadingIdentifierHyphenTest() throws Exception {
 		Document document = readDocument("IdentifierHyphenTest");
 		
@@ -444,7 +444,7 @@ public class SyntaxTreeListenerTest {
 		assertEquals(1, selectorRule.getPropertyRules().size());
 		PropertyRule propertyRule = selectorRule.getPropertyRules().get(0);
 		assertEquals(selectorRule, propertyRule.getParent());
-		assertProperty(propertyRule,"layout"); 
+		assertProperty(propertyRule, "layout"); 
 		
 		assertNotNull(propertyRule.getValues());
 		assertEquals(1, propertyRule.getValues().size());
@@ -464,7 +464,7 @@ public class SyntaxTreeListenerTest {
 		assertEquals(3, selectorRule.getPropertyRules().size());
 		propertyRule = selectorRule.getPropertyRules().get(0);
 		assertEquals(selectorRule, propertyRule.getParent());
-		assertProperty(propertyRule,"font-family"); 
+		assertProperty(propertyRule, "font-family"); 
 		
 		assertNotNull(propertyRule.getValues());
 		assertEquals(2, propertyRule.getValues().size());
@@ -480,7 +480,7 @@ public class SyntaxTreeListenerTest {
 		propertyRule = selectorRule.getPropertyRules().get(1);
 		assertEquals(1, propertyRule.getValues().size());
 		assertEquals(selectorRule, propertyRule.getParent());
-		assertProperty(propertyRule,"font-size"); 
+		assertProperty(propertyRule, "font-size"); 
 		value = (Value) propertyRule.getValues().get(0); 
 		assertEquals(propertyRule, value.getParent());
 		assertEquals("8mm", value.getText());
@@ -489,7 +489,7 @@ public class SyntaxTreeListenerTest {
 		propertyRule = selectorRule.getPropertyRules().get(2);
 		assertEquals(1, propertyRule.getValues().size());
 		assertEquals(selectorRule, propertyRule.getParent());
-		assertProperty(propertyRule,"font-weight"); 
+		assertProperty(propertyRule, "font-weight"); 
 		value = (Value) propertyRule.getValues().get(0); 
 		assertEquals(propertyRule, value.getParent());
 		assertEquals("bold", value.getText());
@@ -506,7 +506,7 @@ public class SyntaxTreeListenerTest {
 		assertEquals(1, selectorRule.getPropertyRules().size());
 		propertyRule = selectorRule.getPropertyRules().get(0);
 		assertEquals(selectorRule, propertyRule.getParent());
-		assertProperty(propertyRule,"font-size---"); 
+		assertProperty(propertyRule, "font-size---"); 
 		
 		assertNotNull(propertyRule.getValues());
 		assertEquals(1, propertyRule.getValues().size());
@@ -550,5 +550,5 @@ public class SyntaxTreeListenerTest {
 		assertEquals(function, value.getParent());
 		assertEquals("\"a:averageSize\"", value.getText());
 		assertEquals(ValueType.STRING, value.getType());
-}			
+	}			
 }
