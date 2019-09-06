@@ -84,8 +84,10 @@ public class TreeSSProcessor {
 		return listener.getDocument();  //TODO Perform semantic analysis before returning the document
 	}
 	
+	//TODO Possibly add method to write TreeSS file in the future.
+	
 	
 	public <N> void applyDocument(Document document, ApplicationDataProvider<N> dataProvider) {
-		
+		//TODO Process document with information from dataProvider to generate necessary calls of dataProvider.setFormat().
 	}
 }
