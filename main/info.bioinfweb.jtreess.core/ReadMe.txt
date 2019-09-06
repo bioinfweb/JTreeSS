@@ -1,9 +1,8 @@
 JTreeSS main module
 ===================
 
-In order to run this demo application in your own Eclipse Workspace you
-need to checkout additional dependency projects from the following SVN 
-locations:
+In order to run this code in your own Eclipse Workspace you need to checkout additional dependency projects from the 
+following SVN locations:
 
 - <https://secure.bioinfweb.info/Code/svn/commons.java/trunk/main/info.bioinfweb.commons.core>
 
