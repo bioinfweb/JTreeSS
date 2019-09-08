@@ -438,7 +438,7 @@ public class SyntaxTreeListenerTest {
 		SelectorRule selectorRule = document.getSelectorRules().get(0);
 		assertEquals(1, selectorRule.getSelectors().size());
 		assertEquals(document, selectorRule.getParent());
-		assertSelector(selectorRule.getSelectors().get(0), SelectorType.SIMPLE_SELECTOR, "--tr-ee-");
+		assertSelector(selectorRule.getSelectors().get(0), SelectorType.SIMPLE_SELECTOR, "-tr-ee-");
 		
 		assertNotNull(selectorRule.getPropertyRules());
 		assertEquals(1, selectorRule.getPropertyRules().size());
@@ -458,7 +458,7 @@ public class SyntaxTreeListenerTest {
 		selectorRule = document.getSelectorRules().get(1);
 		assertEquals(1, selectorRule.getSelectors().size());
 		assertEquals(document, selectorRule.getParent());
-		assertSelector(selectorRule.getSelectors().get(0), SelectorType.ID_SELECTOR, "--un6-gt");
+		assertSelector(selectorRule.getSelectors().get(0), SelectorType.ID_SELECTOR, "-un6-gt");
 		
 		assertNotNull(selectorRule.getPropertyRules());
 		assertEquals(3, selectorRule.getPropertyRules().size());

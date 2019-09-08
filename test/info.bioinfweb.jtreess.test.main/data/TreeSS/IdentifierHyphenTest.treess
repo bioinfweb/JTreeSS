@@ -1,8 +1,8 @@
---tr-ee- {
+-tr-ee- {
 	layout: rectangular; 
 }
  
-#--un6-gt { /* Some unique node name */
+#-un6-gt { /* Some unique node name */
   font-family: "Arial", sans-serif;
   font-size: 8mm;
   font-weight: bold;
