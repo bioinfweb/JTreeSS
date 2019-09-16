@@ -20,6 +20,6 @@ package info.bioinfweb.jtreess.execute.implementation;
 
 
 
-public class FunctionImplementation extends Implementation  {
-
+public interface FunctionImplementation extends Implementation {
+	
 }

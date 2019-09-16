@@ -19,7 +19,14 @@
 package info.bioinfweb.jtreess.execute.implementation;
 
 
+import java.util.List;
 
-public class SelectorImplementation extends Implementation {
+import info.bioinfweb.jtreess.execute.ApplicationDataProvider;
 
+
+
+public interface SelectorImplementation extends Implementation {
+	public boolean affectsTree(ApplicationDataProvider<?> dataProvider);
+	
+	public <N> boolean affectsNode(N node, List<Integer> nodeIndices, ApplicationDataProvider<N> dataProvider);
 }

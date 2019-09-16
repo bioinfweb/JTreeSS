@@ -16,10 +16,28 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.execute.implementation;
+package info.bioinfweb.jtreess.execute.implementation.selectorpseudofunction;
+
+
+import java.util.List;
+
+import info.bioinfweb.commons.Math2;
+import info.bioinfweb.commons.collections.CollectionUtils;
+import info.bioinfweb.jtreess.execute.ApplicationDataProvider;
+import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 
 
 
-public interface Implementation {
+public class InternalPseudoselectorImplementation implements SelectorImplementation {
+	@Override
+	public boolean affectsTree(ApplicationDataProvider<?> dataProvider) {
+		return false;
+	}
 
+	
+	@Override
+	public <N> boolean affectsNode(N node, List<Integer> nodeIndices, ApplicationDataProvider<N> dataProvider) {
+		int pos = CollectionUtils.getLastElement(nodeIndices);
+		return Math2.isBetweenNE(pos, 0, dataProvider.getChildCount(dataProvider.getParent(node)) - 1);
+	}
 }

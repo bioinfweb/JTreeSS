@@ -20,6 +20,6 @@ package info.bioinfweb.jtreess.execute.implementation;
 
 
 
-public class ConversionImplementation extends Implementation {
+public interface ConversionImplementation extends Implementation {
 
 }
