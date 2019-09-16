@@ -5,6 +5,6 @@ import info.bioinfweb.jtreess.execute.implementation.FunctionImplementation;
 
 
 
-public class FunctionImplementationPlaceholder extends FunctionImplementation {
+public class FunctionImplementationPlaceholder implements FunctionImplementation {
 
 }
