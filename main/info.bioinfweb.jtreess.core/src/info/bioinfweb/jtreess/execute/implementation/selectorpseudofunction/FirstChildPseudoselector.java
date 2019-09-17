@@ -27,13 +27,7 @@ import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 
 
 
-public class FirstChildPseudoselector implements SelectorImplementation {
-	@Override
-	public boolean affectsTree(ApplicationDataProvider<?> dataProvider) {
-		return false;
-	}
-
-	
+public class FirstChildPseudoselector extends SelectorImplementationAdapter implements SelectorImplementation {
 	@Override
 	public <N> boolean affectsNode(N node, List<Integer> nodeIndices, ApplicationDataProvider<N> dataProvider) {
 		return (CollectionUtils.getLastElement(nodeIndices) == 0);

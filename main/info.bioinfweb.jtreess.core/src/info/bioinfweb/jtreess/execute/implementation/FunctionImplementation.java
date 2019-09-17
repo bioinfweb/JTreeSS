@@ -19,7 +19,12 @@
 package info.bioinfweb.jtreess.execute.implementation;
 
 
+import java.util.List;
+
+import info.bioinfweb.jtreess.execute.RuntimeValue;
+
+
 
 public interface FunctionImplementation extends Implementation {
-	
+	public RuntimeValue execute(List<RuntimeValue> parameters);
 }

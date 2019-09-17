@@ -19,7 +19,6 @@
 package info.bioinfweb.jtreess.execute.implementation.selectorpseudofunction;
 
 
-
 import java.util.List;
 
 import info.bioinfweb.jtreess.execute.ApplicationDataProvider;
@@ -27,9 +26,15 @@ import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 
 
 
-public class NodeSimpleSelectorImplementation extends SelectorImplementationAdapter implements SelectorImplementation {
+public abstract class SelectorImplementationAdapter implements SelectorImplementation {
+	@Override
+	public boolean affectsTree(ApplicationDataProvider<?> dataProvider) {
+		return false;
+	}
+
+	
 	@Override
 	public <N> boolean affectsNode(N node, List<Integer> nodeIndices, ApplicationDataProvider<N> dataProvider) {
-		return true;
+		return false;
 	}
 }

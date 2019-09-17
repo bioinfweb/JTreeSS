@@ -48,12 +48,16 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementati
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/FunctionImplementation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/Implementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/SelectorImplementation.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/AbstractPseudofunctionImplementation.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/CombinedSelectorImplementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/FirstChildPseudoselector.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/InternalPseudoselectorImplementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/LastChildPseudoselector.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/MatchesPseudofunctionImplementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/NodeSimpleSelectorImplementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/NthLevelPseudofunction.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/RootPseudoselectorImplementation.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/SelectorImplementationAdapter.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/TerminalPsuedoselectorImplementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/TreeSimpleSelectorImplementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/package-info.java -text svneol=unset#text/plain

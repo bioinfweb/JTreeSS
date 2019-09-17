@@ -49,6 +49,23 @@ public class RuntimeValue {
 	private Object value = null; 
 	
 	
+	public RuntimeValue() {
+		super();
+	}
+
+
+	public RuntimeValue(Object value) {
+		super();
+		setValue(value);
+	}
+
+
+	public RuntimeValue(String value, String type) {
+		super();
+		setEnumValue(value, type);
+	}
+
+
 	public static RuntimeValue parseRuntimeValue(String text, RuntimeType type) {
 		Object value = null;
 		if (!"".equals(text)) {

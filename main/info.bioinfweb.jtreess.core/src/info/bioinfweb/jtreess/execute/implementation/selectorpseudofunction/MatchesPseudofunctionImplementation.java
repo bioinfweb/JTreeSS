@@ -19,17 +19,21 @@
 package info.bioinfweb.jtreess.execute.implementation.selectorpseudofunction;
 
 
-
+import java.util.ArrayList;
 import java.util.List;
 
-import info.bioinfweb.jtreess.execute.ApplicationDataProvider;
+import info.bioinfweb.jtreess.execute.RuntimeValue;
 import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 
 
 
-public class NodeSimpleSelectorImplementation extends SelectorImplementationAdapter implements SelectorImplementation {
+public class MatchesPseudofunctionImplementation extends AbstractPseudofunctionImplementation {
 	@Override
-	public <N> boolean affectsNode(N node, List<Integer> nodeIndices, ApplicationDataProvider<N> dataProvider) {
-		return true;
+	protected SelectorImplementation determineSelectorImplementation(List<RuntimeValue> parameters) {
+		List<SelectorImplementation> selectors = new ArrayList<SelectorImplementation>(parameters.size());
+		for (RuntimeValue parameter : parameters) {
+			selectors.add(parameter.getSelectorImplementationValue());  // The parameter types have already been checked in the semantic analysis.
+		}
+		return new CombinedSelectorImplementation(selectors);
 	}
 }

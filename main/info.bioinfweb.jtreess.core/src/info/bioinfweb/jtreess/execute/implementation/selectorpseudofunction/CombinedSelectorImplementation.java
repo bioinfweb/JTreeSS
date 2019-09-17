@@ -19,7 +19,7 @@
 package info.bioinfweb.jtreess.execute.implementation.selectorpseudofunction;
 
 
-
+import java.util.ArrayList;
 import java.util.List;
 
 import info.bioinfweb.jtreess.execute.ApplicationDataProvider;
@@ -27,9 +27,34 @@ import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 
 
 
-public class NodeSimpleSelectorImplementation extends SelectorImplementationAdapter implements SelectorImplementation {
+public class CombinedSelectorImplementation implements SelectorImplementation {
+	private List<SelectorImplementation> selectors = new ArrayList<SelectorImplementation>();
+	
+	
+	public CombinedSelectorImplementation(List<SelectorImplementation> selectors) {
+		super();
+		this.selectors = selectors;
+	}
+
+	
+	@Override
+	public boolean affectsTree(ApplicationDataProvider<?> dataProvider) {
+		for (SelectorImplementation selectorImplementation : selectors) {
+			if (!selectorImplementation.affectsTree(dataProvider)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	
 	@Override
 	public <N> boolean affectsNode(N node, List<Integer> nodeIndices, ApplicationDataProvider<N> dataProvider) {
+		for (SelectorImplementation selectorImplementation : selectors) {
+			if (!selectorImplementation.affectsNode(node, nodeIndices, dataProvider)) {
+				return false;
+			}
+		}
 		return true;
 	}
 }

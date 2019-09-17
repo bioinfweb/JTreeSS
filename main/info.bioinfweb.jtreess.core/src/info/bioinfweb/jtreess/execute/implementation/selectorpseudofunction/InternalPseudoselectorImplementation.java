@@ -28,13 +28,7 @@ import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 
 
 
-public class InternalPseudoselectorImplementation implements SelectorImplementation {
-	@Override
-	public boolean affectsTree(ApplicationDataProvider<?> dataProvider) {
-		return false;
-	}
-
-	
+public class InternalPseudoselectorImplementation extends SelectorImplementationAdapter implements SelectorImplementation {
 	@Override
 	public <N> boolean affectsNode(N node, List<Integer> nodeIndices, ApplicationDataProvider<N> dataProvider) {
 		int pos = CollectionUtils.getLastElement(nodeIndices);
