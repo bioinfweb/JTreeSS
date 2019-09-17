@@ -23,18 +23,35 @@ import java.util.List;
 
 import info.bioinfweb.jtreess.execute.ApplicationDataProvider;
 import info.bioinfweb.jtreess.execute.RuntimeValue;
-import info.bioinfweb.jtreess.execute.implementation.FunctionImplementation;
 import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 
 
 
-public abstract class AbstractPseudofunctionImplementation implements FunctionImplementation {
-	protected abstract <N> SelectorImplementation determineSelectorImplementation(List<RuntimeValue> parameters, N node, List<Integer> nodeIndices, 
-			ApplicationDataProvider<N> dataProvider);
+public class NotPseudofunctionImplementation extends AbstractPseudofunctionImplementation {
+	private static class NotSelectorImplementation implements SelectorImplementation {
+		SelectorImplementation parameter;
+		
+		public NotSelectorImplementation(SelectorImplementation parameter) {
+			super();
+			this.parameter = parameter;
+		}
+
+		@Override
+		public boolean affectsTree(ApplicationDataProvider<?> dataProvider) {
+			return !parameter.affectsTree(dataProvider);
+		}
+
+		@Override
+		public <N> boolean affectsNode(N node, List<Integer> nodeIndices, ApplicationDataProvider<N> dataProvider) {
+			return !parameter.affectsNode(node, nodeIndices, dataProvider);
+		}		
+	}
 	
 	
 	@Override
-	public <N> RuntimeValue execute(List<RuntimeValue> parameters, N node, List<Integer> nodeIndices, ApplicationDataProvider<N> dataProvider) {
-		return new RuntimeValue(determineSelectorImplementation(parameters, node, nodeIndices, dataProvider));
+	protected <N> SelectorImplementation determineSelectorImplementation(List<RuntimeValue> parameters, N node, List<Integer> nodeIndices, 
+			ApplicationDataProvider<N> dataProvider) {
+		
+		return new NotSelectorImplementation(parameters.get(0).getSelectorImplementationValue());
 	}
 }

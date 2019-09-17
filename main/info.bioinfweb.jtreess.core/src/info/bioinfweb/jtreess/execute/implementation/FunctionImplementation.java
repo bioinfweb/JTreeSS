@@ -21,10 +21,11 @@ package info.bioinfweb.jtreess.execute.implementation;
 
 import java.util.List;
 
+import info.bioinfweb.jtreess.execute.ApplicationDataProvider;
 import info.bioinfweb.jtreess.execute.RuntimeValue;
 
 
 
 public interface FunctionImplementation extends Implementation {
-	public RuntimeValue execute(List<RuntimeValue> parameters);
+	public <N> RuntimeValue execute(List<RuntimeValue> parameters, N node, List<Integer> nodeIndices, ApplicationDataProvider<N> dataProvider);
 }

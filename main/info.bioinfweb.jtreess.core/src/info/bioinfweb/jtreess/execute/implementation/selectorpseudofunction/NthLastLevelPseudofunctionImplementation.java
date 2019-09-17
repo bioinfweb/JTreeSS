@@ -21,15 +21,17 @@ package info.bioinfweb.jtreess.execute.implementation.selectorpseudofunction;
 
 import java.util.List;
 
-import info.bioinfweb.commons.collections.CollectionUtils;
 import info.bioinfweb.jtreess.execute.ApplicationDataProvider;
+import info.bioinfweb.jtreess.execute.RuntimeValue;
 import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 
 
 
-public class LastChildPseudoselector extends SelectorImplementationAdapter implements SelectorImplementation {
+public class NthLastLevelPseudofunctionImplementation extends AbstractPseudofunctionImplementation {
 	@Override
-	public <N> boolean affectsNode(N node, List<Integer> nodeIndices, ApplicationDataProvider<N> dataProvider) {
-		return (CollectionUtils.getLastElement(nodeIndices) == dataProvider.getChildCount(dataProvider.getParent(node)) - 1);
+	protected <N> SelectorImplementation determineSelectorImplementation(List<RuntimeValue> parameters, N node, List<Integer> nodeIndices, 
+			ApplicationDataProvider<N> dataProvider) {
+		
+		return new NthLevelPseudoselectorImplementation(dataProvider.getTreeHeight() - (int)parameters.get(0).getNumericValue() - 1);  // Parameter values should start with 0. The parameter types have already been checked in the semantic analysis.
 	}
 }

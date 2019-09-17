@@ -22,6 +22,7 @@ package info.bioinfweb.jtreess.execute.implementation.selectorpseudofunction;
 import java.util.ArrayList;
 import java.util.List;
 
+import info.bioinfweb.jtreess.execute.ApplicationDataProvider;
 import info.bioinfweb.jtreess.execute.RuntimeValue;
 import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 
@@ -29,7 +30,9 @@ import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 
 public class MatchesPseudofunctionImplementation extends AbstractPseudofunctionImplementation {
 	@Override
-	protected SelectorImplementation determineSelectorImplementation(List<RuntimeValue> parameters) {
+	protected <N> SelectorImplementation determineSelectorImplementation(List<RuntimeValue> parameters, N node, List<Integer> nodeIndices, 
+			ApplicationDataProvider<N> dataProvider) {
+		
 		List<SelectorImplementation> selectors = new ArrayList<SelectorImplementation>(parameters.size());
 		for (RuntimeValue parameter : parameters) {
 			selectors.add(parameter.getSelectorImplementationValue());  // The parameter types have already been checked in the semantic analysis.

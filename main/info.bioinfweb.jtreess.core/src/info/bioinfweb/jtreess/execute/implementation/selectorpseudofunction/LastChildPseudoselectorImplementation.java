@@ -21,20 +21,15 @@ package info.bioinfweb.jtreess.execute.implementation.selectorpseudofunction;
 
 import java.util.List;
 
+import info.bioinfweb.commons.collections.CollectionUtils;
 import info.bioinfweb.jtreess.execute.ApplicationDataProvider;
-import info.bioinfweb.jtreess.execute.RuntimeValue;
-import info.bioinfweb.jtreess.execute.implementation.FunctionImplementation;
 import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 
 
 
-public abstract class AbstractPseudofunctionImplementation implements FunctionImplementation {
-	protected abstract <N> SelectorImplementation determineSelectorImplementation(List<RuntimeValue> parameters, N node, List<Integer> nodeIndices, 
-			ApplicationDataProvider<N> dataProvider);
-	
-	
+public class LastChildPseudoselectorImplementation extends SelectorImplementationAdapter implements SelectorImplementation {
 	@Override
-	public <N> RuntimeValue execute(List<RuntimeValue> parameters, N node, List<Integer> nodeIndices, ApplicationDataProvider<N> dataProvider) {
-		return new RuntimeValue(determineSelectorImplementation(parameters, node, nodeIndices, dataProvider));
+	public <N> boolean affectsNode(N node, List<Integer> nodeIndices, ApplicationDataProvider<N> dataProvider) {
+		return (CollectionUtils.getLastElement(nodeIndices) == dataProvider.getChildCount(dataProvider.getParent(node)) - 1);
 	}
 }

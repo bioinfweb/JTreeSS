@@ -22,29 +22,22 @@ package info.bioinfweb.jtreess.execute.implementation.selectorpseudofunction;
 import java.util.List;
 
 import info.bioinfweb.jtreess.execute.ApplicationDataProvider;
-import info.bioinfweb.jtreess.execute.RuntimeValue;
 import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 
 
 
-public class NthLevelPseudofunction extends AbstractPseudofunctionImplementation {
-	private static class NthLevelSelectorImplementation extends SelectorImplementationAdapter implements SelectorImplementation {
-		private int level;
-		
-		public NthLevelSelectorImplementation(int level) {
-			super();
-			this.level = level;
-		}
-
-		@Override
-		public <N> boolean affectsNode(N node, List<Integer> nodeIndices, ApplicationDataProvider<N> dataProvider) {
-			return (nodeIndices.size() == level);
-		}
-	}
+public class NthLevelPseudoselectorImplementation extends SelectorImplementationAdapter implements SelectorImplementation {
+	private int level;
 	
+	
+	public NthLevelPseudoselectorImplementation(int level) {
+		super();
+		this.level = level;
+	}
 
+	
 	@Override
-	protected SelectorImplementation determineSelectorImplementation(List<RuntimeValue> parameters) {
-		return new NthLevelSelectorImplementation((int)parameters.get(0).getNumericValue());  // The parameter types have already been checked in the semantic analysis.
+	public <N> boolean affectsNode(N node, List<Integer> nodeIndices, ApplicationDataProvider<N> dataProvider) {
+		return (nodeIndices.size() == level);
 	}
 }

@@ -48,6 +48,13 @@ public interface ApplicationDataProvider<N> {
 	public double getNumericNodeMetadataValue(N node);  //TODO Add parameter for metadata path. Should data structures from JPhyloIO be used here or respective classes from there be moved to commons?
 	//TODO Are other types of metadata values necessary? Should these even be generic to use theme, e.g., in external function implementations?
 	
+	/**
+	 * Returns the number of levels of the target tree.
+	 * 
+	 * @return the length of longest path from the root to any leaf node
+	 */
+	public int getTreeHeight();
+	
 	//TODO Add methods to convert between units/gather size information.
 	
 	public void setTreeFormat(String selectorName, String propertyName, RuntimeValue value); 
