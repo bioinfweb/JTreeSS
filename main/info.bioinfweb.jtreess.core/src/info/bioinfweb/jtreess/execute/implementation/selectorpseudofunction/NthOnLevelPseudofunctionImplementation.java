@@ -28,26 +28,43 @@ import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 
 
 
-public class NthChildPseudofunctionImplementation extends AbstractPseudofunctionImplementation {
-	private static class NthChildSelectorImplementation extends SelectorImplementationAdapter {
-		private int childIndex;
+/**
+ * Implements the pseudofunction {@code nth-on-level(<numeric value>)}. It selects the nth node on every level of the tree.
+ * <p>
+ * Note that a level is considered independent of the actual parent node and at most one node per level will be selected. This is different 
+ * from {@link NthChildPseudofunctionImplementation} which selects the nth child of each parent node and could select multiple nodes on the 
+ * same level if there are several parent nodes with a sufficient number of child nodes. 
+ * 
+ * @author Ben St&ouml;ver
+ */
+public class NthOnLevelPseudofunctionImplementation extends AbstractPseudofunctionImplementation {
+	private static class NthOnLevelSelectorImplementation extends SelectorImplementationAdapter {
+		private int index;
 		
-		public NthChildSelectorImplementation(int childIndex) {
+		
+		public NthOnLevelSelectorImplementation(int index) {
 			super();
-			this.childIndex = childIndex;
+			this.index = index;
 		}
 
+		
 		@Override
 		public <N> boolean affectsNode(N node, List<Integer> nodeIndices, ApplicationDataProvider<N> dataProvider) {
-			return (CollectionUtils.getLastElement(nodeIndices) == childIndex);
+			if (!nodeIndices.isEmpty()) {
+				int currentIndex = CollectionUtils.getLastElement(nodeIndices);
+				for (int level = nodeIndices.size() - 2; level > 0; level--) {  // Start at the level above the current node.
+					//if (nodeIndices.get(level))
+				}
+			}
+			return false;
 		}
 	}
 	
 	
 	@Override
-	protected <N> SelectorImplementation determineSelectorImplementation(List<RuntimeValue> parameters, N node, List<Integer> nodeIndices, 
-			ApplicationDataProvider<N> dataProvider) {
+	protected <N> SelectorImplementation determineSelectorImplementation(List<RuntimeValue> parameters, N node,
+			List<Integer> nodeIndices, ApplicationDataProvider<N> dataProvider) {
 
-		return new NthChildSelectorImplementation(parameters.get(0).getNumericValueAsInt());
+		return null;
 	}
 }
