@@ -32,6 +32,6 @@ public class NthLastLevelPseudofunctionImplementation extends AbstractPseudofunc
 	protected <N> SelectorImplementation determineSelectorImplementation(List<RuntimeValue> parameters, N node, List<Integer> nodeIndices, 
 			ApplicationDataProvider<N> dataProvider) {
 		
-		return new NthLevelPseudoselectorImplementation(dataProvider.getTreeHeight() - (int)parameters.get(0).getNumericValue() - 1);  // Parameter values should start with 0. The parameter types have already been checked in the semantic analysis.
+		return new NthLevelPseudoselectorImplementation(dataProvider.getTreeHeight() - parameters.get(0).getNumericValueAsInt() - 1);  // Parameter values should start with 0. The parameter types have already been checked in the semantic analysis.
 	}
 }

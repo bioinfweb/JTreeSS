@@ -56,6 +56,7 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementati
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/MatchesPseudofunctionImplementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/NodeSimpleSelectorImplementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/NotPseudofunctionImplementation.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/NthChildPseudofunctionImplementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/NthLastLevelPseudofunctionImplementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/NthLevelPseudofunctionImplementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/NthLevelPseudoselectorImplementation.java -text svneol=unset#text/plain

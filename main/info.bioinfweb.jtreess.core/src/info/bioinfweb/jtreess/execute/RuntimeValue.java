@@ -23,6 +23,7 @@ import java.awt.Color;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import info.bioinfweb.commons.Math2;
 import info.bioinfweb.commons.graphics.GraphicsUtils;
 import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 import info.bioinfweb.jtreess.language.model.RuntimeType;
@@ -198,6 +199,28 @@ public class RuntimeValue {
 					RuntimeType.NUMBER + "\".");
 		}
 		return (Double)value;
+	}
+	
+	
+	public long getNumericValueAsLong() {
+		double value = getNumericValue();
+		if (Math2.isInt(value)) {  //TODO Could there be rounding issues using this method?
+			return (long)value;
+		}
+		else {
+			throw new IllegalArgumentException("The value " + value + " is not an integer.");  //TODO Use a different exception type?
+		}
+	}
+	
+	
+	public int getNumericValueAsInt() {
+		long value = getNumericValueAsLong();
+		if (Math2.isBetween(value, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
+			return (int)value;
+		}
+		else {
+			throw new IllegalArgumentException("The value " + value + " is out of range.");  //TODO Use a different exception type? Use a more specific error message for the user?
+		}
 	}
 	
 	
