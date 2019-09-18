@@ -24,11 +24,11 @@ import info.bioinfweb.jtreess.execute.implementation.LengthConversionImplementat
 
 
 
-public class RelativeLengthUnitConversion implements LengthConversionImplementation {
+public class VariableLengthUnitConversion implements LengthConversionImplementation {
 	private String unitName;
 
 	
-	public RelativeLengthUnitConversion(String unitName) {
+	public VariableLengthUnitConversion(String unitName) {
 		super();
 		this.unitName = unitName;
 	}
@@ -41,6 +41,6 @@ public class RelativeLengthUnitConversion implements LengthConversionImplementat
 
 	@Override
 	public double convertToMM(double length, ApplicationDataProvider<?> dataProvider) {
-		return dataProvider.convertRelativeUnitToMM(getUnitName(), length);
+		return dataProvider.convertVariableUnitToMM(getUnitName(), length);
 	}
 }

@@ -49,7 +49,7 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementati
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/LengthConversionImplementation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/SelectorImplementation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/lengthconversion/AbsoluteLengthUnitConversion.java -text svneol=unset#text/plain
-main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/lengthconversion/RelativeLengthUnitConversion.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/lengthconversion/VariableLengthUnitConversion.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/lengthconversion/package-info.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/AbstractPseudofunctionImplementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/CombinedSelectorImplementation.java -text svneol=unset#text/plain

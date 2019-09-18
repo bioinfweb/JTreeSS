@@ -39,7 +39,7 @@ public class UnitInformation extends BasicInformation {
 
 
 	@XmlTransient
-	public boolean isRelative() {
+	public boolean isVariable() {
 		return Double.isNaN(unitInMM);
 	}
 

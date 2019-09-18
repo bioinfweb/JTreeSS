@@ -57,7 +57,7 @@ public interface ApplicationDataProvider<N> {
 	
 	public double getPixelsPerMM();
 	
-	public double convertRelativeUnitToMM(String unitName, double value);
+	public double convertVariableUnitToMM(String unitName, double value);
 	
 	//TODO Add methods to gather size information?
 	
