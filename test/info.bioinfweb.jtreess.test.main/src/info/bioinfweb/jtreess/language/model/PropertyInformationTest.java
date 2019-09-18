@@ -20,7 +20,7 @@ public class PropertyInformationTest {
 	@Test
 	public void test_Unmashalling() throws JAXBException {
 		PropertyInformation propertyInformation = JTreeSSTestTools.createJAXBContext().createUnmarshaller().unmarshal(
-				new StreamSource(new File("data/language/properties/text-height.xml")), PropertyInformation.class).getValue();
+				new StreamSource(new File("data/language/properties/font-size.xml")), PropertyInformation.class).getValue();
 		
 		assertEquals("Sets the font size of a text element.", propertyInformation.getDescription());
 		assertEquals("1.0", propertyInformation.getIntroductoryVersion());
@@ -39,7 +39,7 @@ public class PropertyInformationTest {
 		assertEquals(1, propertyInformation.getExamples().size());
 		Example example = propertyInformation.getExamples().get(0);
 		assertTrue("Code example \"" + example.getCode() + "\" was not expected.", 
-				example.getCode().matches("\\s*node\\s*\\{\\s*text-height:\\s*0\\.8em\\;\\s*\\}\\s*"));
+				example.getCode().matches("\\s*node\\s*\\{\\s*font-size:\\s*0\\.8em\\;\\s*\\}\\s*"));
 		assertEquals("Sets the font size of all nodes in a tree to 80 % of the default font size of the document.", example.getDescription());
 		assertEquals("Tree.nexml", example.getTreeURL());
 		assertEquals("Tree_terminal_selector.svg", example.getResultImageURL());

@@ -170,7 +170,7 @@ test/info.bioinfweb.jtreess.test.main/data/TreeSS/SimpleCalculationTest.treess -
 test/info.bioinfweb.jtreess.test.main/data/TreeSS/SmallTests.treess -text
 test/info.bioinfweb.jtreess.test.main/data/language/constants/blue.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/functions/matches.xml -text svneol=unset#text/plain
-test/info.bioinfweb.jtreess.test.main/data/language/properties/text-height.xml -text svneol=unset#text/plain
+test/info.bioinfweb.jtreess.test.main/data/language/properties/font-size.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/selectors/node.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/software/TreeGraph_2.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/types/text-align.xml -text svneol=unset#text/plain
