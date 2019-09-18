@@ -305,7 +305,7 @@ public class SyntaxTreeListener extends TreeSSBaseListener {
 			value = new ColorValue(parent, ctx.COLOR().getText());
 		}
 		else if (ctx.STRING() != null) {
-			value = new Value(parent, Value.ValueType.STRING, ctx.STRING().getText());
+			value = new Value(parent, Value.ValueType.STRING, ctx.STRING().getText().substring(1, ctx.STRING().getText().length() - 1));  // Remove leading and trailing quotation marks. 
 		}
 		else if (ctx.IDENTIFIER() != null) { 
 			value = new Value(parent, Value.ValueType.CONSTANT, ctx.IDENTIFIER().getText());
