@@ -234,11 +234,13 @@ public class SyntaxTreeListenerTest {
 		propertyRule = selectorRule.getPropertyRules().get(1);
 		assertEquals(1, propertyRule.getValues().size());
 		assertEquals(selectorRule, propertyRule.getParent());
-		assertProperty(propertyRule, "font-size"); 
-		value = (Value) propertyRule.getValues().get(0); 
-		assertEquals(propertyRule, value.getParent());
-		assertEquals("8%", value.getText());
-		assertEquals(ValueType.UNIT_VALUE, value.getType());
+		assertProperty(propertyRule, "font-size");
+		UnitValue unitValue = (UnitValue)propertyRule.getValues().get(0); 
+		assertEquals(propertyRule, unitValue.getParent());
+		assertEquals(ValueType.UNIT_VALUE, unitValue.getType());
+		assertEquals(8, unitValue.getNumber(), 0.0000000001);
+		assertEquals("%", unitValue.getUnit());
+		assertEquals("8%", unitValue.getText());
 		
 		propertyRule = selectorRule.getPropertyRules().get(2);
 		assertEquals(1, propertyRule.getValues().size());
@@ -273,8 +275,8 @@ public class SyntaxTreeListenerTest {
 		Expression expression = (Expression) function.getParameters().get(0);
 		assertEquals(function, expression.getParent());
 		assertEquals(ExpressionType.PLUS, expression.getType()); 
-		value = (Value)expression.getChildren().get(0); 
 		assertEquals(2, expression.getChildren().size());
+		value = (Value)expression.getChildren().get(0); 
 		assertEquals(expression, value.getParent());
 		assertEquals(ValueType.UNIT_VALUE, value.getType());
 		assertEquals("0.7em", value.getText());
@@ -323,8 +325,8 @@ public class SyntaxTreeListenerTest {
 		assertEquals(selectorRule, propertyRule.getParent());
 		assertProperty(propertyRule,"color"); 
 		
-		value = (Value) propertyRule.getValues().get(0);
 		assertEquals(1, propertyRule.getValues().size());
+		value = (Value) propertyRule.getValues().get(0);
 		assertEquals(propertyRule, value.getParent());
 		assertEquals("blue", value.getText());
 		assertEquals(ValueType.CONSTANT, value.getType());
@@ -357,8 +359,8 @@ public class SyntaxTreeListenerTest {
 		assertEquals(selectorRule, propertyRule.getParent());
 		assertProperty(propertyRule,"color"); 
 		
-		ColorValue colorValue = (ColorValue) propertyRule.getValues().get(0); 
 		assertEquals(1, propertyRule.getValues().size());
+		ColorValue colorValue = (ColorValue) propertyRule.getValues().get(0); 
 		assertEquals(propertyRule, colorValue.getParent());
 		assertEquals("#FF0000", colorValue.getText());
 		assertEquals(ValueType.COLOR, colorValue.getType());
@@ -398,8 +400,8 @@ public class SyntaxTreeListenerTest {
 		assertEquals(selectorRule, propertyRule.getParent());
 		assertProperty(propertyRule,"color"); 
 		
-		colorValue = (ColorValue) propertyRule.getValues().get(0); 
 		assertEquals(1, propertyRule.getValues().size());
+		colorValue = (ColorValue)propertyRule.getValues().get(0); 
 		assertEquals(propertyRule, colorValue.getParent());
 		assertEquals("#0F0", colorValue.getText());
 		assertEquals(ValueType.COLOR, colorValue.getType());	
@@ -413,17 +415,30 @@ public class SyntaxTreeListenerTest {
 		assertEquals(1, selectorRule.getSelectors().size());
 		
 		assertNotNull(selectorRule.getPropertyRules());
-		assertEquals(1, selectorRule.getPropertyRules().size());
+		assertEquals(2, selectorRule.getPropertyRules().size());
+		
 		propertyRule = selectorRule.getPropertyRules().get(0);
 		assertEquals(selectorRule, propertyRule.getParent());
-		assertProperty(propertyRule,"visible"); 
-		
+		assertProperty(propertyRule, "visible"); 
 		assertNotNull(propertyRule.getValues());
-		value = (Value) propertyRule.getValues().get(0); 
 		assertEquals(1, propertyRule.getValues().size());
+		value = (Value)propertyRule.getValues().get(0); 
 		assertEquals(propertyRule, value.getParent());
-		assertEquals("true", value.getText());
 		assertEquals(ValueType.CONSTANT, value.getType());
+		assertEquals("true", value.getText());
+		
+		propertyRule = selectorRule.getPropertyRules().get(1);
+		assertEquals(selectorRule, propertyRule.getParent());
+		assertProperty(propertyRule, "width"); 
+		assertNotNull(propertyRule.getValues());
+		assertEquals(1, propertyRule.getValues().size());
+
+		unitValue = (UnitValue)propertyRule.getValues().get(0); 
+		assertEquals(propertyRule, unitValue.getParent());
+		assertEquals(ValueType.UNIT_VALUE, unitValue.getType());
+		assertEquals(100, unitValue.getNumber(), 0.0000000001);
+		assertEquals("%", unitValue.getUnit());
+		assertEquals("100%", unitValue.getText());
 	}
 	
 	@Test

@@ -31,4 +31,5 @@ node:not(:matches(:first-child, :last-child, -8cm)) {
 
 scale {   
   visible : true;
+  width: 100%;
 }
