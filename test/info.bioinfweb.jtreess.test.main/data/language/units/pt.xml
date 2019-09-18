@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<treeSSLangDefition xmlns="http://bioinfweb.info/xmlns/TreeSS/languageDefinition" type="unit">
+	<description>A desktop publishing point. (1 pt = 1/72 in).</description>
+	<unitInMM>0.35277777777777777</unitInMM>
+
+	<example>
+		<code>
+			node {
+				font-size: 12pt;
+			}
+		</code>
+		<description>Sets the font size of all nodes to a height of 12 pt.</description>
+		<tree>Tree.nexml</tree>
+		<result>Tree.svg</result>
+	</example>
+</treeSSLangDefition>

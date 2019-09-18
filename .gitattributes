@@ -171,12 +171,15 @@ test/info.bioinfweb.jtreess.test.main/data/language/properties/text-height.xml -
 test/info.bioinfweb.jtreess.test.main/data/language/selectors/node.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/software/TreeGraph_2.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/types/text-align.xml -text svneol=unset#text/plain
+test/info.bioinfweb.jtreess.test.main/data/language/units/blu.xml -text svneol=unset#text/plain
+test/info.bioinfweb.jtreess.test.main/data/language/units/pt.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/execute/RuntimeValueTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/model/EnumerationTypeInformationTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/model/FunctionPseudofunctionInformationTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/model/PropertyInformationTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/model/SimpleSelectorInformationTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/model/SoftwareInformationTest.java -text svneol=unset#text/plain
+test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/model/UnitInformationTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/model/ValueConstantInformationTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/reader/SyntaxTreeListenerTest.java -text
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/test/FunctionImplementationPlaceholder.java -text svneol=unset#text/plain
