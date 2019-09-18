@@ -34,9 +34,6 @@ import info.bioinfweb.jtreess.language.model.ValueConstantInformation;
 
 
 public class LanguageDefinitions {
-	private static LanguageDefinitions firstInstance = null;
-	
-	
 	private Map<String, SimpleSelectorInformation> simpleSelectorInformation = new HashMap<String, SimpleSelectorInformation>();
 	private Map<String, PseudoClassInformation> pseudoClassInformation = new HashMap<String, PseudoClassInformation>(); 
 	private Map<String, FunctionPseudoFunctionInformation> functionInformation = new HashMap<String, FunctionPseudoFunctionInformation>(); 
@@ -45,19 +42,6 @@ public class LanguageDefinitions {
 	private Map<String, UnitInformation> unitInformation = new HashMap<String, UnitInformation>();
 	private Map<String, EnumerationTypeInformation> enumTypeInformation = new HashMap<String, EnumerationTypeInformation>(); 
 	private Map<String, SoftwareInformation> softwareInformation = new HashMap<String, SoftwareInformation>();
-	
-	
-	private LanguageDefinitions() {
-		super();
-	}
-	
-	
-	public static LanguageDefinitions getInstance() {
-		if (firstInstance == null) {
-			firstInstance = new LanguageDefinitions(); 
-		}
-		return firstInstance;
-	}
 	
 	
 	public Map<String, SimpleSelectorInformation> getSimpleSelectorInformation() {
