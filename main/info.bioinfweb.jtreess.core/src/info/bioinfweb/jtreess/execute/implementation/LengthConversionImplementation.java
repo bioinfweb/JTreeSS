@@ -19,7 +19,10 @@
 package info.bioinfweb.jtreess.execute.implementation;
 
 
+import info.bioinfweb.jtreess.execute.ApplicationDataProvider;
 
-public interface ConversionImplementation extends Implementation {
 
+
+public interface LengthConversionImplementation extends Implementation {
+	public double convertToMM(double length, ApplicationDataProvider<?> dataProvider);  //TODO Add parameters for current node and selectors and values of other formats to allow % calculations?
 }

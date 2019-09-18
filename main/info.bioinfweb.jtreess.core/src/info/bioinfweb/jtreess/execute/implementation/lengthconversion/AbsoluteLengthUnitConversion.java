@@ -16,31 +16,21 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.language.model;
+package info.bioinfweb.jtreess.execute.implementation.lengthconversion;
 
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import info.bioinfweb.jtreess.execute.ApplicationDataProvider;
+import info.bioinfweb.jtreess.execute.implementation.LengthConversionImplementation;
 
 
 
-@XmlRootElement(name = "treeSSLangDefition")
-@XmlAccessorType(XmlAccessType.PROPERTY)
-public class UnitInformation extends BasicInformation {
-	private double unitInMM = Double.NaN;
-	private String description = "";
+public class AbsoluteLengthUnitConversion implements LengthConversionImplementation {
+	private double unitInMM;
 
 	
-	public UnitInformation() {
-		super("unit");
-	}
-
-
-	@XmlTransient
-	public boolean isRelative() {
-		return Double.isNaN(unitInMM);
+	public AbsoluteLengthUnitConversion(double unitInMM) {
+		super();
+		this.unitInMM = unitInMM;
 	}
 
 
@@ -49,17 +39,8 @@ public class UnitInformation extends BasicInformation {
 	}
 
 
-	public void setUnitInMM(double absoluteUnitInMM) {
-		this.unitInMM = absoluteUnitInMM;
-	}
-
-
-	public String getDescription() {
-		return description;
-	}
-
-
-	public void setDescription(String description) {
-		this.description = description;
+	@Override
+	public double convertToMM(double length, ApplicationDataProvider<?> dataProvider) {
+		return getUnitInMM() * length;
 	}
 }

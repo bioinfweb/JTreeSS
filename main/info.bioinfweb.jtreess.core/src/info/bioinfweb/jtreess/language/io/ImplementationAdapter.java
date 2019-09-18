@@ -21,7 +21,7 @@ package info.bioinfweb.jtreess.language.io;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
-import info.bioinfweb.jtreess.execute.implementation.ConversionImplementation;
+import info.bioinfweb.jtreess.execute.implementation.LengthConversionImplementation;
 import info.bioinfweb.jtreess.execute.implementation.DynamicValueImplementation;
 import info.bioinfweb.jtreess.execute.implementation.FunctionImplementation;
 import info.bioinfweb.jtreess.execute.implementation.Implementation;
@@ -30,9 +30,9 @@ import info.bioinfweb.jtreess.execute.implementation.SelectorImplementation;
 
 
 public class ImplementationAdapter<I extends Implementation> extends XmlAdapter<String, I> {
-	public static class ConversionImplementationAdapter extends ImplementationAdapter<ConversionImplementation> {
+	public static class ConversionImplementationAdapter extends ImplementationAdapter<LengthConversionImplementation> {
 		public ConversionImplementationAdapter() {
-			super(ConversionImplementation.class);
+			super(LengthConversionImplementation.class);
 		}
 	}
 	

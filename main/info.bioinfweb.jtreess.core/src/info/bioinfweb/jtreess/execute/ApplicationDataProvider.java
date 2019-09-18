@@ -55,7 +55,11 @@ public interface ApplicationDataProvider<N> {
 	 */
 	public int getTreeHeight();
 	
-	//TODO Add methods to convert between units/gather size information.
+	public double getPixelsPerMM();
+	
+	public double convertRelativeUnitToMM(String unitName, double value);
+	
+	//TODO Add methods to gather size information?
 	
 	public void setTreeFormat(String selectorName, String propertyName, RuntimeValue value); 
 

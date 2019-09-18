@@ -43,11 +43,14 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/ApplicationD
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/InterpretedDocument.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/Length.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/RuntimeValue.java -text
-main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/ConversionImplementation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/DynamicValueImplementation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/FunctionImplementation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/Implementation.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/LengthConversionImplementation.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/SelectorImplementation.java -text
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/lengthconversion/AbsoluteLengthUnitConversion.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/lengthconversion/RelativeLengthUnitConversion.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/lengthconversion/package-info.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/AbstractPseudofunctionImplementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/CombinedSelectorImplementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/FirstChildPseudoselectorImplementation.java -text svneol=unset#text/plain
