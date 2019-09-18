@@ -28,7 +28,7 @@ public class SimpleSelectorInformationTest {
 		assertEquals(1, selectorInformation.getExamples().size());
 		Example example = selectorInformation.getExamples().get(0);
 		assertTrue("Code example \"" + example.getCode() + "\" was not expected.", 
-				example.getCode().matches("\\s*node\\s*\\{\\s*text-height:\\s*0\\.8em\\;\\s*\\}\\s*"));
+				example.getCode().matches("\\s*node\\s*\\{\\s*font-size:\\s*0\\.8em\\;\\s*\\}\\s*"));
 		assertEquals("Sets the font size of all nodes in a tree to 80 % of the default font size of the document.", example.getDescription());
 		assertEquals("Tree.nexml", example.getTreeURL());
 		assertEquals("Tree_terminal_selector.svg", example.getResultImageURL());

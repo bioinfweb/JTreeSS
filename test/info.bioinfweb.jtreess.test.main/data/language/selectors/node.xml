@@ -7,7 +7,7 @@
 	<example>
 		<code>
 			node {
-				text-height: 0.8em;
+				font-size: 0.8em;
 			}
 		</code>
 		<description>Sets the font size of all nodes in a tree to 80 % of the default font size of the document.</description>
