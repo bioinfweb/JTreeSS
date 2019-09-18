@@ -177,6 +177,7 @@ test/info.bioinfweb.jtreess.test.main/data/language/types/text-align.xml -text s
 test/info.bioinfweb.jtreess.test.main/data/language/units/blu.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/units/pt.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/execute/RuntimeValueTest.java -text svneol=unset#text/plain
+test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/io/LanguageDefinitionReaderTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/model/EnumerationTypeInformationTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/model/FunctionPseudofunctionInformationTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/model/PropertyInformationTest.java -text svneol=unset#text/plain
