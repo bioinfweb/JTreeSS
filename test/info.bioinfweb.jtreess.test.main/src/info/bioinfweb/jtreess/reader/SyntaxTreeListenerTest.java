@@ -224,7 +224,7 @@ public class SyntaxTreeListenerTest {
 		assertEquals(2, propertyRule.getValues().size());
 		value = (Value) propertyRule.getValues().get(0); 
 		assertEquals(propertyRule, value.getParent());
-		assertEquals("\"Arial\"", value.getText());
+		assertEquals("Arial", value.getText());
 		assertEquals(ValueType.STRING, value.getType());
 		value = (Value) propertyRule.getValues().get(1); 
 		assertEquals(propertyRule, value.getParent());
@@ -299,12 +299,12 @@ public class SyntaxTreeListenerTest {
 		
 		value = (Value)function.getParameters().get(1); 
 		assertEquals(function, value.getParent());
-		assertEquals("\"a:flowerSize\"", value.getText());
+		assertEquals("a:flowerSize", value.getText());
 		assertEquals(ValueType.STRING, value.getType()); 
 		
 		value = (Value)function.getParameters().get(2); 
 		assertEquals(function, value.getParent());
-		assertEquals("\"a:averageSize\"", value.getText());
+		assertEquals("a:averageSize", value.getText());
 		assertEquals(ValueType.STRING, value.getType());
 		
 		
@@ -485,7 +485,7 @@ public class SyntaxTreeListenerTest {
 		assertEquals(2, propertyRule.getValues().size());
 		value = (Value) propertyRule.getValues().get(0); 
 		assertEquals(propertyRule, value.getParent());
-		assertEquals("\"Arial\"", value.getText());
+		assertEquals("Arial", value.getText());
 		assertEquals(ValueType.STRING, value.getType());
 		value = (Value) propertyRule.getValues().get(1); 
 		assertEquals(propertyRule, value.getParent());
@@ -558,12 +558,12 @@ public class SyntaxTreeListenerTest {
 		
 		value = (Value)function.getParameters().get(1); 
 		assertEquals(function, value.getParent());
-		assertEquals("\"a:flowerSize\"", value.getText());
+		assertEquals("a:flowerSize", value.getText());
 		assertEquals(ValueType.STRING, value.getType()); 
 		
 		value = (Value)function.getParameters().get(2); 
 		assertEquals(function, value.getParent());
-		assertEquals("\"a:averageSize\"", value.getText());
+		assertEquals("a:averageSize", value.getText());
 		assertEquals(ValueType.STRING, value.getType());
 	}			
 }
