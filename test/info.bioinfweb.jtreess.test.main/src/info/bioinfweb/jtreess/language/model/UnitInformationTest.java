@@ -21,7 +21,7 @@ public class UnitInformationTest {
 				new StreamSource(new File("data/language/units/pt.xml")), UnitInformation.class).getValue();
 		
 		assertEquals(info.getUnitInMM(), 0.35277777777777777, 0.000000000001);
-		assertFalse(info.isRelative());
+		assertFalse(info.isVariable());
 		assertEquals("A desktop publishing point. (1 pt = 1/72 in).", info.getDescription());
 		
 		assertEquals(1, info.getExamples().size());
@@ -41,7 +41,7 @@ public class UnitInformationTest {
 		UnitInformation info = JTreeSSTestTools.createJAXBContext().createUnmarshaller().unmarshal(
 				new StreamSource(new File("data/language/units/blu.xml")), UnitInformation.class).getValue();
 		
-		assertTrue(info.isRelative());
+		assertTrue(info.isVariable());
 		assertTrue("Description \"" + info.getDescription() + "\" was not expected.", 
 				info.getDescription().matches("A branch length unit is length to be used to display a branch with a stored length of 1. "
 						+ "The length of a branch length unit\\s+in mm or in varies and is defined by the application of each tree document."));
