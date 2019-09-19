@@ -34,6 +34,7 @@ import info.bioinfweb.jtreess.language.LanguageDefinitions;
 import info.bioinfweb.jtreess.language.model.EnumerationTypeInformation;
 import info.bioinfweb.jtreess.language.model.FunctionPseudoFunctionInformation;
 import info.bioinfweb.jtreess.language.model.PropertyInformation;
+import info.bioinfweb.jtreess.language.model.PseudoClassInformation;
 import info.bioinfweb.jtreess.language.model.SimpleSelectorInformation;
 import info.bioinfweb.jtreess.language.model.SoftwareInformation;
 import info.bioinfweb.jtreess.language.model.UnitInformation;
@@ -59,6 +60,7 @@ public class LanguageDefinitionReaderTest {
 		assertMap(ValueConstantInformation.class, definitions.getConstantsInformation(), "blue");
 		assertMap(FunctionPseudoFunctionInformation.class, definitions.getFunctionInformation(), "matches");
 		assertMap(PropertyInformation.class, definitions.getPropertyInformation(), "font-size");
+		assertMap(PseudoClassInformation.class, definitions.getPseudoClassInformation(), "first-child");
 		assertMap(SimpleSelectorInformation.class, definitions.getSimpleSelectorInformation(), "node");
 		assertMap(SoftwareInformation.class, definitions.getSoftwareInformation(), "TreeGraph_2");
 		assertMap(EnumerationTypeInformation.class, definitions.getEnumTypeInformation(), "text-align");
