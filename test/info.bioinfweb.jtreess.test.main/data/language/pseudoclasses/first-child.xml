@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<treeSSLangDefition type="pseudoclass" xmlns="http://bioinfweb.info/xmlns/TreeSS/languageDefinition">
+	<description>Selects the first child node of each parent node in a tree.</description>
+	<firstVersion>0.2</firstVersion>
+
+	<validSelectors>node branch</validSelectors>
+	<implementations>
+		<implementation language="Java">
+			<class>info.bioinfweb.jtreess.execute.implementation.selectorpseudofunction.FirstChildPseudoselectorImplementation</class>
+		</implementation>
+	</implementations>
+
+	<example>
+		<code>
+			branch:first-child {
+				color: green;
+			}
+		</code>
+		<description>Sets the line color leading to the first child node of every parent node to green.</description>
+	</example>
+</treeSSLangDefition>

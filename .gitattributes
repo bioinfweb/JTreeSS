@@ -172,6 +172,7 @@ test/info.bioinfweb.jtreess.test.main/data/TreeSS/SmallTests.treess -text
 test/info.bioinfweb.jtreess.test.main/data/language/constants/blue.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/functions/matches.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/properties/font-size.xml -text svneol=unset#text/plain
+test/info.bioinfweb.jtreess.test.main/data/language/pseudoclasses/first-child.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/selectors/node.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/software/TreeGraph_2.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/types/text-align.xml -text svneol=unset#text/plain
@@ -182,6 +183,7 @@ test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/io/Lan
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/model/EnumerationTypeInformationTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/model/FunctionPseudofunctionInformationTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/model/PropertyInformationTest.java -text svneol=unset#text/plain
+test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/model/PseudoclassInformationTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/model/SimpleSelectorInformationTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/model/SoftwareInformationTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/language/model/UnitInformationTest.java -text svneol=unset#text/plain
