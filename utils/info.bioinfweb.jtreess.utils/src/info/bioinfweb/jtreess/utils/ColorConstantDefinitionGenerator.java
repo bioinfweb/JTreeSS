@@ -19,47 +19,44 @@
 package info.bioinfweb.jtreess.utils;
 
 
-import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringWriter;
+import java.io.PrintWriter;
 
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-
-import info.bioinfweb.commons.io.TextReader;
-import info.bioinfweb.jtreess.execute.RuntimeValue;
-import info.bioinfweb.jtreess.language.io.LanguageDefinitionReader;
-import info.bioinfweb.jtreess.language.model.Example;
-import info.bioinfweb.jtreess.language.model.ValueConstantInformation;
 
 
 
 public class ColorConstantDefinitionGenerator {
-	private static ValueConstantInformation createInfoObject(String name, String color) {
-		ValueConstantInformation result = new ValueConstantInformation();
-		result.setValue(new RuntimeValue(Color.decode(color)));
-		result.setIntroductoryVersion("0.2");
-		
-		Example example = new Example();
-		example.setCode("\n" + 
-				"			branch {\n" +  
-				"				line-color: " + name + ";\n" +
-				"			}\n" +
-				"		");
-		example.setDescription("Sets the line color of all branches in a tree to " + name + ".");
-		result.getExamples().add(example);
-		
-		return result;
+	private static void writeFile(File file, String name, String color) throws FileNotFoundException {
+		PrintWriter writer = new PrintWriter(file);
+		try {
+			writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n" + 
+					"<treeSSLangDefition xmlns=\"http://bioinfweb.info/xmlns/TreeSS/languageDefinition\" type=\"property\">\r\n" + 
+					"	<value type=\"color\">" + color + "</value>\r\n" + 
+					"	<firstVersion>0.2</firstVersion>\r\n" + 
+					"\r\n" + 
+					"	<example>\r\n" + 
+					"		<code>\r\n" + 
+					"			branch {\r\n" + 
+					"				line-color: " + name + ";\r\n" + 
+					"			}\r\n" + 
+					"		</code>\r\n" + 
+					"		<description>Sets the line color of all branches in a tree to " + name + ".</description>\r\n" + 
+					"	</example>\r\n" + 
+					"</treeSSLangDefition>");
+		}
+		finally {
+			writer.close();
+		}
 	}
 	
 	
 	public static void main(String[] args) throws IOException, JAXBException {
-		Marshaller marshaller = LanguageDefinitionReader.createJAXBContext().createMarshaller();
-		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		// This class was refactored not to use JAXB anymore, since namespace achieving correct namespace declarations and element orders would have destroyed the reading implementation in core and would have been very complex. Tab idention was also not easily possible. Writing the XML manually here was sadly much more convenient and efficient.
 		
 		BufferedReader reader = new BufferedReader(new FileReader(new File("data/CSSColors.txt")));
 		try {
@@ -71,27 +68,13 @@ public class ColorConstantDefinitionGenerator {
 				
 				File outputFile = new File("data/output/colorConstants/" + name + ".xml");
 				System.out.println("Writing " + outputFile.getName() + " with color " + color);
-				
-				StringWriter stringWriter = new StringWriter();
-				marshaller.marshal(createInfoObject(name, color), stringWriter);
-				
-				
-				String fileContents = stringWriter.toString().replaceAll("<ld:", "<").replaceAll("</ld:", "</").replaceAll("xmlns:ld=", "xmlns=");
-				FileWriter writer = new FileWriter(outputFile);
-				try {
-					writer.write(fileContents);
-				}
-				finally {
-					writer.close();
-				}
+				writeFile(outputFile, name, color);
 				
 				line = reader.readLine();
-				break;
 			}
 		}
 		finally {
 			reader.close();
 		}
-		
 	}
 }
