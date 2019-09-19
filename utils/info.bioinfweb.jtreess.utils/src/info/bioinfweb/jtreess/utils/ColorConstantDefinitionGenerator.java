@@ -57,6 +57,7 @@ public class ColorConstantDefinitionGenerator {
 	
 	public static void main(String[] args) throws IOException, JAXBException {
 		// This class was refactored not to use JAXB anymore, since namespace achieving correct namespace declarations and element orders would have destroyed the reading implementation in core and would have been very complex. Tab idention was also not easily possible. Writing the XML manually here was sadly much more convenient and efficient.
+		// Source of the color codes: https://www.w3schools.com/cssref/css_colors.asp
 		
 		BufferedReader reader = new BufferedReader(new FileReader(new File("data/CSSColors.txt")));
 		try {
