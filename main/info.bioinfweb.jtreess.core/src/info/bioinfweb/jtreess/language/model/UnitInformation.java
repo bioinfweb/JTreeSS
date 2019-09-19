@@ -30,7 +30,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlAccessorType(XmlAccessType.PROPERTY)
 public class UnitInformation extends BasicInformation {
 	private double unitInMM = Double.NaN;
-	private String description = "";
 
 	
 	public UnitInformation() {
@@ -51,15 +50,5 @@ public class UnitInformation extends BasicInformation {
 
 	public void setUnitInMM(double absoluteUnitInMM) {
 		this.unitInMM = absoluteUnitInMM;
-	}
-
-
-	public String getDescription() {
-		return description;
-	}
-
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 }

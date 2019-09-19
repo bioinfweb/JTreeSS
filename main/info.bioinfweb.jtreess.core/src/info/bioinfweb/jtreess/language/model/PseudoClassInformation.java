@@ -19,6 +19,10 @@
 package info.bioinfweb.jtreess.language.model;
 
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.xml.bind.annotation.XmlList;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.eclipse.persistence.oxm.annotations.XmlPath;
@@ -34,6 +38,9 @@ public class PseudoClassInformation extends BasicInformation {
 	@XmlJavaTypeAdapter(ImplementationAdapter.SelectorImplementationAdapter.class)
 	private SelectorImplementation pseudoClassImplementation;
 
+	@XmlList
+	private Set<String> validSelectors = new HashSet<String>();
+
 	
 	public PseudoClassInformation() {
 		super("pseudoClass");
@@ -47,5 +54,10 @@ public class PseudoClassInformation extends BasicInformation {
 	
 	public void setPseudoClassImplementation(SelectorImplementation pseudoClassImplementation) {
 		this.pseudoClassImplementation = pseudoClassImplementation;
+	}
+
+
+	public Set<String> getValidSelectors() {
+		return validSelectors;
 	}
 }
