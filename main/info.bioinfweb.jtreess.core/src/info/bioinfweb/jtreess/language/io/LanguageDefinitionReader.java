@@ -33,6 +33,7 @@ import info.bioinfweb.jtreess.language.LanguageDefinitions;
 import info.bioinfweb.jtreess.language.model.EnumerationTypeInformation;
 import info.bioinfweb.jtreess.language.model.FunctionPseudoFunctionInformation;
 import info.bioinfweb.jtreess.language.model.PropertyInformation;
+import info.bioinfweb.jtreess.language.model.PseudoClassInformation;
 import info.bioinfweb.jtreess.language.model.SimpleSelectorInformation;
 import info.bioinfweb.jtreess.language.model.SoftwareInformation;
 import info.bioinfweb.jtreess.language.model.UnitInformation;
@@ -54,7 +55,8 @@ public class LanguageDefinitionReader {
 	
 	public static JAXBContext createJAXBContext() throws JAXBException {
 		return JAXBContext.newInstance(SimpleSelectorInformation.class, PropertyInformation.class, ValueConstantInformation.class, 
-				EnumerationTypeInformation.class, FunctionPseudoFunctionInformation.class, SoftwareInformation.class, UnitInformation.class);
+				EnumerationTypeInformation.class, FunctionPseudoFunctionInformation.class, SoftwareInformation.class, UnitInformation.class,
+				PseudoClassInformation.class);
 	}
 	
 	
