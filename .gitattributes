@@ -195,3 +195,5 @@ utils/info.bioinfweb.jtreess.utils/.classpath -text svneol=unset#text/plain
 utils/info.bioinfweb.jtreess.utils/.project -text svneol=unset#text/plain
 utils/info.bioinfweb.jtreess.utils/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
 utils/info.bioinfweb.jtreess.utils/.settings/org.eclipse.jdt.ui.prefs -text svneol=unset#text/plain
+utils/info.bioinfweb.jtreess.utils/data/CSSColors.txt -text svneol=unset#text/plain
+utils/info.bioinfweb.jtreess.utils/src/info/bioinfweb/jtreess/utils/ColorConstantDefinitionGenerator.java -text svneol=unset#text/plain
