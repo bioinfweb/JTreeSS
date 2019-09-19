@@ -45,6 +45,7 @@ public class LanguageDefinitionReader {
 	public static final String LANGUAGE_DEFINITION_FILE_EXTENSION = ".xml";
 	
 	public static final String SELECTORS_DIRECTORY = "selectors";
+	public static final String PSEUDOCLASSES_DIRECTORY = "pseudoclasses";
 	public static final String PROPERTIES_DIRECTORY = "properties";
 	public static final String CONSTANTS_DIRECTORY = "constants";
 	public static final String FUNCTIONS_DIRECTORY = "functions";
@@ -81,6 +82,7 @@ public class LanguageDefinitionReader {
 		LanguageDefinitions result = new LanguageDefinitions();
 		
 		readMap(SimpleSelectorInformation.class, result.getSimpleSelectorInformation(), rootFolder, SELECTORS_DIRECTORY);
+		readMap(PseudoClassInformation.class, result.getPseudoClassInformation(), rootFolder, PSEUDOCLASSES_DIRECTORY);
 		readMap(PropertyInformation.class, result.getPropertyInformation(), rootFolder, PROPERTIES_DIRECTORY);
 		readMap(ValueConstantInformation.class, result.getConstantsInformation(), rootFolder, CONSTANTS_DIRECTORY);
 		readMap(FunctionPseudoFunctionInformation.class, result.getFunctionInformation(), rootFolder, FUNCTIONS_DIRECTORY);
