@@ -67,6 +67,13 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementati
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/SelectorImplementationAdapter.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/TerminalPsuedoselectorImplementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/TreeSimpleSelectorImplementation.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/value/CursiveDynamicValueImplementation.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/value/FantasyDynamicValueImplementation.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/value/GenericFontFamilyListImplementation.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/value/MonospaceDynamicValueImplementation.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/value/SansSerifDynamicValueImplementation.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/value/SerifDynamicValueImplementation.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/value/package-info.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/package-info.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/LanguageDefinitions.java -text
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/language/io/AbstractWriteTransformer.java -text svneol=unset#text/plain

@@ -16,14 +16,29 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.execute.implementation;
+package info.bioinfweb.jtreess.execute.implementation.value;
 
 
-import info.bioinfweb.jtreess.execute.ApplicationDataProvider;
-import info.bioinfweb.jtreess.execute.RuntimeValue;
+import java.awt.Font;
 
 
 
-public interface DynamicValueImplementation extends Implementation {
-	public RuntimeValue getValue(ApplicationDataProvider<?> dataProvider);
+public class FantasyDynamicValueImplementation extends GenericFontFamilyListImplementation {
+	public FantasyDynamicValueImplementation() {
+		super(Font.SERIF, 
+				"Impact",
+				"Brushstroke",
+				"Luminari",
+				"Chalkduster",
+				"Jazz LET",
+				"Blippo",
+				"Stencil Std",
+				"Marker Felt",
+				"Trattatello",
+				"Arnoldboecklin",
+				"Oldtown",
+				"Copperplate",
+				"papyrus");
+		// Source for the list: https://www.tutorialbrain.com/css_tutorial/css_font_family_list/
+	}
 }

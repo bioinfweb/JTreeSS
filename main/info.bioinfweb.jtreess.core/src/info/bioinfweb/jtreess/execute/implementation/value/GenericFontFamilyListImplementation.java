@@ -16,14 +16,36 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.execute.implementation;
+package info.bioinfweb.jtreess.execute.implementation.value;
 
+
+import java.awt.Font;
 
 import info.bioinfweb.jtreess.execute.ApplicationDataProvider;
 import info.bioinfweb.jtreess.execute.RuntimeValue;
+import info.bioinfweb.jtreess.execute.implementation.DynamicValueImplementation;
 
 
 
-public interface DynamicValueImplementation extends Implementation {
-	public RuntimeValue getValue(ApplicationDataProvider<?> dataProvider);
+public class GenericFontFamilyListImplementation implements DynamicValueImplementation {
+	private String[] fontNames;
+	private String defaultName;
+
+	
+	public GenericFontFamilyListImplementation(String defaultName, String... fontNames) {
+		super();
+		this.fontNames = fontNames;
+		this.defaultName = defaultName;
+	}
+
+
+	@Override
+	public RuntimeValue getValue(ApplicationDataProvider<?> dataProvider) {
+		for (String fontName : fontNames) {
+			if (fontName.equals(new Font(fontName, Font.PLAIN, 12).getFamily())) {  // Test if font exists in the system.
+				return new RuntimeValue(fontName);
+			}
+		}
+		return new RuntimeValue(defaultName);
+	}
 }
