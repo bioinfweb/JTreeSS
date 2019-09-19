@@ -191,3 +191,7 @@ test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/test/FunctionIm
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/test/JTreeSSTestTools.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/test/MarshallerTest.java -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/src/info/bioinfweb/jtreess/test/PropertyInformationMashaller.java -text svneol=unset#text/plain
+utils/info.bioinfweb.jtreess.utils/.classpath -text svneol=unset#text/plain
+utils/info.bioinfweb.jtreess.utils/.project -text svneol=unset#text/plain
+utils/info.bioinfweb.jtreess.utils/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
+utils/info.bioinfweb.jtreess.utils/.settings/org.eclipse.jdt.ui.prefs -text svneol=unset#text/plain
