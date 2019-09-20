@@ -54,8 +54,6 @@ public class RuntimeValueReadTransformer implements AttributeTransformer, XMLCon
 			}
 		}
 		
-		System.out.println(value + "" + type);
-		
 		return RuntimeValue.parseRuntimeValue(value, RuntimeType.parseRuntimeType(type));  // Throws an exception if type is still null but allows value == "".
 				//TODO Catch or wrap any parse exceptions here?
 	}
