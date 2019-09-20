@@ -43,17 +43,20 @@ public class RuntimeValueReadTransformer implements AttributeTransformer, XMLCon
 	@Override
 	public Object buildAttributeValue(Record record, Object instance, Session session) {
 		String type = null;
-		String value = null;
+		String value = "";
 		
 		for (DatabaseField field : mapping.getFields()) {
 			if (field.getName().contains(TAG_TYPE)) {
 				type = (String)record.get(field);
 			} 
-			else if (field.getName().contains(TAG_VALUE)) {
+			else if (field.getName().contains(TAG_VALUE) && (record.get(field) != null)) {
 				value = (String)record.get(field);
 			}
 		}
 		
-		return RuntimeValue.parseRuntimeValue(value, RuntimeType.parseRuntimeType(type));  //TODO Catch or wrap any parse exceptions here?
+		System.out.println(value + "" + type);
+		
+		return RuntimeValue.parseRuntimeValue(value, RuntimeType.parseRuntimeType(type));  // Throws an exception if type is still null but allows value == "".
+				//TODO Catch or wrap any parse exceptions here?
 	}
 }

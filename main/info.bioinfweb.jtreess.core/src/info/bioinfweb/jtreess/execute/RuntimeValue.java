@@ -104,7 +104,10 @@ public class RuntimeValue {
 		}
 		
 		RuntimeValue result = new RuntimeValue();
-		if (RuntimeType.BasicType.ENUM_TYPE.equals(type.getBasicType())) {
+		if (value == null) {
+			result.setType(type);
+		}
+		else if (RuntimeType.BasicType.ENUM_TYPE.equals(type.getBasicType())) {
 			result.setEnumValue(text, type.getEnumType());
 		}
 		else {
@@ -128,15 +131,14 @@ public class RuntimeValue {
 	 * </ul>
 	 * Note that {@link #setEnumValue(String, String)} must be used to set enumeration states as values of this instance. If a {@link String}
 	 * is specified here, it will be interpreted as {@link RuntimeType#STRING}.
+	 * <p>
+	 * If the specified value is {@code null} the type property will remain unchanged.
 	 * 
-	 * @param value an instance of a valid value object (See list above.)
+	 * @param value an instance of a valid value object (See list above.) or {@code null}
 	 * @throws IllegalArgumentException if the specified object is not an instance or a subclass of a valid object type (See list above.)
 	 * @see #setEnumValue(String, String) 
 	 */
 	public void setValue(Object value) throws IllegalArgumentException {
-		if (value == null) {
-			this.type = null;
-		}
 		if (value instanceof Double) {
 			this.type = new RuntimeType(RuntimeType.BasicType.NUMBER);
 		}
@@ -155,7 +157,7 @@ public class RuntimeValue {
 		else if (value instanceof SelectorImplementation) {
 			this.type = new RuntimeType(RuntimeType.BasicType.SELECTOR);
 		}
-		else {
+		else if (value != null) {
 			throw new IllegalArgumentException("No matching runtime time for " + type + "could be found.");
 		}
 		this.value = value;
@@ -172,21 +174,32 @@ public class RuntimeValue {
 	public void setEnumValue(String value, String type) {
 		this.value = value;
 		this.type = new RuntimeType(type);
-		if(value == null) {
+		if (value == null) {
 			throw new IllegalArgumentException("The value must not be null.");
 		}
 		else if (type == null) {
 			throw new IllegalArgumentException("The enum type must not be null.");
 		}
-		else if(value.equals("")) {
+		else if (value.equals("")) {
 			throw new IllegalArgumentException("The value must not be an empty string.");
 		}
-		else if(type.equals("")) {
+		else if (type.equals("")) {
 			throw new IllegalArgumentException("The enum type must not be an empty string.");
 		}
 	}
 	
 	
+	public void setType(RuntimeType type) {
+		if (value == null) {
+			this.type = type;
+		}
+		else if (!this.type.equals(type)) {
+			throw new IllegalStateException("Canot set the type " + type + " while a value of type " + this.type + 
+					" is stored. Set type only directly for null values.");
+		}
+	}
+
+
 	/**
 	 * Returns the value stored in this instance as a numeric value without unit.
 	 * 
@@ -266,7 +279,7 @@ public class RuntimeValue {
 				((getType() != null) && RuntimeType.BasicType.ENUM_TYPE.equals(getType().getBasicType())))) {
 			
 			throw new IllegalStateException("Cannot return a value of type \"" + type + "\" as an \"" + 
-					RuntimeType.BasicType.STRING + "\" or \"" + new RuntimeType(RuntimeType.BasicType.ENUM_TYPE) + "\".");
+					RuntimeType.BasicType.STRING + "\" or \"" + RuntimeType.BasicType.ENUM_TYPE + "\".");
 		}
 		return (String)value;
 	}
