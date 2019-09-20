@@ -46,7 +46,7 @@ public class RuntimeValueReadTransformer implements AttributeTransformer, XMLCon
 		String value = null;
 		
 		for (DatabaseField field : mapping.getFields()) {
-			if (field.getName().contains(ATTR_TYPE)) {
+			if (field.getName().contains(TAG_TYPE)) {
 				type = (String)record.get(field);
 			} 
 			else if (field.getName().contains(TAG_VALUE)) {

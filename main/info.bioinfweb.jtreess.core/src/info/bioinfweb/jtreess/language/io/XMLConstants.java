@@ -25,7 +25,7 @@ public interface XMLConstants {
 	public static final String LANGUAGE_DEFINITION_NS_PREFIX = "ld";
 	
 	public static final String TAG_VALUE = "value";
-	public static final String ATTR_TYPE = "type";
+	public static final String TAG_TYPE = "type";
 	
 	public static final String IMPLEMENTATION_CLASS_XPATH = "implementations/implementation[@language='Java']/class/text()";
 }

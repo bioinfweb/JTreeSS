@@ -54,7 +54,7 @@ public class ValueConstantInformation extends BasicInformation implements XMLCon
   @XmlWriteTransformers({
       @XmlWriteTransformer(xmlPath = LANGUAGE_DEFINITION_NS_PREFIX + ":" + TAG_VALUE + "/text()", 
       		transformerClass = RuntimeValueValueWriteTransformer.class),
-      @XmlWriteTransformer(xmlPath = LANGUAGE_DEFINITION_NS_PREFIX + ":" + TAG_VALUE + "/@" + ATTR_TYPE, 
+      @XmlWriteTransformer(xmlPath = LANGUAGE_DEFINITION_NS_PREFIX + ":" + TAG_TYPE + "/text()", 
       		transformerClass = RuntimeValueTypeWriteTransformer.class)
   })
 	private RuntimeValue value;
