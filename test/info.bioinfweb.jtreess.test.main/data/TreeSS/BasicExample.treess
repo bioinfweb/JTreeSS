@@ -17,16 +17,16 @@ node {
 }
 
 *:terminal {  /* This would reference terminal nodes, branches, labels, ... */
-	color: blue;
+	text-color: blue;
 	
 }
 
 node:first-child:last-child, branch:terminal {
-	color: #FF0000;
+	line-color: #FF0000;
 }
 
 node:not(:matches(:first-child, :last-child, -8cm)) {
-	color: #0F0;
+	line-color: #0F0;
 }
 
 scale {   

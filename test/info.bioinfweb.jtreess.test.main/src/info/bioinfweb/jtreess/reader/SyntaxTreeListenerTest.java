@@ -341,7 +341,7 @@ public class SyntaxTreeListenerTest {
 		assertEquals(1, selectorRule.getPropertyRules().size());
 		propertyRule = selectorRule.getPropertyRules().get(0);
 		assertEquals(selectorRule, propertyRule.getParent());
-		assertProperty(propertyRule,"color"); 
+		assertProperty(propertyRule, "text-color"); 
 		
 		assertEquals(1, propertyRule.getValues().size());
 		value = (Value) propertyRule.getValues().get(0);
@@ -375,7 +375,7 @@ public class SyntaxTreeListenerTest {
 		assertEquals(1, selectorRule.getPropertyRules().size());
 		propertyRule = selectorRule.getPropertyRules().get(0);
 		assertEquals(selectorRule, propertyRule.getParent());
-		assertProperty(propertyRule,"color"); 
+		assertProperty(propertyRule, "line-color"); 
 		
 		assertEquals(1, propertyRule.getValues().size());
 		ColorValue colorValue = (ColorValue) propertyRule.getValues().get(0); 
@@ -416,7 +416,7 @@ public class SyntaxTreeListenerTest {
 		assertEquals(1, selectorRule.getPropertyRules().size());
 		propertyRule = selectorRule.getPropertyRules().get(0);
 		assertEquals(selectorRule, propertyRule.getParent());
-		assertProperty(propertyRule,"color"); 
+		assertProperty(propertyRule, "line-color"); 
 		
 		assertEquals(1, propertyRule.getValues().size());
 		colorValue = (ColorValue)propertyRule.getValues().get(0); 
