@@ -61,7 +61,7 @@ public class ValueConstantInformation extends BasicInformation implements XMLCon
 	
 	@XmlPath(IMPLEMENTATION_CLASS_XPATH)
 	@XmlJavaTypeAdapter(ImplementationAdapter.DynamicValueImplementationAdapter.class)
-	private DynamicValueImplementation dynamicValueImplementation;  //TODO Is this necessary or can dynamic values just be written into the value property? If it is, should there still be a value property at the same time?
+	private DynamicValueImplementation dynamicValueImplementation;  //TODO Is this necessary or can dynamic values just be written into the value property? If it is, should there still be a value property at the same time? => Dynamic values must be set outside of this class since an ApplicationDataProvider is required. The implementation provides information of data needs to be set once or on every call.
 	
 	
 	public ValueConstantInformation() {
@@ -76,6 +76,11 @@ public class ValueConstantInformation extends BasicInformation implements XMLCon
 	
 	public void setValue(RuntimeValue value) {
 		this.value = value;
+	}
+	
+	
+	public boolean hasDynamicValueImplementation() {
+		return dynamicValueImplementation != null;
 	}
 	
 	

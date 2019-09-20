@@ -27,7 +27,7 @@ import info.bioinfweb.jtreess.execute.implementation.DynamicValueImplementation;
 
 
 
-public class GenericFontFamilyListImplementation implements DynamicValueImplementation {
+public class GenericFontFamilyListImplementation extends AbstractFontFamilyDynamicValueImplementation implements DynamicValueImplementation {
 	private String[] fontNames;
 	private String defaultName;
 

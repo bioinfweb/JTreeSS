@@ -67,6 +67,7 @@ main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementati
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/SelectorImplementationAdapter.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/TerminalPsuedoselectorImplementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/selectorpseudofunction/TreeSimpleSelectorImplementation.java -text svneol=unset#text/plain
+main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/value/AbstractFontFamilyDynamicValueImplementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/value/CursiveDynamicValueImplementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/value/FantasyDynamicValueImplementation.java -text svneol=unset#text/plain
 main/info.bioinfweb.jtreess.core/src/info/bioinfweb/jtreess/execute/implementation/value/GenericFontFamilyListImplementation.java -text svneol=unset#text/plain

@@ -16,16 +16,16 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package info.bioinfweb.jtreess.execute.implementation;
+package info.bioinfweb.jtreess.execute.implementation.value;
 
 
-import info.bioinfweb.jtreess.execute.ApplicationDataProvider;
-import info.bioinfweb.jtreess.execute.RuntimeValue;
+import info.bioinfweb.jtreess.execute.implementation.DynamicValueImplementation;
 
 
 
-public interface DynamicValueImplementation extends Implementation {
-	public boolean changesDuringRuntime();
-	
-	public RuntimeValue getValue(ApplicationDataProvider<?> dataProvider);
+public abstract class AbstractFontFamilyDynamicValueImplementation implements DynamicValueImplementation {
+	@Override
+	public boolean changesDuringRuntime() {
+		return false;
+	}
 }

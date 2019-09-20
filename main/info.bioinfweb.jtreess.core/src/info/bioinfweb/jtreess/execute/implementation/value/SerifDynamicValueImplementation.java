@@ -27,7 +27,7 @@ import info.bioinfweb.jtreess.execute.implementation.DynamicValueImplementation;
 
 
 
-public class SerifDynamicValueImplementation implements DynamicValueImplementation {
+public class SerifDynamicValueImplementation extends AbstractFontFamilyDynamicValueImplementation implements DynamicValueImplementation {
 	@Override
 	public RuntimeValue getValue(ApplicationDataProvider<?> dataProvider) {
 		return new RuntimeValue(Font.SERIF);

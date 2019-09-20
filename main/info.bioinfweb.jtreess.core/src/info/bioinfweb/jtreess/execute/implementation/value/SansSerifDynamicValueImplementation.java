@@ -27,7 +27,7 @@ import info.bioinfweb.jtreess.execute.implementation.DynamicValueImplementation;
 
 
 
-public class SansSerifDynamicValueImplementation implements DynamicValueImplementation {
+public class SansSerifDynamicValueImplementation extends AbstractFontFamilyDynamicValueImplementation implements DynamicValueImplementation {
 	@Override
 	public RuntimeValue getValue(ApplicationDataProvider<?> dataProvider) {
 		return new RuntimeValue(Font.SANS_SERIF);

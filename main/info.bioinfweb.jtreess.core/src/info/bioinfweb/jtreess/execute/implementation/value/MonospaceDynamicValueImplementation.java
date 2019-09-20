@@ -27,7 +27,7 @@ import info.bioinfweb.jtreess.execute.implementation.DynamicValueImplementation;
 
 
 
-public class MonospaceDynamicValueImplementation implements DynamicValueImplementation {
+public class MonospaceDynamicValueImplementation extends AbstractFontFamilyDynamicValueImplementation implements DynamicValueImplementation {
 	@Override
 	public RuntimeValue getValue(ApplicationDataProvider<?> dataProvider) {
 		return new RuntimeValue(Font.MONOSPACED);
