@@ -36,7 +36,8 @@ public class ColorConstantDefinitionGenerator {
 		try {
 			writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n" + 
 					"<treeSSLangDefition xmlns=\"http://bioinfweb.info/xmlns/TreeSS/languageDefinition\" type=\"property\">\r\n" + 
-					"	<value type=\"color\">" + color + "</value>\r\n" + 
+					"	<type>COLOR</type>\r\n" + 
+					"	<value>" + color + "</value>\r\n" + 
 					"	<firstVersion>0.2</firstVersion>\r\n" + 
 					"\r\n" + 
 					"	<example>\r\n" + 
