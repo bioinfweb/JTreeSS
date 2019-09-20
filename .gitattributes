@@ -178,6 +178,7 @@ test/info.bioinfweb.jtreess.test.main/data/TreeSS/SelectorPseudoSelectorTest.tre
 test/info.bioinfweb.jtreess.test.main/data/TreeSS/SimpleCalculationTest.treess -text
 test/info.bioinfweb.jtreess.test.main/data/TreeSS/SmallTests.treess -text
 test/info.bioinfweb.jtreess.test.main/data/language/constants/blue.xml -text svneol=unset#text/plain
+test/info.bioinfweb.jtreess.test.main/data/language/constants/serif.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/functions/matches.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/properties/font-size.xml -text svneol=unset#text/plain
 test/info.bioinfweb.jtreess.test.main/data/language/pseudoclasses/first-child.xml -text svneol=unset#text/plain

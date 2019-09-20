@@ -20,6 +20,8 @@ package info.bioinfweb.jtreess.language.model;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
@@ -32,13 +34,14 @@ import javax.xml.transform.stream.StreamSource;
 import org.junit.Test;
 
 import info.bioinfweb.jtreess.execute.RuntimeValue;
+import info.bioinfweb.jtreess.execute.implementation.value.SerifDynamicValueImplementation;
 import info.bioinfweb.jtreess.test.JTreeSSTestTools;
 
 
 
 public class ValueConstantInformationTest {
 	@Test
-	public void test_Unmashalling() throws JAXBException {
+	public void test_Unmashalling_static() throws JAXBException {
 		ValueConstantInformation constantInformation = JTreeSSTestTools.createJAXBContext().createUnmarshaller().unmarshal(
 				new StreamSource(new File("data/language/constants/blue.xml")), ValueConstantInformation.class).getValue();
 		
@@ -59,6 +62,23 @@ public class ValueConstantInformationTest {
 		assertEquals("TreeGraph 2", entry.getName());
 		assertEquals(1, entry.getSupportedVersionIntervals().size());
 		assertEquals(entry.getSupportedVersionIntervals().get(0), new SoftwareVersionInterval("2.14.0"));
+	}
+	
+	
+	@Test
+	public void test_Unmashalling_dynamic() throws JAXBException {
+		ValueConstantInformation constantInformation = JTreeSSTestTools.createJAXBContext().createUnmarshaller().unmarshal(
+				new StreamSource(new File("data/language/constants/serif.xml")), ValueConstantInformation.class).getValue();
+		
+		assertNotNull(constantInformation.getValue());
+		assertFalse(constantInformation.getValue().hasValue());
+		assertEquals(RuntimeType.STRING, constantInformation.getValue().getType());
+		assertTrue(constantInformation.getDynamicValueImplementation() instanceof SerifDynamicValueImplementation);
+		assertEquals("0.2", constantInformation.getIntroductoryVersion());
+		assertNull(constantInformation.getRemovingVersion());
+		
+		assertEquals(0, constantInformation.getExamples().size());
+		assertEquals(0, constantInformation.getSupportedSoftware().size());
 	}
 	
 	

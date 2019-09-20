@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<treeSSLangDefition xmlns="http://bioinfweb.info/xmlns/TreeSS/languageDefinition" type="property">
+	<type>STRING</type>
+	<firstVersion>0.2</firstVersion>
+
+	<implementations>
+		<implementation language="Java">
+			<class>info.bioinfweb.jtreess.execute.implementation.value.SerifDynamicValueImplementation</class>
+		</implementation>
+	</implementations>
+</treeSSLangDefition>
